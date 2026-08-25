@@ -51,7 +51,7 @@ Crear `package.json`:
   "type": "module",
   "engines": { "node": ">=22" },
   "scripts": {
-    "test": "node --test tests/",
+    "test": "node --test \"tests/**/*.test.mjs\"",
     "scrape": "node src/scrape/index.mjs"
   }
 }
@@ -252,21 +252,37 @@ async function traer(url, intentos = 3) {
   for (let i = 0; i < intentos; i++) {
     try {
       const res = await fetch(url, { headers: { 'User-Agent': UA } });
-      if (!res.ok) throw new Error(`HTTP ${res.status} en ${url}`);
-      return res;
+      if (res.ok) return res;
+      const err = new Error(`HTTP ${res.status} en ${url}`);
+      // Un 4xx (salvo 429) es un recurso que no está: reintentarlo solo gasta tiempo.
+      if (res.status >= 400 && res.status < 500 && res.status !== 429) {
+        err.definitivo = true;
+      }
+      throw err;
     } catch (err) {
       ultimoError = err;
+      if (err.definitivo) throw err;
       if (i < intentos - 1) await esperar(2000 * (i + 1));
     }
   }
   throw ultimoError;
 }
 
-export const pedirTexto = conRitmo(async (url) => (await traer(url)).text());
+/**
+ * Una sola puerta para TODO el módulo: cualquier petición al servidor del
+ * cliente —HTML o imagen— pasa por esta cola. Envolver cada función pública
+ * con su propia instancia de conRitmo daría dos relojes independientes, y un
+ * Promise.all([pedirTexto(a), pedirBinario(b)]) dispararía dos peticiones a la
+ * vez. La lectura del cuerpo ocurre dentro del turno, para que la petición
+ * siguiente no arranque mientras esta aún se está descargando.
+ */
+const pedirConRitmo = conRitmo(async (url, modo) => {
+  const res = await traer(url);
+  return modo === 'binario' ? Buffer.from(await res.arrayBuffer()) : res.text();
+});
 
-export const pedirBinario = conRitmo(async (url) =>
-  Buffer.from(await (await traer(url)).arrayBuffer()),
-);
+export const pedirTexto = (url) => pedirConRitmo(url, 'texto');
+export const pedirBinario = (url) => pedirConRitmo(url, 'binario');
 ```
 
 - [ ] **Paso 4: Ejecutar el test y comprobar que pasa**

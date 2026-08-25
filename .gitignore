@@ -3,3 +3,7 @@ dist/
 .astro/
 *.log
 scrape-report.json
+
+# datos parciales de pruebas
+src/data/*.tmp
+scrape-report.json.tmp
