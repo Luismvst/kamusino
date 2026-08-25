@@ -1,12 +1,20 @@
-// Ficha de producto: /{categoria}/{idProducto}-{idCombinacion}-{slug}.html
-const RE_PRODUCTO = /https:\/\/kamusino\.com\/([a-z0-9-]+)\/(\d+)-(\d+)-([a-z0-9-]+)\.html/g;
+// Ficha de producto: /{categoria}/{idProducto}[-{idCombinacion}]-{slug}.html
+// Los productos SIN combinaciones de atributos no llevan id de combinación:
+// /personaliza/2003-pantalon-personalizado-.html
+const RE_PRODUCTO = /https:\/\/kamusino\.com\/([a-z0-9-]+)\/(\d+)-(?:\d+-)?([a-z0-9-]+)\.html/g;
+
+/** Fuente única del id de producto a partir de su URL. */
+export function idProductoDeUrl(url) {
+  const m = url.match(/\/(\d+)-(?:\d+-)?[a-z0-9-]+\.html$/);
+  return m ? Number(m[1]) : null;
+}
 
 export function extraerUrlsProducto(html) {
   const porProducto = new Map();
-  for (const [url, , idProducto] of html.matchAll(RE_PRODUCTO)) {
-    const id = Number(idProducto);
+  for (const [url] of html.matchAll(RE_PRODUCTO)) {
+    const id = idProductoDeUrl(url);
     // Nos quedamos con la primera variante encontrada: la ficha trae el producto entero.
-    if (!porProducto.has(id)) porProducto.set(id, url);
+    if (id !== null && !porProducto.has(id)) porProducto.set(id, url);
   }
   return [...porProducto.values()];
 }

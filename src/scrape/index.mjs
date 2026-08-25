@@ -1,7 +1,7 @@
 import { copyFile, mkdir, readFile, rename, writeFile } from 'node:fs/promises';
 import { BASE, extraerCategorias } from './categorias.mjs';
 import { pedirTexto } from './http.mjs';
-import { articulosDeclarados, extraerUrlsProducto, urlCategoriaCompleta } from './listado.mjs';
+import { articulosDeclarados, extraerUrlsProducto, idProductoDeUrl, urlCategoriaCompleta } from './listado.mjs';
 import { normalizar } from './producto.mjs';
 import { descargarImagen } from './imagenes.mjs';
 
@@ -110,12 +110,11 @@ async function main() {
             new Error(`la página declara ${declarados} artículos y extrajimos ${urls.length}`));
         }
         for (const u of urls) {
-          const m = u.match(/\/(\d+)-\d+-/);
-          if (!m) {
+          const id = idProductoDeUrl(u);
+          if (id === null) {
             fallo('url-producto', u, new Error('no se pudo extraer el id de producto'));
             continue;
           }
-          const id = Number(m[1]);
           if (!urlsProducto.has(id)) urlsProducto.set(id, { url: u, categoriaId: cat.id });
         }
         console.log(`    ${cat.slug}: ${urls.length}`);
