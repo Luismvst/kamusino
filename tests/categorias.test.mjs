@@ -30,3 +30,18 @@ test('incluye la categoría 104-camisetas', () => {
   assert.ok(camisetas, 'falta la categoría 104');
   assert.equal(camisetas.slug, 'camisetas');
 });
+
+test('no confunde una url de producto con una categoría', () => {
+  const html = `
+    <a href="https://kamusino.com/104-camisetas">Camisetas</a>
+    <a href="https://kamusino.com/personaliza/2158-11723-camiseta-gildan-sofstyle.html">Producto</a>
+    <a href="https://kamusino.com/content/2-aviso-legal">Aviso legal</a>
+    <a href="https://kamusino.es/4-camisetas">Dominio muerto</a>
+  `;
+  const cats = extraerCategorias(html);
+  assert.deepEqual(
+    cats.map((c) => c.id),
+    [104],
+    `solo 104 es categoría; obtuve ${JSON.stringify(cats.map((c) => `${c.id}-${c.slug}`))}`,
+  );
+});
