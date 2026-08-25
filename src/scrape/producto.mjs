@@ -48,8 +48,11 @@ export function extraerColores(html) {
   return colores;
 }
 
-export function extraerTallas(html) {
-  const select = html.match(/<select[^>]*name="group\[\d+\]"([\s\S]*?)<\/select>/)?.[1];
+export function extraerTallas(html, idGrupo) {
+  const re = idGrupo
+    ? new RegExp(`<select[^>]*name="group\\[${idGrupo}\\]"([\\s\\S]*?)</select>`)
+    : /<select[^>]*name="group\[\d+\]"([\s\S]*?)<\/select>/;
+  const select = html.match(re)?.[1];
   if (!select) return [];
   return [...select.matchAll(/<option[^>]*>([^<]+)<\/option>/g)]
     .map(([, t]) => decodificar(t).trim())
@@ -66,22 +69,45 @@ export function normalizar(html) {
     leyenda: img.legend ?? '',
   }));
 
+  // La ficha declara qué grupos de atributos tiene. Si declara color o talla y
+  // no extraemos ninguno, el marcado de este producto difiere del que probamos:
+  // hay que enterarse AHORA, no cuando el servidor de origen ya no exista.
+  const grupos = Object.values(d.attributes ?? {});
+  const grupoTalla = grupos.find((a) => /talla|size/i.test(String(a.group ?? '')));
+  const declaraColor = grupos.some((a) => /color/i.test(String(a.group ?? '')));
+
+  const colores = extraerColores(html);
+  const tallas = extraerTallas(html, grupoTalla?.id_attribute_group);
+
+  const avisos = [];
+  if (declaraColor && colores.length === 0) avisos.push('declara grupo de color pero no se extrajo ninguno');
+  if (grupoTalla && tallas.length === 0) avisos.push('declara grupo de talla pero no se extrajo ninguna');
+
+  const precioBruto = d.price_amount;
+  const precio = Number(precioBruto);
+  // Number(null) da 0 y Number(undefined) da NaN: para que `null` (JSON sin precio)
+  // no se cuele como un silencioso "gratis", tratamos ausencia de valor igual que no-numérico.
+  if (precioBruto == null || !Number.isFinite(precio)) {
+    avisos.push(`precio no numérico: ${JSON.stringify(precioBruto)}`);
+  }
+
   return {
     id: Number(d.id_product),
     slug: d.link_rewrite,
     nombre: decodificar(String(d.name ?? '')).trim(),
     categoriaSlug: d.category ?? '',
-    precio: Number(d.price_amount),
+    precio: Number.isFinite(precio) ? precio : 0,
     referencia: d.reference ?? '',
     descripcionCorta: d.description_short ?? '',
     descripcion: d.description ?? '',
-    metaTitulo: d.meta_title ?? '',
-    metaDescripcion: d.meta_description ?? '',
+    metaTitulo: decodificar(String(d.meta_title ?? '')),
+    metaDescripcion: decodificar(String(d.meta_description ?? '')),
     imagenes,
-    colores: extraerColores(html),
-    tallas: extraerTallas(html),
+    colores,
+    tallas,
     personalizable: Number(d.customizable) > 0,
     camposTexto: Number(d.text_fields ?? 0),
     camposArchivo: Number(d.uploadable_files ?? 0),
+    avisos,
   };
 }

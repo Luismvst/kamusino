@@ -52,3 +52,41 @@ test('normalizar no deja precios a cero ni nombres vacíos', () => {
   assert.ok(p.precio > 0);
   assert.ok(p.nombre.trim().length > 0);
 });
+
+test('el producto real no genera avisos', () => {
+  assert.deepEqual(normalizar(html).avisos, []);
+});
+
+test('avisa si declara grupo de color pero no se extrae ninguno', () => {
+  // Ficha sin marcado de swatches: los grupos declarados no cuadran con lo extraído.
+  const dp = JSON.stringify({
+    id_product: 99, link_rewrite: 'x', name: 'X', category: 'c', price_amount: 5,
+    customizable: 0, text_fields: 0, uploadable_files: 0, images: [],
+    attributes: { 1: { id_attribute_group: '1', name: 'Rojo', group: 'Color de camisetas' } },
+  }).replace(/"/g, '&quot;');
+  const avisos = normalizar(`<div data-product="${dp}"></div>`).avisos;
+  assert.ok(
+    avisos.some((a) => /color/i.test(a)),
+    `esperaba un aviso de color, obtuve ${JSON.stringify(avisos)}`,
+  );
+});
+
+test('avisa si el precio no es numérico y no propaga NaN', () => {
+  const dp = JSON.stringify({
+    id_product: 98, link_rewrite: 'y', name: 'Y', category: 'c', price_amount: null,
+    customizable: 0, text_fields: 0, uploadable_files: 0, images: [], attributes: {},
+  }).replace(/"/g, '&quot;');
+  const p = normalizar(`<div data-product="${dp}"></div>`);
+  assert.ok(avisosIncluyenPrecio(p.avisos), `esperaba aviso de precio, obtuve ${JSON.stringify(p.avisos)}`);
+  assert.equal(p.precio, 0, 'el precio roto no debe propagarse como NaN');
+  function avisosIncluyenPrecio(a) { return a.some((x) => /precio/i.test(x)); }
+});
+
+test('extraerTallas elige el select por id de grupo, no por posición', () => {
+  const doc = `
+    <select name="group[1]"><option>Rojo</option><option>Azul</option></select>
+    <select name="group[2]"><option>S</option><option>M</option></select>
+  `;
+  assert.deepEqual(extraerTallas(doc, '2'), ['S', 'M']);
+  assert.deepEqual(extraerTallas(doc, '1'), ['Rojo', 'Azul']);
+});

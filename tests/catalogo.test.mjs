@@ -73,4 +73,13 @@ describe('integridad del catálogo rescatado', { skip: catalogo ? false : 'aún 
       );
     }
   });
+
+  test('ningún producto quedó con avisos de extracción', () => {
+    const conAvisos = catalogo.productos.filter((p) => p.avisos?.length);
+    assert.equal(
+      conAvisos.length,
+      0,
+      `productos con extracción dudosa:\n${conAvisos.slice(0, 20).map((p) => `${p.slug}: ${p.avisos.join('; ')}`).join('\n')}`,
+    );
+  });
 });
