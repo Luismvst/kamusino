@@ -46,8 +46,15 @@ async function sembrarDesdeDisco() {
     return new Set(); // No hay catálogo previo, o no parsea: empezamos de cero.
   }
   await copyFile(RUTA_CATALOGO, `${RUTA_CATALOGO}.bak`).catch(() => {});
-  categorias = previo.categorias ?? [];
-  productos.push(...(previo.productos ?? []));
+  // Un fichero que parsea pero no tiene la forma esperada resucitaría el fallo que la
+  // siembra vino a cerrar: al acceder a sus campos lanzaría, y el finally de main()
+  // guardaría un catálogo vacío. La copia .bak ya está hecha, así que salir es seguro.
+  if (!previo || !Array.isArray(previo.categorias) || !Array.isArray(previo.productos)) {
+    console.log(`Hay un ${RUTA_CATALOGO} con forma inesperada. Copia en ${RUTA_CATALOGO}.bak; se empieza de cero.`);
+    return new Set();
+  }
+  categorias = previo.categorias;
+  productos.push(...previo.productos);
   const buenos = new Set(productos.filter((p) => !p.avisos?.length).map((p) => p.id));
   console.log(`Reanudando: ${productos.length} productos en disco, ${buenos.size} sin avisos que no se volverán a pedir.`);
   return buenos;
