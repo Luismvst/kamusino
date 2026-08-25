@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, rename, writeFile } from 'node:fs/promises';
 import { BASE, extraerCategorias } from './categorias.mjs';
 import { pedirTexto } from './http.mjs';
 import { extraerUrlsProducto, urlCategoriaCompleta } from './listado.mjs';
@@ -16,21 +16,37 @@ function fallo(etapa, url, err) {
 let categorias = [];
 const productos = [];
 
+/**
+ * Escritura atómica: a un temporal y luego rename, que dentro del mismo volumen
+ * es atómico. writeFile a secas trunca el destino antes de escribir, así que un
+ * corte a media escritura dejaría el fichero corrupto Y habría destruido ya la
+ * copia buena del guardado anterior. Con 26 guardados por ejecución, esa ventana
+ * se abre 26 veces.
+ */
+async function escribirAtomico(ruta, contenido) {
+  const temporal = `${ruta}.tmp`;
+  await writeFile(temporal, contenido);
+  await rename(temporal, ruta);
+}
+
 async function guardar() {
   await mkdir('src/data', { recursive: true });
-  await writeFile(
+  await escribirAtomico(
     'src/data/catalogo.json',
     JSON.stringify({ generado: new Date().toISOString(), origen: BASE, categorias, productos }, null, 2),
   );
-  await writeFile('scrape-report.json', JSON.stringify({ incidencias }, null, 2));
+  await escribirAtomico('scrape-report.json', JSON.stringify({ incidencias }, null, 2));
 }
 
 // Un Ctrl+C a los 35 minutos no puede tirar 35 minutos de trabajo.
-process.on('SIGINT', async () => {
-  console.log('\nInterrumpido: guardando lo rescatado hasta ahora…');
+async function guardarYSalir(senal) {
+  console.log(`\nInterrumpido (${senal}): guardando lo rescatado hasta ahora…`);
   await guardar();
   process.exit(130);
-});
+}
+
+process.on('SIGINT', () => guardarYSalir('SIGINT'));
+process.on('SIGTERM', () => guardarYSalir('SIGTERM'));
 
 async function main() {
   try {
