@@ -1,0 +1,3494 @@
+{
+  "generado": "2026-08-25T13:09:57.292Z",
+  "origen": "https://kamusino.com",
+  "categorias": [
+    {
+      "id": 17,
+      "slug": "tarjetas-de-visita",
+      "url": "https://kamusino.com/17-tarjetas-de-visita"
+    },
+    {
+      "id": 39,
+      "slug": "pegatinas-stikets-clasicos",
+      "url": "https://kamusino.com/39-pegatinas-stikets-clasicos"
+    },
+    {
+      "id": 40,
+      "slug": "pegatinas-rotulacion-vehiculos",
+      "url": "https://kamusino.com/40-pegatinas-rotulacion-vehiculos"
+    },
+    {
+      "id": 97,
+      "slug": "textil",
+      "url": "https://kamusino.com/97-textil"
+    },
+    {
+      "id": 104,
+      "slug": "camisetas",
+      "url": "https://kamusino.com/104-camisetas"
+    },
+    {
+      "id": 105,
+      "slug": "sudaderas",
+      "url": "https://kamusino.com/105-sudaderas"
+    },
+    {
+      "id": 106,
+      "slug": "pantalones",
+      "url": "https://kamusino.com/106-pantalones"
+    },
+    {
+      "id": 107,
+      "slug": "calcetines",
+      "url": "https://kamusino.com/107-calcetines"
+    },
+    {
+      "id": 108,
+      "slug": "gorras-y-gorros",
+      "url": "https://kamusino.com/108-gorras-y-gorros"
+    },
+    {
+      "id": 109,
+      "slug": "polos",
+      "url": "https://kamusino.com/109-polos"
+    },
+    {
+      "id": 110,
+      "slug": "polares-y-cazadoras",
+      "url": "https://kamusino.com/110-polares-y-cazadoras"
+    },
+    {
+      "id": 111,
+      "slug": "mandilesdelantales",
+      "url": "https://kamusino.com/111-mandilesdelantales"
+    },
+    {
+      "id": 112,
+      "slug": "camisetas-adulto-para-colorear",
+      "url": "https://kamusino.com/112-camisetas-adulto-para-colorear"
+    },
+    {
+      "id": 113,
+      "slug": "ropa-laboral-",
+      "url": "https://kamusino.com/113-ropa-laboral-"
+    },
+    {
+      "id": 150,
+      "slug": "pegatinas-translucidas-acido",
+      "url": "https://kamusino.com/150-pegatinas-translucidas-acido"
+    },
+    {
+      "id": 151,
+      "slug": "pegatinas-transparente",
+      "url": "https://kamusino.com/151-pegatinas-transparente"
+    },
+    {
+      "id": 152,
+      "slug": "pegatinas-de-pared-fotomurales",
+      "url": "https://kamusino.com/152-pegatinas-de-pared-fotomurales"
+    },
+    {
+      "id": 166,
+      "slug": "tarjetas-de-visita-estandar-",
+      "url": "https://kamusino.com/166-tarjetas-de-visita-estandar-"
+    },
+    {
+      "id": 242,
+      "slug": "hombre-unisex",
+      "url": "https://kamusino.com/242-hombre-unisex"
+    },
+    {
+      "id": 243,
+      "slug": "mujer",
+      "url": "https://kamusino.com/243-mujer"
+    },
+    {
+      "id": 244,
+      "slug": "nino",
+      "url": "https://kamusino.com/244-nino"
+    },
+    {
+      "id": 245,
+      "slug": "hombre",
+      "url": "https://kamusino.com/245-hombre"
+    },
+    {
+      "id": 246,
+      "slug": "mujer",
+      "url": "https://kamusino.com/246-mujer"
+    },
+    {
+      "id": 247,
+      "slug": "nino",
+      "url": "https://kamusino.com/247-nino"
+    },
+    {
+      "id": 264,
+      "slug": "adulto",
+      "url": "https://kamusino.com/264-adulto"
+    },
+    {
+      "id": 265,
+      "slug": "nin",
+      "url": "https://kamusino.com/265-nin"
+    }
+  ],
+  "productos": [
+    {
+      "id": 2065,
+      "slug": "pegatinas-stikets-clasicas",
+      "nombre": "Pegatinas - Stikets clásicas",
+      "categoriaSlug": "pegatinas-de-vinilo",
+      "precio": 0,
+      "referencia": "",
+      "descripcionCorta": "<div class=\"customcont01\">\n<p>Crea tu pegatina personalizada. Sigue estos <span>sencillos pasos:</span></p>\n<p><span>1.</span> Introduce las medidas que desees</p>\n<p><span>2.</span> Elige la cantidad</p>\n<p><span>3.</span> Ahora puedes subir tu fichero...</p>\n<p>... o puedes personalizar tu diseño con nuestro editor aquí:</p>\n<p><a class=\"custombtn01 dsn-customize\">Crea tu diseño</a></p>\n<p>... o creamos nosotros un diseño para tí por muy poco</p>\n<p><span>4.</span> ¿Algo que debamos tener en cuenta? Indícanoslo</p>\n<p><span>5.</span> Añade al carrito</p>\n</div>",
+      "descripcion": "<p><strong>Depende cuantos metros realizes con nosotros, la calculadora te dará un precio u otro. </strong></p>\n<p></p>\n<p><strong>Hasta 5m2, el precio es 16,53€/m2</strong></p>\n<p><strong>Hasta 10m2, el precio será 12,40€/m2</strong></p>\n<p><strong>Y apartir de ahi, te haremos un descuento de 10€/m2</strong></p>\n<p></p>\n<p></p>\n<p></p>",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [
+        {
+          "id": 11234,
+          "ruta": "/img/p/1/1/2/3/4/11234-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        }
+      ],
+      "colores": [],
+      "tallas": [],
+      "personalizable": false,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 39
+    },
+    {
+      "id": 2075,
+      "slug": "pegatina-personalizada",
+      "nombre": "Pegatinas de rotulación / vehículo",
+      "categoriaSlug": "pegatinas-de-vinilo",
+      "precio": 0,
+      "referencia": "",
+      "descripcionCorta": "<div class=\"customcont01\">\n<p>Crea tu pegatina personalizada. Sigue estos <span>sencillos pasos:</span></p>\n<p><span>1.</span> Introduce las medidas que desees</p>\n<p><span>2.</span> Elige la cantidad</p>\n<p><span>3.</span> Ahora puedes subir tu fichero...</p>\n<p>... o puedes personalizar tu diseño con nuestro editor aquí:</p>\n<p><a class=\"custombtn01 dsn-customize\">Crea tu diseño</a></p>\n<p>... o creamos nosotros un diseño para tí por muy poco</p>\n<p><span>4.</span> ¿Algo que debamos tener en cuenta? Indícanoslo</p>\n<p><span>5.</span> Añade al carrito</p>\n</div>",
+      "descripcion": "<p>Descripción del producto</p>",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [
+        {
+          "id": 11236,
+          "ruta": "/img/p/1/1/2/3/6/11236-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        }
+      ],
+      "colores": [],
+      "tallas": [],
+      "personalizable": false,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 40
+    },
+    {
+      "id": 2155,
+      "slug": "de-prueba-ivan",
+      "nombre": "De prueba Iván",
+      "categoriaSlug": "mandilesdelantales",
+      "precio": 0,
+      "referencia": "",
+      "descripcionCorta": "",
+      "descripcion": "",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [
+        {
+          "id": 11293,
+          "ruta": "/img/p/1/1/2/9/3/11293-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        },
+        {
+          "id": 11294,
+          "ruta": "/img/p/1/1/2/9/4/11294-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        },
+        {
+          "id": 11295,
+          "ruta": "/img/p/1/1/2/9/5/11295-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        },
+        {
+          "id": 11296,
+          "ruta": "/img/p/1/1/2/9/6/11296-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        },
+        {
+          "id": 11297,
+          "ruta": "/img/p/1/1/2/9/7/11297-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        },
+        {
+          "id": 11298,
+          "ruta": "/img/p/1/1/2/9/8/11298-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        }
+      ],
+      "colores": [
+        {
+          "nombre": "Blanco",
+          "hex": "#ffffff"
+        },
+        {
+          "nombre": "Negro",
+          "hex": "#000000"
+        },
+        {
+          "nombre": "Rojo",
+          "hex": "#ff0000"
+        }
+      ],
+      "tallas": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL"
+      ],
+      "personalizable": true,
+      "camposTexto": 1,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 97
+    },
+    {
+      "id": 2158,
+      "slug": "camiseta-gildan-sofstyle",
+      "nombre": "Camiseta Gildan Sofstyle® Unisex",
+      "categoriaSlug": "personaliza",
+      "precio": 12,
+      "referencia": "",
+      "descripcionCorta": "<p>Camiseta Manga Corta de marca Gildan, una muy buena opción si quieres que te dure mucho tiempo.</p>\n<p></p>\n<p>¡Gran variedad de colores!</p>",
+      "descripcion": "<p>153 g/m² (White: 144 g/m²)</p>\n<p>100% algodón ring-spun (Sport Grey y Antique: 90% algodón, 10% poliéster; Heather: 35% algodón, 65% poliéster)</p>\n<p>Pre-encogido</p>\n<p>Cuello encintado de hombro a hombro</p>\n<p>Tacto suave, cuello redondo</p>\n<p>Doble costura en cuello, mangas y dobladillo inferior</p>",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [
+        {
+          "id": 11308,
+          "ruta": "/img/p/1/1/3/0/8/11308-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        },
+        {
+          "id": 11384,
+          "ruta": "/img/p/1/1/3/8/4/11384-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        }
+      ],
+      "colores": [
+        {
+          "nombre": "Blanco",
+          "hex": "#ffffff"
+        },
+        {
+          "nombre": "Negro",
+          "hex": "#000000"
+        },
+        {
+          "nombre": "Gris",
+          "hex": "#989898"
+        },
+        {
+          "nombre": "Gris Claro",
+          "hex": "#d4d4d4"
+        },
+        {
+          "nombre": "Daisy",
+          "hex": "#fff325"
+        },
+        {
+          "nombre": "Militar Green",
+          "hex": "#586800"
+        },
+        {
+          "nombre": "Iris Green",
+          "hex": "#28a400"
+        },
+        {
+          "nombre": "Lima",
+          "hex": "#beff19"
+        },
+        {
+          "nombre": "Rojo oscuro",
+          "hex": "#a82600"
+        },
+        {
+          "nombre": "Rojo",
+          "hex": "#ff0000"
+        },
+        {
+          "nombre": "Orange",
+          "hex": "#ff9554"
+        },
+        {
+          "nombre": "Navy",
+          "hex": "#003870"
+        },
+        {
+          "nombre": "Royal Blue",
+          "hex": "#0048e7"
+        },
+        {
+          "nombre": "Tropical Blue",
+          "hex": "#2debff"
+        },
+        {
+          "nombre": "Morado",
+          "hex": "#490090"
+        },
+        {
+          "nombre": "Azalea",
+          "hex": "#ff89de"
+        }
+      ],
+      "tallas": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL"
+      ],
+      "personalizable": true,
+      "camposTexto": 1,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 97
+    },
+    {
+      "id": 2159,
+      "slug": "camiseta-gildan-sofstyle",
+      "nombre": "Camiseta JHK TSRA190 Unisex",
+      "categoriaSlug": "personaliza",
+      "precio": 12,
+      "referencia": "",
+      "descripcionCorta": "<p>Camiseta manga corta de marca JHK, con buen gramaje y calidad.</p>\n<p>¡Esta prenda no te decepcionará!</p>",
+      "descripcion": "<p>100% algodón preencogido. Gramaje: 190 gr. aprox.</p>\n<p>Camiseta lisa para hombre de manga corta, </p>\n<p>Camiseta con cuello redondo y de lycra.</p>\n<p>Tejido tubular.</p>\n<p>Doble costura en cuello, mangas y bajo.</p>\n<p>Refuerzo de hombro a hombro.</p>",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [
+        {
+          "id": 11340,
+          "ruta": "/img/p/1/1/3/4/0/11340-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        },
+        {
+          "id": 11339,
+          "ruta": "/img/p/1/1/3/3/9/11339-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        }
+      ],
+      "colores": [
+        {
+          "nombre": "Blanco",
+          "hex": "#ffffff"
+        },
+        {
+          "nombre": "Negro",
+          "hex": "#000000"
+        },
+        {
+          "nombre": "Gris",
+          "hex": "#989898"
+        },
+        {
+          "nombre": "Daisy",
+          "hex": "#fff325"
+        },
+        {
+          "nombre": "Iris Green",
+          "hex": "#28a400"
+        },
+        {
+          "nombre": "Lima",
+          "hex": "#beff19"
+        },
+        {
+          "nombre": "Rojo",
+          "hex": "#ff0000"
+        },
+        {
+          "nombre": "Orange",
+          "hex": "#ff9554"
+        },
+        {
+          "nombre": "Navy",
+          "hex": "#003870"
+        },
+        {
+          "nombre": "Royal Blue",
+          "hex": "#0048e7"
+        },
+        {
+          "nombre": "Tropical Blue",
+          "hex": "#2debff"
+        },
+        {
+          "nombre": "Lila",
+          "hex": "#bdb0ff"
+        }
+      ],
+      "tallas": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL"
+      ],
+      "personalizable": true,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 97
+    },
+    {
+      "id": 2160,
+      "slug": "camiseta-gildan-sofstyle",
+      "nombre": "Camiseta B&C E150 Manga larga Unisex",
+      "categoriaSlug": "personaliza",
+      "precio": 12,
+      "referencia": "",
+      "descripcionCorta": "<p>cxc </p>",
+      "descripcion": "<p>145 g/m²</p>\n<p>100% algodón preencogido y peinado</p>\n<p>Sport Grey: 85% algodón, 15% viscosa</p>\n<p>Tacto suave</p>\n<p>Cuello redondo con ribete fino</p>\n<p>Cinta interior en el cuello</p>\n<p>Mangas ajustadas</p>\n<p>Tejido tubular</p>\n<p>Corte regular.</p>",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [
+        {
+          "id": 11404,
+          "ruta": "/img/p/1/1/4/0/4/11404-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        },
+        {
+          "id": 11401,
+          "ruta": "/img/p/1/1/4/0/1/11401-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        }
+      ],
+      "colores": [
+        {
+          "nombre": "Blanco",
+          "hex": "#ffffff"
+        },
+        {
+          "nombre": "Negro",
+          "hex": "#000000"
+        },
+        {
+          "nombre": "Gris Claro",
+          "hex": "#d4d4d4"
+        },
+        {
+          "nombre": "Militar Green",
+          "hex": "#586800"
+        },
+        {
+          "nombre": "Iris Green",
+          "hex": "#28a400"
+        },
+        {
+          "nombre": "Rojo",
+          "hex": "#ff0000"
+        },
+        {
+          "nombre": "Orange",
+          "hex": "#ff9554"
+        },
+        {
+          "nombre": "Royal Blue",
+          "hex": "#0048e7"
+        }
+      ],
+      "tallas": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL"
+      ],
+      "personalizable": false,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 97
+    },
+    {
+      "id": 2161,
+      "slug": "camiseta-gildan-sofstyle",
+      "nombre": "Camiseta JHK Manga larga TSRA150LS Unisex",
+      "categoriaSlug": "personaliza",
+      "precio": 12,
+      "referencia": "",
+      "descripcionCorta": "",
+      "descripcion": "<p>100% algodón preencogido. Gramaje: 155-160 gr. aprox. (Pág. 28 catálogo)</p>\n<p>Tejido tubular.</p>\n<p>Doble costura en cuello, mangas y bajo.</p>\n<p>Cuello con lycra.</p>\n<p>Refuerzo de hombro a hombro.</p>\n<p>155 - 160 g/m² aprox.</p>",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [
+        {
+          "id": 11417,
+          "ruta": "/img/p/1/1/4/1/7/11417-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        }
+      ],
+      "colores": [
+        {
+          "nombre": "Blanco",
+          "hex": "#ffffff"
+        },
+        {
+          "nombre": "Negro",
+          "hex": "#000000"
+        },
+        {
+          "nombre": "Gris",
+          "hex": "#989898"
+        },
+        {
+          "nombre": "Daisy",
+          "hex": "#fff325"
+        },
+        {
+          "nombre": "Rojo",
+          "hex": "#ff0000"
+        },
+        {
+          "nombre": "Navy",
+          "hex": "#003870"
+        },
+        {
+          "nombre": "Royal Blue",
+          "hex": "#0048e7"
+        },
+        {
+          "nombre": "Khaki",
+          "hex": "#7c5200"
+        }
+      ],
+      "tallas": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL"
+      ],
+      "personalizable": false,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 97
+    },
+    {
+      "id": 2162,
+      "slug": "camiseta-gildan-sofstyle",
+      "nombre": "Camiseta Gildan de Tirantes Unisex",
+      "categoriaSlug": "personaliza",
+      "precio": 12,
+      "referencia": "",
+      "descripcionCorta": "",
+      "descripcion": "<p>153 g/m² (White: 144 g/m²)</p>\n<p>100% algodón, jersey, preencogido</p>\n<p>Sport Grey: 90% algodón, 10% poliéster</p>\n<p>Hilo Deluxe suave</p>\n<p>Tirantes anchos</p>",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [
+        {
+          "id": 11443,
+          "ruta": "/img/p/1/1/4/4/3/11443-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        },
+        {
+          "id": 11441,
+          "ruta": "/img/p/1/1/4/4/1/11441-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        }
+      ],
+      "colores": [
+        {
+          "nombre": "Blanco",
+          "hex": "#ffffff"
+        },
+        {
+          "nombre": "Negro",
+          "hex": "#000000"
+        },
+        {
+          "nombre": "Gris",
+          "hex": "#989898"
+        },
+        {
+          "nombre": "Rojo",
+          "hex": "#ff0000"
+        },
+        {
+          "nombre": "Navy",
+          "hex": "#003870"
+        },
+        {
+          "nombre": "Charcoal",
+          "hex": "#5f5f5f"
+        }
+      ],
+      "tallas": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL"
+      ],
+      "personalizable": true,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 97
+    },
+    {
+      "id": 2163,
+      "slug": "camiseta-gildan-sofstyle",
+      "nombre": "Camiseta JHK de Tirantes Unisex TSUASTRPM",
+      "categoriaSlug": "personaliza",
+      "precio": 12,
+      "referencia": "",
+      "descripcionCorta": "",
+      "descripcion": "<p>100% algodón preencogido. Gramaje: 150-155 gr. aprox.</p>\n<p>Camiseta básica de hombre sin mangas, 100% algodón. Disponible en 8 colores y desde la talla S hasta la XXL. Etiqueta removible.</p>\n<p>Punto liso.</p>\n<p>Cuello y sisa en el mismo tejido que la prenda.</p>\n<p>Doble costura en cuello, mangas y bajo.</p>",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [
+        {
+          "id": 11459,
+          "ruta": "/img/p/1/1/4/5/9/11459-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        },
+        {
+          "id": 11460,
+          "ruta": "/img/p/1/1/4/6/0/11460-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        }
+      ],
+      "colores": [
+        {
+          "nombre": "Blanco",
+          "hex": "#ffffff"
+        },
+        {
+          "nombre": "Negro",
+          "hex": "#000000"
+        },
+        {
+          "nombre": "Gris",
+          "hex": "#989898"
+        },
+        {
+          "nombre": "Gris Claro",
+          "hex": "#d4d4d4"
+        },
+        {
+          "nombre": "Daisy",
+          "hex": "#fff325"
+        },
+        {
+          "nombre": "Rojo",
+          "hex": "#ff0000"
+        },
+        {
+          "nombre": "Navy",
+          "hex": "#003870"
+        },
+        {
+          "nombre": "Royal Blue",
+          "hex": "#0048e7"
+        }
+      ],
+      "tallas": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL"
+      ],
+      "personalizable": false,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 97
+    },
+    {
+      "id": 2164,
+      "slug": "camiseta-gildan-sofstyle",
+      "nombre": "Camiseta JHK de cuello V TSUAPICO Unisex",
+      "categoriaSlug": "personaliza",
+      "precio": 12,
+      "referencia": "",
+      "descripcionCorta": "",
+      "descripcion": "<p>100% algodón preencogido. Gramaje: 160 gr. aprox.</p>\n<p>Camiseta lisa de chico con cuello de pico, 100% algodón y etiqueta removible. Disponible desde la talla S hasta la XXL.</p>\n<p>Costuras laterales.</p>\n<p>Cuello con canalé 1x1.</p>\n<p>Refuerzo de hombro a hombro.</p>",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [
+        {
+          "id": 11471,
+          "ruta": "/img/p/1/1/4/7/1/11471-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        },
+        {
+          "id": 11469,
+          "ruta": "/img/p/1/1/4/6/9/11469-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        }
+      ],
+      "colores": [
+        {
+          "nombre": "Blanco",
+          "hex": "#ffffff"
+        },
+        {
+          "nombre": "Negro",
+          "hex": "#000000"
+        },
+        {
+          "nombre": "Gris",
+          "hex": "#989898"
+        },
+        {
+          "nombre": "Daisy",
+          "hex": "#fff325"
+        },
+        {
+          "nombre": "Verde oscuro",
+          "hex": "#006404"
+        },
+        {
+          "nombre": "Rojo",
+          "hex": "#ff0000"
+        },
+        {
+          "nombre": "Navy",
+          "hex": "#003870"
+        },
+        {
+          "nombre": "Royal Blue",
+          "hex": "#0048e7"
+        },
+        {
+          "nombre": "Tropical Blue",
+          "hex": "#2debff"
+        },
+        {
+          "nombre": "Azalea",
+          "hex": "#ff89de"
+        },
+        {
+          "nombre": "Lila",
+          "hex": "#bdb0ff"
+        }
+      ],
+      "tallas": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL"
+      ],
+      "personalizable": true,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 97
+    },
+    {
+      "id": 2165,
+      "slug": "camiseta-gildan-sofstyle",
+      "nombre": "Camiseta Fruit of the Loom de cuello V Unisex",
+      "categoriaSlug": "personaliza",
+      "precio": 12,
+      "referencia": "",
+      "descripcionCorta": "",
+      "descripcion": "<p>165 g/m² (White: 160 g/m² )</p>\n<p>100% algodón</p>\n<p>Heather Grey: 97% algodón, 3% poliéster</p>\n<p>Dark Heather Grey: 50% algodón, 50% poliéster</p>\n<p>Cuello V alto</p>\n<p>Costura doble en las mangas y el dobladillo inferior</p>\n<p>Tejido tubular</p>",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [
+        {
+          "id": 11491,
+          "ruta": "/img/p/1/1/4/9/1/11491-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        }
+      ],
+      "colores": [
+        {
+          "nombre": "Blanco",
+          "hex": "#ffffff"
+        },
+        {
+          "nombre": "Negro",
+          "hex": "#000000"
+        },
+        {
+          "nombre": "Gris",
+          "hex": "#989898"
+        },
+        {
+          "nombre": "Gris Claro",
+          "hex": "#d4d4d4"
+        },
+        {
+          "nombre": "Daisy",
+          "hex": "#fff325"
+        },
+        {
+          "nombre": "Iris Green",
+          "hex": "#28a400"
+        },
+        {
+          "nombre": "Rojo",
+          "hex": "#ff0000"
+        },
+        {
+          "nombre": "Orange",
+          "hex": "#ff9554"
+        },
+        {
+          "nombre": "Navy",
+          "hex": "#003870"
+        },
+        {
+          "nombre": "Royal Blue",
+          "hex": "#0048e7"
+        },
+        {
+          "nombre": "Tropical Blue",
+          "hex": "#2debff"
+        },
+        {
+          "nombre": "Charcoal",
+          "hex": "#5f5f5f"
+        }
+      ],
+      "tallas": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL"
+      ],
+      "personalizable": true,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 97
+    },
+    {
+      "id": 2168,
+      "slug": "camiseta-gildan-sofstyle",
+      "nombre": "Camiseta JHK TSRLCMF Mujer",
+      "categoriaSlug": "personaliza",
+      "precio": 12,
+      "referencia": "",
+      "descripcionCorta": "<p>Camiseta de mujer manga corta marca JHK</p>\n<p>¡Gran variedad de colores!</p>",
+      "descripcion": "<p>100% Algodón. Gramaje: 145 gr. aprox.</p>\n<p>Camiseta básica para mujer de manga corta, </p>\n<p>Punto liso.</p>\n<p>Ligeramente entallada.</p>\n<p>Etiqueta removible.</p>",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [
+        {
+          "id": 11566,
+          "ruta": "/img/p/1/1/5/6/6/11566-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        }
+      ],
+      "colores": [
+        {
+          "nombre": "Blanco",
+          "hex": "#ffffff"
+        },
+        {
+          "nombre": "Negro",
+          "hex": "#000000"
+        },
+        {
+          "nombre": "Gris",
+          "hex": "#989898"
+        },
+        {
+          "nombre": "Gris Claro",
+          "hex": "#d4d4d4"
+        },
+        {
+          "nombre": "Daisy",
+          "hex": "#fff325"
+        },
+        {
+          "nombre": "Verde oscuro",
+          "hex": "#006404"
+        },
+        {
+          "nombre": "Lima",
+          "hex": "#beff19"
+        },
+        {
+          "nombre": "Rojo",
+          "hex": "#ff0000"
+        },
+        {
+          "nombre": "Navy",
+          "hex": "#003870"
+        },
+        {
+          "nombre": "Royal Blue",
+          "hex": "#0048e7"
+        },
+        {
+          "nombre": "Aqua",
+          "hex": "#0078cb"
+        },
+        {
+          "nombre": "Azul",
+          "hex": "#008eef"
+        },
+        {
+          "nombre": "Tropical Blue",
+          "hex": "#2debff"
+        },
+        {
+          "nombre": "Sky",
+          "hex": "#c0f2ff"
+        },
+        {
+          "nombre": "Mint Green",
+          "hex": "#d4fff7"
+        },
+        {
+          "nombre": "Morado",
+          "hex": "#490090"
+        },
+        {
+          "nombre": "Fucsia",
+          "hex": "#df00ae"
+        },
+        {
+          "nombre": "Fucsia Fluor",
+          "hex": "#ff64f1"
+        },
+        {
+          "nombre": "Azalea",
+          "hex": "#ff89de"
+        },
+        {
+          "nombre": "Pink",
+          "hex": "#ffbcf9"
+        },
+        {
+          "nombre": "Lila",
+          "hex": "#bdb0ff"
+        },
+        {
+          "nombre": "Camuflaje",
+          "hex": "#787500"
+        }
+      ],
+      "tallas": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL"
+      ],
+      "personalizable": true,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 97
+    },
+    {
+      "id": 2169,
+      "slug": "camiseta-gildan-sofstyle",
+      "nombre": "Camiseta B&C E150 Manga larga Mujer",
+      "categoriaSlug": "personaliza",
+      "precio": 12,
+      "referencia": "",
+      "descripcionCorta": "<p>Camiseta de mujer manga larga marca B&amp;C</p>\n<p>Una buena elección para este invierno</p>",
+      "descripcion": "<p>145 g/m²</p>\n<p>100% algodón, preencogido y peinado</p>\n<p>Sport Grey: 85% algodón, 15% viscosa</p>\n<p>Tacto suave</p>\n<p>Cuello ancho redondo con ribete fino</p>\n<p>Cinta interior en el cuello</p>\n<p>Mangas ajustadas</p>\n<p>Costuras laterales</p>\n<p>Corte regular.</p>",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [
+        {
+          "id": 11623,
+          "ruta": "/img/p/1/1/6/2/3/11623-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        },
+        {
+          "id": 11624,
+          "ruta": "/img/p/1/1/6/2/4/11624-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        }
+      ],
+      "colores": [
+        {
+          "nombre": "Blanco",
+          "hex": "#ffffff"
+        },
+        {
+          "nombre": "Negro",
+          "hex": "#000000"
+        },
+        {
+          "nombre": "Gris",
+          "hex": "#989898"
+        },
+        {
+          "nombre": "Gris Claro",
+          "hex": "#d4d4d4"
+        },
+        {
+          "nombre": "Militar Green",
+          "hex": "#586800"
+        },
+        {
+          "nombre": "Rojo",
+          "hex": "#ff0000"
+        },
+        {
+          "nombre": "Orange",
+          "hex": "#ff9554"
+        },
+        {
+          "nombre": "Navy",
+          "hex": "#003870"
+        },
+        {
+          "nombre": "Royal Blue",
+          "hex": "#0048e7"
+        },
+        {
+          "nombre": "Pink",
+          "hex": "#ffbcf9"
+        },
+        {
+          "nombre": "Chocolate",
+          "hex": "#582f00"
+        },
+        {
+          "nombre": "Urban Khaki",
+          "hex": "#4c5400"
+        }
+      ],
+      "tallas": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL"
+      ],
+      "personalizable": false,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 97
+    },
+    {
+      "id": 2170,
+      "slug": "camiseta-gildan-sofstyle",
+      "nombre": "Camiseta JHK Manga larga Mujer TSRLPRMLS",
+      "categoriaSlug": "personaliza",
+      "precio": 12,
+      "referencia": "",
+      "descripcionCorta": "<p>Camiseta de mujer manga larga marca JHK</p>\n<p></p>",
+      "descripcion": "<p>Camiseta de manga larga con puño.</p>\n<p>Tejido tubular.</p>\n<p>Doble costura en cuello, mangas y bajo.</p>\n<p>Cuello con lycra.</p>\n<p>Refuerzo de hombro a hombro.</p>\n<p>170 g/m² aprox.</p>\n<p>100% Algodón preencogido</p>",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [
+        {
+          "id": 11650,
+          "ruta": "/img/p/1/1/6/5/0/11650-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        },
+        {
+          "id": 11648,
+          "ruta": "/img/p/1/1/6/4/8/11648-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        }
+      ],
+      "colores": [
+        {
+          "nombre": "Blanco",
+          "hex": "#ffffff"
+        },
+        {
+          "nombre": "Negro",
+          "hex": "#000000"
+        },
+        {
+          "nombre": "Gris Claro",
+          "hex": "#d4d4d4"
+        },
+        {
+          "nombre": "Rojo",
+          "hex": "#ff0000"
+        },
+        {
+          "nombre": "Navy",
+          "hex": "#003870"
+        },
+        {
+          "nombre": "Azul",
+          "hex": "#008eef"
+        }
+      ],
+      "tallas": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL"
+      ],
+      "personalizable": false,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 97
+    },
+    {
+      "id": 2171,
+      "slug": "camiseta-gildan-sofstyle",
+      "nombre": "Camiseta JHK de Tirantes Mujer TSULARB",
+      "categoriaSlug": "personaliza",
+      "precio": 12,
+      "referencia": "",
+      "descripcionCorta": "<p>Camiseta básica de tirantes para chica con espalda de nadador y ligeramente entallada</p>",
+      "descripcion": "<p>Camiseta de tirantes.</p>\n<p>Cuello con canalé 1x1.</p>\n<p>Espalda de nadador.</p>\n<p>200 g/m²</p>\n<p>100% Algodón cardado</p>\n<p>Etiqueta removible</p>",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [
+        {
+          "id": 11672,
+          "ruta": "/img/p/1/1/6/7/2/11672-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        },
+        {
+          "id": 11674,
+          "ruta": "/img/p/1/1/6/7/4/11674-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        }
+      ],
+      "colores": [
+        {
+          "nombre": "Blanco",
+          "hex": "#ffffff"
+        },
+        {
+          "nombre": "Negro",
+          "hex": "#000000"
+        },
+        {
+          "nombre": "Daisy",
+          "hex": "#fff325"
+        },
+        {
+          "nombre": "Lima",
+          "hex": "#beff19"
+        },
+        {
+          "nombre": "Rojo",
+          "hex": "#ff0000"
+        },
+        {
+          "nombre": "Orange",
+          "hex": "#ff9554"
+        },
+        {
+          "nombre": "Salmón",
+          "hex": "#ffe180"
+        },
+        {
+          "nombre": "Royal Blue",
+          "hex": "#0048e7"
+        },
+        {
+          "nombre": "Tropical Blue",
+          "hex": "#2debff"
+        },
+        {
+          "nombre": "Sky",
+          "hex": "#c0f2ff"
+        },
+        {
+          "nombre": "Morado",
+          "hex": "#490090"
+        },
+        {
+          "nombre": "Azalea",
+          "hex": "#ff89de"
+        },
+        {
+          "nombre": "Chocolate",
+          "hex": "#582f00"
+        }
+      ],
+      "tallas": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "personalizable": false,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 97
+    },
+    {
+      "id": 2172,
+      "slug": "camiseta-gildan-sofstyle",
+      "nombre": "Camiseta Fruit of the Loom de tirantes Mujer",
+      "categoriaSlug": "personaliza",
+      "precio": 12,
+      "referencia": "",
+      "descripcionCorta": "<p>Camiseta básica de tirantes para chica con espalda de nadador y ligeramente entallada</p>",
+      "descripcion": "<p>165 g/m² (White: 160 g/m²)</p>\n<p>100% algodón, Heather Grey: 97% algodón, 3% poliéster</p>\n<p>Costuras laterales con forma para un corte femenino</p>\n<p>Ribete en cuello y sisas del mismo tejido</p>\n<p>Punto de medida fina para mejorar la impresión</p>",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [
+        {
+          "id": 11688,
+          "ruta": "/img/p/1/1/6/8/8/11688-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        }
+      ],
+      "colores": [
+        {
+          "nombre": "Blanco",
+          "hex": "#ffffff"
+        },
+        {
+          "nombre": "Negro",
+          "hex": "#000000"
+        },
+        {
+          "nombre": "Gris Claro",
+          "hex": "#d4d4d4"
+        },
+        {
+          "nombre": "Rojo",
+          "hex": "#ff0000"
+        },
+        {
+          "nombre": "Navy",
+          "hex": "#003870"
+        }
+      ],
+      "tallas": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL"
+      ],
+      "personalizable": true,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 97
+    },
+    {
+      "id": 2173,
+      "slug": "camiseta-gildan-sofstyle",
+      "nombre": "Camiseta JHK cuello V Mujer TSRLCMFP",
+      "categoriaSlug": "personaliza",
+      "precio": 12,
+      "referencia": "",
+      "descripcionCorta": "<p>Camiseta básica para mujer de manga corta y cuello de pico, 100% algodón</p>",
+      "descripcion": "<p>Punto liso.</p>\n<p>Ligeramente entallada.</p>\n<p>145 g/m² aprox.</p>\n<p>100% Algodón</p>\n<p>Etiqueta removible</p>",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [
+        {
+          "id": 11706,
+          "ruta": "/img/p/1/1/7/0/6/11706-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        },
+        {
+          "id": 11714,
+          "ruta": "/img/p/1/1/7/1/4/11714-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        }
+      ],
+      "colores": [
+        {
+          "nombre": "Blanco",
+          "hex": "#ffffff"
+        },
+        {
+          "nombre": "Negro",
+          "hex": "#000000"
+        },
+        {
+          "nombre": "Gris",
+          "hex": "#989898"
+        },
+        {
+          "nombre": "Gris Claro",
+          "hex": "#d4d4d4"
+        },
+        {
+          "nombre": "Daisy",
+          "hex": "#fff325"
+        },
+        {
+          "nombre": "Verde oscuro",
+          "hex": "#006404"
+        },
+        {
+          "nombre": "Lima",
+          "hex": "#beff19"
+        },
+        {
+          "nombre": "Rojo oscuro",
+          "hex": "#a82600"
+        },
+        {
+          "nombre": "Rojo",
+          "hex": "#ff0000"
+        },
+        {
+          "nombre": "Navy",
+          "hex": "#003870"
+        },
+        {
+          "nombre": "Royal Blue",
+          "hex": "#0048e7"
+        },
+        {
+          "nombre": "Tropical Blue",
+          "hex": "#2debff"
+        },
+        {
+          "nombre": "Morado",
+          "hex": "#490090"
+        },
+        {
+          "nombre": "Fucsia",
+          "hex": "#df00ae"
+        },
+        {
+          "nombre": "Pink",
+          "hex": "#ffbcf9"
+        },
+        {
+          "nombre": "Lila",
+          "hex": "#bdb0ff"
+        },
+        {
+          "nombre": "Charcoal",
+          "hex": "#5f5f5f"
+        }
+      ],
+      "tallas": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL"
+      ],
+      "personalizable": false,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 97
+    },
+    {
+      "id": 2174,
+      "slug": "camiseta-gildan-sofstyle",
+      "nombre": "Camiseta Fruit of the loom manga corta Niñ@",
+      "categoriaSlug": "personaliza",
+      "precio": 12,
+      "referencia": "",
+      "descripcionCorta": "<p>Camiseta Manga corta de niño marca Fruit of the Loom</p>\n<p></p>\n<p>¡Gran variedad de colores!</p>",
+      "descripcion": "<p>165 g/m² (White: 150 g/m²)</p>\n<p>100% algodón</p>\n<p>Heather Grey: 97% algodón, 3% poliéster</p>\n<p>otros colores Heather: 50% algodón, 50% poliéster</p>\n<p>Cuello encintado</p>\n<p>Doble costura en las mangas</p>\n<p>Doble costura en cuello y bajo</p>\n<p>Tejido tubular pre-encogido para mantener mejor la forma</p>\n<p>Corte amplio</p>",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [
+        {
+          "id": 11745,
+          "ruta": "/img/p/1/1/7/4/5/11745-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        },
+        {
+          "id": 11732,
+          "ruta": "/img/p/1/1/7/3/2/11732-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        }
+      ],
+      "colores": [
+        {
+          "nombre": "Blanco",
+          "hex": "#ffffff"
+        },
+        {
+          "nombre": "Negro",
+          "hex": "#000000"
+        },
+        {
+          "nombre": "Gris",
+          "hex": "#989898"
+        },
+        {
+          "nombre": "Gris Claro",
+          "hex": "#d4d4d4"
+        },
+        {
+          "nombre": "Daisy",
+          "hex": "#fff325"
+        },
+        {
+          "nombre": "Verde oscuro",
+          "hex": "#006404"
+        },
+        {
+          "nombre": "Militar Green",
+          "hex": "#586800"
+        },
+        {
+          "nombre": "Iris Green",
+          "hex": "#28a400"
+        },
+        {
+          "nombre": "Lima",
+          "hex": "#beff19"
+        },
+        {
+          "nombre": "Rojo oscuro",
+          "hex": "#a82600"
+        },
+        {
+          "nombre": "Rojo",
+          "hex": "#ff0000"
+        },
+        {
+          "nombre": "Orange",
+          "hex": "#ff9554"
+        },
+        {
+          "nombre": "Deep Navy",
+          "hex": "#002460"
+        },
+        {
+          "nombre": "Navy",
+          "hex": "#003870"
+        },
+        {
+          "nombre": "Royal Blue",
+          "hex": "#0048e7"
+        },
+        {
+          "nombre": "Aqua",
+          "hex": "#0078cb"
+        },
+        {
+          "nombre": "Tropical Blue",
+          "hex": "#2debff"
+        },
+        {
+          "nombre": "Sky",
+          "hex": "#c0f2ff"
+        },
+        {
+          "nombre": "Morado",
+          "hex": "#490090"
+        },
+        {
+          "nombre": "Burgundy",
+          "hex": "#740048"
+        },
+        {
+          "nombre": "Azalea",
+          "hex": "#ff89de"
+        },
+        {
+          "nombre": "Pink",
+          "hex": "#ffbcf9"
+        },
+        {
+          "nombre": "Natural",
+          "hex": "#fff7c8"
+        },
+        {
+          "nombre": "SunFlower",
+          "hex": "#ffdd40"
+        }
+      ],
+      "tallas": [
+        "1-2 años",
+        "2-3 años",
+        "3-4 años",
+        "5-6 años",
+        "7-8 años",
+        "9-11 años",
+        "12-13 años",
+        "14-15 años"
+      ],
+      "personalizable": true,
+      "camposTexto": 1,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 97
+    },
+    {
+      "id": 2175,
+      "slug": "camiseta-gildan-sofstyle",
+      "nombre": "Camiseta JHK manga corta Niñ@",
+      "categoriaSlug": "personaliza",
+      "precio": 12,
+      "referencia": "",
+      "descripcionCorta": "<p>Camiseta Manga corta de niño marca JHK</p>\n<p>¡Gran variedad de colores!</p>",
+      "descripcion": "<p>Cuello con lycra.</p>\n<p>Costuras laterales.</p>\n<p>Doble costura en cuello, mangas y bajo.</p>\n<p>Refuerzo de hombro a hombro.</p>\n<p>155 g/m² aprox.</p>\n<p>100% Algodón preencogido</p>\n<p>GM - 85% Algodón / 15% Viscosa</p>\n<p>AS - 98% Algodón / 2% Viscosa</p>",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [
+        {
+          "id": 11781,
+          "ruta": "/img/p/1/1/7/8/1/11781-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        },
+        {
+          "id": 11812,
+          "ruta": "/img/p/1/1/8/1/2/11812-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        }
+      ],
+      "colores": [
+        {
+          "nombre": "Blanco",
+          "hex": "#ffffff"
+        },
+        {
+          "nombre": "Negro",
+          "hex": "#000000"
+        },
+        {
+          "nombre": "Gris",
+          "hex": "#989898"
+        },
+        {
+          "nombre": "Gris Claro",
+          "hex": "#d4d4d4"
+        },
+        {
+          "nombre": "Daisy",
+          "hex": "#fff325"
+        },
+        {
+          "nombre": "Verde oscuro",
+          "hex": "#006404"
+        },
+        {
+          "nombre": "Militar Green",
+          "hex": "#586800"
+        },
+        {
+          "nombre": "Iris Green",
+          "hex": "#28a400"
+        },
+        {
+          "nombre": "Lima",
+          "hex": "#beff19"
+        },
+        {
+          "nombre": "Rojo oscuro",
+          "hex": "#a82600"
+        },
+        {
+          "nombre": "Rojo",
+          "hex": "#ff0000"
+        },
+        {
+          "nombre": "Orange",
+          "hex": "#ff9554"
+        },
+        {
+          "nombre": "Naranja Claro",
+          "hex": "#ffc164"
+        },
+        {
+          "nombre": "Navy",
+          "hex": "#003870"
+        },
+        {
+          "nombre": "Royal Blue",
+          "hex": "#0048e7"
+        },
+        {
+          "nombre": "Azul",
+          "hex": "#008eef"
+        },
+        {
+          "nombre": "Tropical Blue",
+          "hex": "#2debff"
+        },
+        {
+          "nombre": "Sky",
+          "hex": "#c0f2ff"
+        },
+        {
+          "nombre": "Mint Green",
+          "hex": "#d4fff7"
+        },
+        {
+          "nombre": "Morado",
+          "hex": "#490090"
+        },
+        {
+          "nombre": "Fucsia",
+          "hex": "#df00ae"
+        },
+        {
+          "nombre": "Azalea",
+          "hex": "#ff89de"
+        },
+        {
+          "nombre": "Pink",
+          "hex": "#ffbcf9"
+        },
+        {
+          "nombre": "Charcoal",
+          "hex": "#5f5f5f"
+        },
+        {
+          "nombre": "Chocolate",
+          "hex": "#582f00"
+        },
+        {
+          "nombre": "Natural",
+          "hex": "#fff7c8"
+        },
+        {
+          "nombre": "SunFlower",
+          "hex": "#ffdd40"
+        },
+        {
+          "nombre": "Marrón claro",
+          "hex": "#cfa300"
+        },
+        {
+          "nombre": "Marrón",
+          "hex": "#986900"
+        },
+        {
+          "nombre": "Amarillo pastel",
+          "hex": "#fffcc4"
+        }
+      ],
+      "tallas": [
+        "3-4 años",
+        "5-6 años",
+        "7-8 años",
+        "9-11 años",
+        "12-13 años"
+      ],
+      "personalizable": false,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 97
+    },
+    {
+      "id": 2176,
+      "slug": "camiseta-gildan-sofstyle",
+      "nombre": "Camiseta JHK manga larga Niñ@",
+      "categoriaSlug": "personaliza",
+      "precio": 12,
+      "referencia": "",
+      "descripcionCorta": "<p>Camiseta Manga larga de niño marca JHK</p>\n<p></p>",
+      "descripcion": "<p>Cuello con lycra.</p>\n<p>Costuras laterales.</p>\n<p>Doble costura en cuello, mangas y bajo.</p>\n<p>Refuerzo de hombro a hombro.</p>\n<p>155 g/m² aprox.</p>\n<p>100% Algodón preencogido</p>\n<p>GM - 85% Algodón / 15% Viscosa</p>\n<p>AS - 98% Algodón / 2% Viscosa</p>",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [
+        {
+          "id": 11843,
+          "ruta": "/img/p/1/1/8/4/3/11843-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        }
+      ],
+      "colores": [
+        {
+          "nombre": "Blanco",
+          "hex": "#ffffff"
+        },
+        {
+          "nombre": "Negro",
+          "hex": "#000000"
+        },
+        {
+          "nombre": "Gris",
+          "hex": "#989898"
+        },
+        {
+          "nombre": "Daisy",
+          "hex": "#fff325"
+        },
+        {
+          "nombre": "Iris Green",
+          "hex": "#28a400"
+        },
+        {
+          "nombre": "Orange",
+          "hex": "#ff9554"
+        },
+        {
+          "nombre": "Navy",
+          "hex": "#003870"
+        },
+        {
+          "nombre": "Royal Blue",
+          "hex": "#0048e7"
+        },
+        {
+          "nombre": "Sky",
+          "hex": "#c0f2ff"
+        },
+        {
+          "nombre": "Pink",
+          "hex": "#ffbcf9"
+        },
+        {
+          "nombre": "Charcoal",
+          "hex": "#5f5f5f"
+        }
+      ],
+      "tallas": [
+        "1-2 años",
+        "2-3 años",
+        "3-4 años",
+        "5-6 años",
+        "7-8 años",
+        "9-11 años",
+        "12-13 años"
+      ],
+      "personalizable": false,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 97
+    },
+    {
+      "id": 2177,
+      "slug": "camiseta-gildan-sofstyle",
+      "nombre": "Camiseta JHK tirantes Niña",
+      "categoriaSlug": "personaliza",
+      "precio": 12,
+      "referencia": "",
+      "descripcionCorta": "<p>Camiseta de tirantes de niña marca JHK</p>",
+      "descripcion": "<p>Camiseta de niña con cuello redondo.</p>\n<p>Cuello con canalé 1x1.</p>\n<p>Espalda con pliegue trasero y canalé 2x1.</p>\n<p>170 g/m² aprox.</p>\n<p>100% Algodón</p>",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [
+        {
+          "id": 11869,
+          "ruta": "/img/p/1/1/8/6/9/11869-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        }
+      ],
+      "colores": [
+        {
+          "nombre": "Blanco",
+          "hex": "#ffffff"
+        },
+        {
+          "nombre": "Negro",
+          "hex": "#000000"
+        },
+        {
+          "nombre": "Daisy",
+          "hex": "#fff325"
+        },
+        {
+          "nombre": "Lima",
+          "hex": "#beff19"
+        },
+        {
+          "nombre": "Rojo",
+          "hex": "#ff0000"
+        },
+        {
+          "nombre": "Orange",
+          "hex": "#ff9554"
+        },
+        {
+          "nombre": "Navy",
+          "hex": "#003870"
+        },
+        {
+          "nombre": "Azul",
+          "hex": "#008eef"
+        },
+        {
+          "nombre": "Sky",
+          "hex": "#c0f2ff"
+        },
+        {
+          "nombre": "Fucsia Fluor",
+          "hex": "#ff64f1"
+        },
+        {
+          "nombre": "Azalea",
+          "hex": "#ff89de"
+        },
+        {
+          "nombre": "Pink",
+          "hex": "#ffbcf9"
+        },
+        {
+          "nombre": "Amarillo pastel",
+          "hex": "#fffcc4"
+        }
+      ],
+      "tallas": [
+        "3-4 años",
+        "5-6 años",
+        "7-8 años",
+        "9-11 años",
+        "12-13 años"
+      ],
+      "personalizable": false,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 97
+    },
+    {
+      "id": 2178,
+      "slug": "camiseta-gildan-sofstyle",
+      "nombre": "Camiseta JHK tirantes Niño",
+      "categoriaSlug": "personaliza",
+      "precio": 12,
+      "referencia": "",
+      "descripcionCorta": "<p>Camiseta básica para niño de tirantes marca JHK</p>",
+      "descripcion": "<p>Doble costura en cuello, sisa y bajo.</p>\n<p>Cuello self fabric.</p>\n<p>GM: 85% algodón / 15% viscosa</p>",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [
+        {
+          "id": 11896,
+          "ruta": "/img/p/1/1/8/9/6/11896-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        },
+        {
+          "id": 11895,
+          "ruta": "/img/p/1/1/8/9/5/11895-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        }
+      ],
+      "colores": [
+        {
+          "nombre": "Negro",
+          "hex": "#000000"
+        },
+        {
+          "nombre": "Gris",
+          "hex": "#989898"
+        },
+        {
+          "nombre": "Rojo",
+          "hex": "#ff0000"
+        },
+        {
+          "nombre": "Navy",
+          "hex": "#003870"
+        },
+        {
+          "nombre": "Royal Blue",
+          "hex": "#0048e7"
+        }
+      ],
+      "tallas": [
+        "3-4 años",
+        "5-6 años",
+        "7-8 años",
+        "9-11 años",
+        "12-13 años"
+      ],
+      "personalizable": false,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 97
+    },
+    {
+      "id": 2179,
+      "slug": "camiseta-gildan-sofstyle",
+      "nombre": "Camiseta JHK manga corta doble color Niñ@",
+      "categoriaSlug": "personaliza",
+      "precio": 12,
+      "referencia": "",
+      "descripcionCorta": "<p>Camiseta unisex beisbolera para niños de manga raglan corta y cuello en contraste con costuras laterales</p>",
+      "descripcion": "<p>Manga raglan y cuello en contraste.</p>\n<p>Costuras laterales.</p>\n<p>155 g/m²</p>\n<p>100% Algodón preencogido</p>\n<p>GM - 85% Algodón / 15% Viscosa</p>",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [
+        {
+          "id": 11907,
+          "ruta": "/img/p/1/1/9/0/7/11907-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        },
+        {
+          "id": 11908,
+          "ruta": "/img/p/1/1/9/0/8/11908-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        }
+      ],
+      "colores": [
+        {
+          "nombre": "Gris Claro",
+          "hex": "#d4d4d4"
+        },
+        {
+          "nombre": "Rojo",
+          "hex": "#ff0000"
+        },
+        {
+          "nombre": "Navy",
+          "hex": "#003870"
+        },
+        {
+          "nombre": "Royal Blue",
+          "hex": "#0048e7"
+        }
+      ],
+      "tallas": [
+        "3-4 años",
+        "5-6 años",
+        "7-8 años",
+        "9-11 años",
+        "12-13 años"
+      ],
+      "personalizable": false,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 97
+    },
+    {
+      "id": 2180,
+      "slug": "camiseta-gildan-sofstyle",
+      "nombre": "Sudadera unisex B&C 280gr",
+      "categoriaSlug": "personaliza",
+      "precio": 25,
+      "referencia": "",
+      "descripcionCorta": "<p>Sudadera ligera con capucha marca B&amp;C</p>",
+      "descripcion": "<p style=\"margin:0px;padding:0px 0px 0px 16px;border:0px;font-size:14px;vertical-align:baseline;background:#f4f4f2 0px 0px;color:#1a1a18;font-family:'Open Sans', Helvetica, Arial, sans-serif;\">280 g/m²</p>\n<p style=\"margin:0px;padding:0px 0px 0px 16px;border:0px;font-size:14px;vertical-align:baseline;background:#f4f4f2 0px 0px;color:#1a1a18;font-family:'Open Sans', Helvetica, Arial, sans-serif;\">80% algodón pre-encogido y hilado en anillo, 20% Poliéster</p>\n<p style=\"margin:0px;padding:0px 0px 0px 16px;border:0px;font-size:14px;vertical-align:baseline;background:#f4f4f2 0px 0px;color:#1a1a18;font-family:'Open Sans', Helvetica, Arial, sans-serif;\">Colores Heather: 60% algodón, 40% poliéster</p>\n<p style=\"margin:0px;padding:0px 0px 0px 16px;border:0px;font-size:14px;vertical-align:baseline;background:#f4f4f2 0px 0px;color:#1a1a18;font-family:'Open Sans', Helvetica, Arial, sans-serif;\">Heather Grey: 92% algodón, 8% viscosa</p>\n<p style=\"margin:0px;padding:0px 0px 0px 16px;border:0px;font-size:14px;vertical-align:baseline;background:#f4f4f2 0px 0px;color:#1a1a18;font-family:'Open Sans', Helvetica, Arial, sans-serif;\">Superficie lisa y uniforme para mejores resultados de impresión</p>\n<p style=\"margin:0px;padding:0px 0px 0px 16px;border:0px;font-size:14px;vertical-align:baseline;background:#f4f4f2 0px 0px;color:#1a1a18;font-family:'Open Sans', Helvetica, Arial, sans-serif;\">French Terry: interior sin felpar</p>\n<p style=\"margin:0px;padding:0px 0px 0px 16px;border:0px;font-size:14px;vertical-align:baseline;background:#f4f4f2 0px 0px;color:#1a1a18;font-family:'Open Sans', Helvetica, Arial, sans-serif;\">Capucha de una capa con cordón ajustable del mismo color</p>\n<p style=\"margin:0px;padding:0px 0px 0px 16px;border:0px;font-size:14px;vertical-align:baseline;background:#f4f4f2 0px 0px;color:#1a1a18;font-family:'Open Sans', Helvetica, Arial, sans-serif;\">Interior Single Jersey y canesú media luna</p>\n<p style=\"margin:0px;padding:0px 0px 0px 16px;border:0px;font-size:14px;vertical-align:baseline;background:#f4f4f2 0px 0px;color:#1a1a18;font-family:'Open Sans', Helvetica, Arial, sans-serif;\">Bolsillo canguro</p>\n<p style=\"margin:0px;padding:0px 0px 0px 16px;border:0px;font-size:14px;vertical-align:baseline;background:#f4f4f2 0px 0px;color:#1a1a18;font-family:'Open Sans', Helvetica, Arial, sans-serif;\">Puños y dobladillo inferior en canalé</p>\n<p style=\"margin:0px;padding:0px 0px 0px 16px;border:0px;font-size:14px;vertical-align:baseline;background:#f4f4f2 0px 0px;color:#1a1a18;font-family:'Open Sans', Helvetica, Arial, sans-serif;\">Costuras laterales</p>\n<p style=\"margin:0px;padding:0px 0px 0px 16px;border:0px;font-size:14px;vertical-align:baseline;background:#f4f4f2 0px 0px;color:#1a1a18;font-family:'Open Sans', Helvetica, Arial, sans-serif;\">Sistema \"B&amp;C No Label\", perfecto para re-etiquetar</p>\n<p style=\"margin:0px;padding:0px 0px 0px 16px;border:0px;font-size:14px;vertical-align:baseline;background:#f4f4f2 0px 0px;color:#1a1a18;font-family:'Open Sans', Helvetica, Arial, sans-serif;\">Unisex</p>\n<p style=\"margin:0px;padding:0px 0px 0px 16px;border:0px;font-size:14px;vertical-align:baseline;background:#f4f4f2 0px 0px;color:#1a1a18;font-family:'Open Sans', Helvetica, Arial, sans-serif;\">Corte regular</p>",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [
+        {
+          "id": 11927,
+          "ruta": "/img/p/1/1/9/2/7/11927-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        },
+        {
+          "id": 11916,
+          "ruta": "/img/p/1/1/9/1/6/11916-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        }
+      ],
+      "colores": [
+        {
+          "nombre": "Blanco",
+          "hex": "#ffffff"
+        },
+        {
+          "nombre": "Negro",
+          "hex": "#000000"
+        },
+        {
+          "nombre": "Gris",
+          "hex": "#989898"
+        },
+        {
+          "nombre": "Gris Claro",
+          "hex": "#d4d4d4"
+        },
+        {
+          "nombre": "Daisy",
+          "hex": "#fff325"
+        },
+        {
+          "nombre": "Verde oscuro",
+          "hex": "#006404"
+        },
+        {
+          "nombre": "Militar Green",
+          "hex": "#586800"
+        },
+        {
+          "nombre": "Rojo oscuro",
+          "hex": "#a82600"
+        },
+        {
+          "nombre": "Rojo",
+          "hex": "#ff0000"
+        },
+        {
+          "nombre": "Orange",
+          "hex": "#ff9554"
+        },
+        {
+          "nombre": "Naranja Claro",
+          "hex": "#ffc164"
+        },
+        {
+          "nombre": "Salmón",
+          "hex": "#ffe180"
+        },
+        {
+          "nombre": "Deep Navy",
+          "hex": "#002460"
+        },
+        {
+          "nombre": "Navy",
+          "hex": "#003870"
+        },
+        {
+          "nombre": "Royal Blue",
+          "hex": "#0048e7"
+        },
+        {
+          "nombre": "Azul",
+          "hex": "#008eef"
+        },
+        {
+          "nombre": "Sky",
+          "hex": "#c0f2ff"
+        },
+        {
+          "nombre": "Morado",
+          "hex": "#490090"
+        },
+        {
+          "nombre": "Azalea",
+          "hex": "#ff89de"
+        },
+        {
+          "nombre": "Pink",
+          "hex": "#ffbcf9"
+        },
+        {
+          "nombre": "Lila",
+          "hex": "#bdb0ff"
+        },
+        {
+          "nombre": "Charcoal",
+          "hex": "#5f5f5f"
+        },
+        {
+          "nombre": "Marrón claro",
+          "hex": "#cfa300"
+        },
+        {
+          "nombre": "Verde Palo",
+          "hex": "#d9ffd8"
+        },
+        {
+          "nombre": "Verde azulado",
+          "hex": "#c9ffe8"
+        }
+      ],
+      "tallas": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL"
+      ],
+      "personalizable": false,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 97
+    },
+    {
+      "id": 2181,
+      "slug": "camiseta-gildan-sofstyle",
+      "nombre": "Sudadera unisex JHK SWKNG275",
+      "categoriaSlug": "personaliza",
+      "precio": 25,
+      "referencia": "",
+      "descripcionCorta": "<p>Sudadera CVC con capucha para hombre con bolsillo de canguro y cordón de ajuste a tono</p>",
+      "descripcion": "<p>Características:</p>\n<p>Sudadera con capucha.</p>\n<p>Cordón de ajuste a tono.</p>\n<p>Bolsillo canguro.</p>\n<p>1x1 canalé con lycra en puños y bajo.</p>\n<p>265-275 g/m² aprox.</p>\n<p>80% Algodón / 20% Poliéster</p>\n<p>Etiqueta removible</p>\n<p>Composición de colores:</p>\n<p>GM: 73% algodón / 20% poliéster / 7% viscos<b>a</b></p>",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [
+        {
+          "id": 11976,
+          "ruta": "/img/p/1/1/9/7/6/11976-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        },
+        {
+          "id": 11981,
+          "ruta": "/img/p/1/1/9/8/1/11981-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        }
+      ],
+      "colores": [
+        {
+          "nombre": "Blanco",
+          "hex": "#ffffff"
+        },
+        {
+          "nombre": "Negro",
+          "hex": "#000000"
+        },
+        {
+          "nombre": "Gris",
+          "hex": "#989898"
+        },
+        {
+          "nombre": "Rojo",
+          "hex": "#ff0000"
+        },
+        {
+          "nombre": "Navy",
+          "hex": "#003870"
+        },
+        {
+          "nombre": "Royal Blue",
+          "hex": "#0048e7"
+        }
+      ],
+      "tallas": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL"
+      ],
+      "personalizable": true,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 97
+    },
+    {
+      "id": 2182,
+      "slug": "camiseta-gildan-sofstyle",
+      "nombre": "Sudadera unisex JHK SWUAHOOD con cremallera",
+      "categoriaSlug": "personaliza",
+      "precio": 25,
+      "referencia": "",
+      "descripcionCorta": "<p>Sudadera unisex JHK con cremallera, capucha y bolsillo de canguro</p>",
+      "descripcion": "<p>Características:</p>\n<p></p>\n<p>Sudadera con capucha.</p>\n<p>Cordón de ajuste a tono.</p>\n<p>Cremallera entera cubierta.</p>\n<p>Bolsillo canguro.</p>\n<p>1x1 canalé con lycra en puños y bajo.</p>\n<p>290 g/m² aprox.</p>\n<p>65% Poliéster / 35% Algodón</p>\n<p>GM: 61% algodón /31% poliéster / 8% viscosa</p>\n<p>DGM: 60% poliéster / 40% algodón</p>",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [
+        {
+          "id": 11988,
+          "ruta": "/img/p/1/1/9/8/8/11988-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        }
+      ],
+      "colores": [
+        {
+          "nombre": "Blanco",
+          "hex": "#ffffff"
+        },
+        {
+          "nombre": "Negro",
+          "hex": "#000000"
+        },
+        {
+          "nombre": "Gris",
+          "hex": "#989898"
+        },
+        {
+          "nombre": "Gris Claro",
+          "hex": "#d4d4d4"
+        },
+        {
+          "nombre": "Verde oscuro",
+          "hex": "#006404"
+        },
+        {
+          "nombre": "Militar Green",
+          "hex": "#586800"
+        },
+        {
+          "nombre": "Rojo",
+          "hex": "#ff0000"
+        },
+        {
+          "nombre": "Naranja Claro",
+          "hex": "#ffc164"
+        },
+        {
+          "nombre": "Navy",
+          "hex": "#003870"
+        },
+        {
+          "nombre": "Royal Blue",
+          "hex": "#0048e7"
+        },
+        {
+          "nombre": "Khaki",
+          "hex": "#7c5200"
+        }
+      ],
+      "tallas": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL"
+      ],
+      "personalizable": false,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 97
+    },
+    {
+      "id": 2183,
+      "slug": "camiseta-gildan-sofstyle",
+      "nombre": "Sudadera unisex JHK SWRAFUZIP sin capucha, con cremallera",
+      "categoriaSlug": "personaliza",
+      "precio": 25,
+      "referencia": "",
+      "descripcionCorta": "<p>Sudadera de hombre con cremallera entera invisible a tono y cuello alto con bolsillos laterales</p>",
+      "descripcion": "<p>Características:</p>\n<p>1x1 canalé con lycra en puños y bajo.</p>\n<p>Cremallera entera cubierta.</p>\n<p>Bolsillos laterales.</p>\n<p>290 g/m² aprox.</p>\n<p>65% Poliéster / 35% Algodón</p>\n<p>GM: 61% algodón /31% poliéster / 8% viscosa</p>",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [
+        {
+          "id": 12019,
+          "ruta": "/img/p/1/2/0/1/9/12019-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        },
+        {
+          "id": 12011,
+          "ruta": "/img/p/1/2/0/1/1/12011-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        }
+      ],
+      "colores": [
+        {
+          "nombre": "Blanco",
+          "hex": "#ffffff"
+        },
+        {
+          "nombre": "Negro",
+          "hex": "#000000"
+        },
+        {
+          "nombre": "Gris",
+          "hex": "#989898"
+        },
+        {
+          "nombre": "Gris Claro",
+          "hex": "#d4d4d4"
+        },
+        {
+          "nombre": "Verde oscuro",
+          "hex": "#006404"
+        },
+        {
+          "nombre": "Rojo",
+          "hex": "#ff0000"
+        },
+        {
+          "nombre": "Navy",
+          "hex": "#003870"
+        },
+        {
+          "nombre": "Royal Blue",
+          "hex": "#0048e7"
+        },
+        {
+          "nombre": "Khaki",
+          "hex": "#7c5200"
+        },
+        {
+          "nombre": "Charcoal",
+          "hex": "#5f5f5f"
+        },
+        {
+          "nombre": "Chocolate",
+          "hex": "#582f00"
+        }
+      ],
+      "tallas": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL"
+      ],
+      "personalizable": false,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 97
+    },
+    {
+      "id": 2184,
+      "slug": "camiseta-gildan-sofstyle",
+      "nombre": "Sudadera mujer JHK SWRL275",
+      "categoriaSlug": "personaliza",
+      "precio": 25,
+      "referencia": "",
+      "descripcionCorta": "<p>Sudadera clásica unisex con cuello redondo perfecta para personalizar</p>",
+      "descripcion": "<p>Características:</p>\n<p>Doble costura en cuello, puños y bajo.</p>\n<p>1x1 canalé con lycra en puños y bajo.</p>\n<p>290 g/m² aprox.</p>\n<p>65% Poliéster / 35% Algodón</p>\n<p>GM: 61% algodón /31% poliéster / 8% viscosa</p>\n<p>DGM: 60% poliéster / 40% algodón</p>\n<p>AS: 67% algodón / 31% poliéster / 2% viscosa.</p>",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [
+        {
+          "id": 12133,
+          "ruta": "/img/p/1/2/1/3/3/12133-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        },
+        {
+          "id": 12135,
+          "ruta": "/img/p/1/2/1/3/5/12135-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        }
+      ],
+      "colores": [
+        {
+          "nombre": "Blanco",
+          "hex": "#ffffff"
+        },
+        {
+          "nombre": "Negro",
+          "hex": "#000000"
+        },
+        {
+          "nombre": "Gris Claro",
+          "hex": "#d4d4d4"
+        },
+        {
+          "nombre": "Rojo",
+          "hex": "#ff0000"
+        },
+        {
+          "nombre": "Navy",
+          "hex": "#003870"
+        },
+        {
+          "nombre": "Royal Blue",
+          "hex": "#0048e7"
+        },
+        {
+          "nombre": "Pink",
+          "hex": "#ffbcf9"
+        }
+      ],
+      "tallas": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL"
+      ],
+      "personalizable": true,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 97
+    },
+    {
+      "id": 2185,
+      "slug": "camiseta-gildan-sofstyle",
+      "nombre": "Sudadera Mujer Fruit Of the Loom",
+      "categoriaSlug": "personaliza",
+      "precio": 25,
+      "referencia": "",
+      "descripcionCorta": "<p>Sudadera Ladies con capucha y bolso canguro</p>",
+      "descripcion": "<p>Características:</p>\n<p>280 g/m²</p>\n<p>80% algodón, 20% poliéster</p>\n<p>Capucha de doble tejido con cordón del mismo color de la prenda</p>\n<p>Bolsillo cangurp</p>\n<p>Puños y bajo en canalé de algodón/Lycra® para retener mejor la forma</p>\n<p>Costuras laterales con forma para un corte más femenino</p>",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [
+        {
+          "id": 12094,
+          "ruta": "/img/p/1/2/0/9/4/12094-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        },
+        {
+          "id": 12080,
+          "ruta": "/img/p/1/2/0/8/0/12080-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        }
+      ],
+      "colores": [
+        {
+          "nombre": "Blanco",
+          "hex": "#ffffff"
+        },
+        {
+          "nombre": "Negro",
+          "hex": "#000000"
+        },
+        {
+          "nombre": "Gris",
+          "hex": "#989898"
+        },
+        {
+          "nombre": "Gris Claro",
+          "hex": "#d4d4d4"
+        },
+        {
+          "nombre": "Daisy",
+          "hex": "#fff325"
+        },
+        {
+          "nombre": "Verde oscuro",
+          "hex": "#006404"
+        },
+        {
+          "nombre": "Iris Green",
+          "hex": "#28a400"
+        },
+        {
+          "nombre": "Rojo oscuro",
+          "hex": "#a82600"
+        },
+        {
+          "nombre": "Rojo",
+          "hex": "#ff0000"
+        },
+        {
+          "nombre": "Deep Navy",
+          "hex": "#002460"
+        },
+        {
+          "nombre": "Navy",
+          "hex": "#003870"
+        },
+        {
+          "nombre": "Royal Blue",
+          "hex": "#0048e7"
+        },
+        {
+          "nombre": "Aqua",
+          "hex": "#0078cb"
+        },
+        {
+          "nombre": "Tropical Blue",
+          "hex": "#2debff"
+        },
+        {
+          "nombre": "Sky",
+          "hex": "#c0f2ff"
+        },
+        {
+          "nombre": "Morado",
+          "hex": "#490090"
+        },
+        {
+          "nombre": "Burgundy",
+          "hex": "#740048"
+        },
+        {
+          "nombre": "Azalea",
+          "hex": "#ff89de"
+        },
+        {
+          "nombre": "Pink",
+          "hex": "#ffbcf9"
+        }
+      ],
+      "tallas": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL"
+      ],
+      "personalizable": false,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 97
+    },
+    {
+      "id": 2186,
+      "slug": "camiseta-gildan-sofstyle",
+      "nombre": "Sudadera Mujer JHK SWULKNG275",
+      "categoriaSlug": "personaliza",
+      "precio": 25,
+      "referencia": "",
+      "descripcionCorta": "<p>Sudadera de algodón CVC (80% Algodón / 20% Poliéster) chica con capucha y bolsillo de canguro con cordones de ajuste a tono.</p>",
+      "descripcion": "<p>Características:</p>\n<p>Sudadera con capucha.</p>\n<p>Cordón de ajuste a tono.</p>\n<p>Bolsillo canguro.</p>\n<p>1x1 canalé con lycra en puños y bajo.</p>\n<p>275 g/m² aprox.</p>\n<p>20% Poliéster / 80% Algodón</p>\n<p>GM: 73% algodón / 20% poliéster / 7% viscosa</p>",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [
+        {
+          "id": 12122,
+          "ruta": "/img/p/1/2/1/2/2/12122-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        },
+        {
+          "id": 12128,
+          "ruta": "/img/p/1/2/1/2/8/12128-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        }
+      ],
+      "colores": [
+        {
+          "nombre": "Blanco",
+          "hex": "#ffffff"
+        },
+        {
+          "nombre": "Negro",
+          "hex": "#000000"
+        },
+        {
+          "nombre": "Gris",
+          "hex": "#989898"
+        },
+        {
+          "nombre": "Rojo",
+          "hex": "#ff0000"
+        },
+        {
+          "nombre": "Royal Blue",
+          "hex": "#0048e7"
+        },
+        {
+          "nombre": "Pink",
+          "hex": "#ffbcf9"
+        }
+      ],
+      "tallas": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL"
+      ],
+      "personalizable": true,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 97
+    },
+    {
+      "id": 2188,
+      "slug": "camiseta-gildan-sofstyle",
+      "nombre": "Sudadera niñ@ Russel con capucha",
+      "categoriaSlug": "personaliza",
+      "precio": 25,
+      "referencia": "",
+      "descripcionCorta": "<p>Sudadera de niñ@ con capucha y bolso canguro 295g</p>",
+      "descripcion": "<p>Características:</p>\n<p>295 g/m²</p>\n<p>50% algodón ring-spun peinado, 50% poliéster</p>\n<p>Light Oxford: 53% algodón, 47% viscosa</p>\n<p>Cuello encintado en espiguilla</p>\n<p>Capucha de doble capa</p>\n<p>Mangas más delgadas</p>\n<p>Bolsillo con remate</p>\n<p>Capucha con detalle en puntada vista</p>\n<p>Nueva construcción de hombro y dobladillo</p>",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [
+        {
+          "id": 12154,
+          "ruta": "/img/p/1/2/1/5/4/12154-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        },
+        {
+          "id": 12142,
+          "ruta": "/img/p/1/2/1/4/2/12142-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        }
+      ],
+      "colores": [
+        {
+          "nombre": "Negro",
+          "hex": "#000000"
+        },
+        {
+          "nombre": "Gris Claro",
+          "hex": "#d4d4d4"
+        },
+        {
+          "nombre": "Daisy",
+          "hex": "#fff325"
+        },
+        {
+          "nombre": "Militar Green",
+          "hex": "#586800"
+        },
+        {
+          "nombre": "Iris Green",
+          "hex": "#28a400"
+        },
+        {
+          "nombre": "Rojo",
+          "hex": "#ff0000"
+        },
+        {
+          "nombre": "Orange",
+          "hex": "#ff9554"
+        },
+        {
+          "nombre": "Deep Navy",
+          "hex": "#002460"
+        },
+        {
+          "nombre": "Royal Blue",
+          "hex": "#0048e7"
+        },
+        {
+          "nombre": "Tropical Blue",
+          "hex": "#2debff"
+        },
+        {
+          "nombre": "Sky",
+          "hex": "#c0f2ff"
+        },
+        {
+          "nombre": "Morado",
+          "hex": "#490090"
+        },
+        {
+          "nombre": "Burgundy",
+          "hex": "#740048"
+        },
+        {
+          "nombre": "Azalea",
+          "hex": "#ff89de"
+        }
+      ],
+      "tallas": [
+        "3-4 años",
+        "5-6 años",
+        "7-8 años",
+        "9-11 años",
+        "12-13 años"
+      ],
+      "personalizable": false,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 97
+    },
+    {
+      "id": 2189,
+      "slug": "camiseta-gildan-sofstyle",
+      "nombre": "Sudadera niñ@ JHK SWRKHOOD",
+      "categoriaSlug": "personaliza",
+      "precio": 25,
+      "referencia": "",
+      "descripcionCorta": "<p>Sudadera para niño unisex con capucha, bolsillo de canguro y cremallera entera invisible</p>",
+      "descripcion": "<p>Características:</p>\n<p>Sudadera con capucha.</p>\n<p>Cremallera entera cubierta.</p>\n<p>Bolsillo canguro.</p>\n<p>1x1 canalé con lycra en puños y bajo.</p>\n<p>290 g/m² aprox.</p>\n<p>65% Poliéster / 35% Algodón</p>\n<p>AS: 67% algodón / 31% poliéster / 2% viscosa</p>",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [
+        {
+          "id": 12156,
+          "ruta": "/img/p/1/2/1/5/6/12156-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        },
+        {
+          "id": 12162,
+          "ruta": "/img/p/1/2/1/6/2/12162-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        }
+      ],
+      "colores": [
+        {
+          "nombre": "Blanco",
+          "hex": "#ffffff"
+        },
+        {
+          "nombre": "Negro",
+          "hex": "#000000"
+        },
+        {
+          "nombre": "Gris Claro",
+          "hex": "#d4d4d4"
+        },
+        {
+          "nombre": "Rojo",
+          "hex": "#ff0000"
+        },
+        {
+          "nombre": "Navy",
+          "hex": "#003870"
+        },
+        {
+          "nombre": "Royal Blue",
+          "hex": "#0048e7"
+        },
+        {
+          "nombre": "Pink",
+          "hex": "#ffbcf9"
+        }
+      ],
+      "tallas": [
+        "1-2 años",
+        "3-4 años",
+        "5-6 años",
+        "7-8 años",
+        "9-11 años",
+        "12-13 años"
+      ],
+      "personalizable": false,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 97
+    },
+    {
+      "id": 2190,
+      "slug": "camiseta-gildan-sofstyle",
+      "nombre": "Sudadera niñ@ JHK SWRKKNG",
+      "categoriaSlug": "personaliza",
+      "precio": 25,
+      "referencia": "",
+      "descripcionCorta": "<p>Sudadera unisex lisa para niños, con capucha y bolsillo canguro</p>",
+      "descripcion": "<p>Características:</p>\n<p>Sudadera con capucha.</p>\n<p>Cordón de ajuste a tono.</p>\n<p>Bolsillo canguro.</p>\n<p>1x1 canalé con lycra en puños y bajo.</p>\n<p>290 g/m² aprox.</p>\n<p>65% Poliéster / 35% Algodón</p>\n<p>GM: 61% algodón /31% poliéster / 8% viscosa</p>\n<p>AS: 67% algodón / 31% poliéster / 2% viscosa</p>",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [
+        {
+          "id": 12166,
+          "ruta": "/img/p/1/2/1/6/6/12166-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        },
+        {
+          "id": 12175,
+          "ruta": "/img/p/1/2/1/7/5/12175-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        }
+      ],
+      "colores": [
+        {
+          "nombre": "Blanco",
+          "hex": "#ffffff"
+        },
+        {
+          "nombre": "Negro",
+          "hex": "#000000"
+        },
+        {
+          "nombre": "Gris",
+          "hex": "#989898"
+        },
+        {
+          "nombre": "Gris Claro",
+          "hex": "#d4d4d4"
+        },
+        {
+          "nombre": "Daisy",
+          "hex": "#fff325"
+        },
+        {
+          "nombre": "Iris Green",
+          "hex": "#28a400"
+        },
+        {
+          "nombre": "Rojo",
+          "hex": "#ff0000"
+        },
+        {
+          "nombre": "Orange",
+          "hex": "#ff9554"
+        },
+        {
+          "nombre": "Navy",
+          "hex": "#003870"
+        },
+        {
+          "nombre": "Royal Blue",
+          "hex": "#0048e7"
+        },
+        {
+          "nombre": "Sky",
+          "hex": "#c0f2ff"
+        },
+        {
+          "nombre": "Morado",
+          "hex": "#490090"
+        },
+        {
+          "nombre": "Pink",
+          "hex": "#ffbcf9"
+        }
+      ],
+      "tallas": [
+        "1-2 años",
+        "3-4 años",
+        "5-6 años",
+        "7-8 años",
+        "9-11 años",
+        "12-13 años"
+      ],
+      "personalizable": false,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 97
+    },
+    {
+      "id": 2191,
+      "slug": "camiseta-gildan-sofstyle",
+      "nombre": "Sudadera niñ@ JHK SWRKFUZIP",
+      "categoriaSlug": "personaliza",
+      "precio": 25,
+      "referencia": "",
+      "descripcionCorta": "<p>Sudadera para niño unisex con cuello alto y sin capucha, con bolsillos laterales y cremallera entera invisible</p>",
+      "descripcion": "<p>Características:</p>\n<p>1x1 canalé con lycra en puños y bajo.</p>\n<p>Cremallera entera cubierta.</p>\n<p>Bolsillos laterales.</p>\n<p>290 g/m² aprox.</p>\n<p>65% Poliéster / 35% Algodón</p>\n<p>AS: 67% algodón / 31% poliéster / 2% viscosa</p>",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [
+        {
+          "id": 12182,
+          "ruta": "/img/p/1/2/1/8/2/12182-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        },
+        {
+          "id": 12183,
+          "ruta": "/img/p/1/2/1/8/3/12183-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        }
+      ],
+      "colores": [
+        {
+          "nombre": "Blanco",
+          "hex": "#ffffff"
+        },
+        {
+          "nombre": "Negro",
+          "hex": "#000000"
+        },
+        {
+          "nombre": "Gris Claro",
+          "hex": "#d4d4d4"
+        },
+        {
+          "nombre": "Militar Green",
+          "hex": "#586800"
+        },
+        {
+          "nombre": "Rojo",
+          "hex": "#ff0000"
+        },
+        {
+          "nombre": "Navy",
+          "hex": "#003870"
+        },
+        {
+          "nombre": "Royal Blue",
+          "hex": "#0048e7"
+        },
+        {
+          "nombre": "Burgundy",
+          "hex": "#740048"
+        }
+      ],
+      "tallas": [
+        "1-2 años",
+        "3-4 años",
+        "5-6 años",
+        "7-8 años",
+        "9-11 años",
+        "12-13 años"
+      ],
+      "personalizable": true,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 97
+    },
+    {
+      "id": 2192,
+      "slug": "camiseta-gildan-sofstyle",
+      "nombre": "Sudadera niñ@ JHK SWRK290",
+      "categoriaSlug": "personaliza",
+      "precio": 25,
+      "referencia": "",
+      "descripcionCorta": "<p>Sudadera clásica para niños con cuello redondo.</p>",
+      "descripcion": "<p>Características:</p>\n<p>Doble costura en cuello, puños y bajo.</p>\n<p>1x1 canalé con lycra en puños y bajo.</p>\n<p>290 g/m² aprox.</p>\n<p>65% Poliéster / 35% Algodón</p>\n<p>GM: 61% algodón /31% poliéster / 8% viscosa</p>\n<p>AS: 67% algodón / 31% poliéster / 2% viscosa</p>",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [
+        {
+          "id": 12190,
+          "ruta": "/img/p/1/2/1/9/0/12190-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        },
+        {
+          "id": 12186,
+          "ruta": "/img/p/1/2/1/8/6/12186-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        }
+      ],
+      "colores": [
+        {
+          "nombre": "Negro",
+          "hex": "#000000"
+        },
+        {
+          "nombre": "Gris",
+          "hex": "#989898"
+        },
+        {
+          "nombre": "Gris Claro",
+          "hex": "#d4d4d4"
+        },
+        {
+          "nombre": "Verde oscuro",
+          "hex": "#006404"
+        },
+        {
+          "nombre": "Iris Green",
+          "hex": "#28a400"
+        },
+        {
+          "nombre": "Orange",
+          "hex": "#ff9554"
+        },
+        {
+          "nombre": "Navy",
+          "hex": "#003870"
+        },
+        {
+          "nombre": "Royal Blue",
+          "hex": "#0048e7"
+        },
+        {
+          "nombre": "Morado",
+          "hex": "#490090"
+        },
+        {
+          "nombre": "Pink",
+          "hex": "#ffbcf9"
+        }
+      ],
+      "tallas": [
+        "1-2 años",
+        "3-4 años",
+        "5-6 años",
+        "7-8 años",
+        "9-11 años",
+        "12-13 años"
+      ],
+      "personalizable": false,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 97
+    },
+    {
+      "id": 2210,
+      "slug": "mandildelantal-adulto-sg-jg20",
+      "nombre": "Mandil/delantal Adulto WKVIENNA",
+      "categoriaSlug": "inicio",
+      "precio": 20,
+      "referencia": "",
+      "descripcionCorta": "<p>Delantal unisex de medio cuerpo. Dos cintas en la cintura. Bolsillo kanguro y bolsillo doble.</p>\n<p>DNV 100% algodón. Gramaje de 220 gsm/m².</p>\n<p>65% Poliéster / 35% Algodón. Gramaje: 180 g/m2</p>",
+      "descripcion": "",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [
+        {
+          "id": 12667,
+          "ruta": "/img/p/1/2/6/6/7/12667-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        },
+        {
+          "id": 12670,
+          "ruta": "/img/p/1/2/6/7/0/12670-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        }
+      ],
+      "colores": [
+        {
+          "nombre": "Blanco",
+          "hex": "#ffffff"
+        },
+        {
+          "nombre": "Negro",
+          "hex": "#000000"
+        },
+        {
+          "nombre": "Rojo",
+          "hex": "#ff0000"
+        },
+        {
+          "nombre": "Navy",
+          "hex": "#003870"
+        },
+        {
+          "nombre": "Burgundy",
+          "hex": "#740048"
+        },
+        {
+          "nombre": "Natural",
+          "hex": "#fff7c8"
+        },
+        {
+          "nombre": "Marrón claro",
+          "hex": "#cfa300"
+        }
+      ],
+      "tallas": [
+        "TALLA UNICA"
+      ],
+      "personalizable": true,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 97
+    },
+    {
+      "id": 2213,
+      "slug": "mandildelantal-nin-jg21k",
+      "nombre": "Mandil/delantal Niñ@ JG21K",
+      "categoriaSlug": "inicio",
+      "precio": 20,
+      "referencia": "",
+      "descripcionCorta": "<p>Diseñado para todos los ayudantes de cocina, este clásico delantal con pechera para niños no se destiñe y es fácil de cuidar. Hay un cierre de seguridad en el cuello y es lavable a 60°, ¡así que no importa lo sucio que quede!</p>",
+      "descripcion": "<p>205 g/m²</p>\n<p>65% poliéster, 35% algodón</p>\n<p>No destiñe</p>\n<p>Fácil cuidado</p>\n<p>Delantal con cierre de seguridad en el cuello (sin riesgo de estrangulamiento)</p>\n<p>Medidas: 80 x 60 cm</p>\n<p>Lavable a 60°C<span></span></p>",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [
+        {
+          "id": 12690,
+          "ruta": "/img/p/1/2/6/9/0/12690-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        },
+        {
+          "id": 12693,
+          "ruta": "/img/p/1/2/6/9/3/12693-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        }
+      ],
+      "colores": [
+        {
+          "nombre": "Negro",
+          "hex": "#000000"
+        },
+        {
+          "nombre": "Iris Green",
+          "hex": "#28a400"
+        },
+        {
+          "nombre": "Royal Blue",
+          "hex": "#0048e7"
+        },
+        {
+          "nombre": "SunFlower",
+          "hex": "#ffdd40"
+        }
+      ],
+      "tallas": [
+        "TALLA UNICA"
+      ],
+      "personalizable": false,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 97
+    },
+    {
+      "id": 2076,
+      "slug": "pegatina-personalizada",
+      "nombre": "Pegatinas translúcidas-Ácido",
+      "categoriaSlug": "pegatinas-de-vinilo",
+      "precio": 0,
+      "referencia": "",
+      "descripcionCorta": "<div class=\"customcont01\">\n<p>Crea tu pegatina personalizada. Sigue estos <span>sencillos pasos:</span></p>\n<p><span>1.</span> Introduce las medidas que desees</p>\n<p><span>2.</span> Elige la cantidad</p>\n<p><span>3.</span> Ahora puedes subir tu fichero...</p>\n<p>... o puedes personalizar tu diseño con nuestro editor aquí:</p>\n<p><a class=\"custombtn01 dsn-customize\">Crea tu diseño</a></p>\n<p>... o creamos nosotros un diseño para tí por muy poco</p>\n<p><span>4.</span> ¿Algo que debamos tener en cuenta? Indícanoslo</p>\n<p><span>5.</span> Añade al carrito</p>\n</div>",
+      "descripcion": "<p>Descripción del producto</p>",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [
+        {
+          "id": 11237,
+          "ruta": "/img/p/1/1/2/3/7/11237-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        }
+      ],
+      "colores": [],
+      "tallas": [],
+      "personalizable": false,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 150
+    },
+    {
+      "id": 2077,
+      "slug": "pegatina-personalizada",
+      "nombre": "Pegatinas transparente",
+      "categoriaSlug": "pegatinas-de-vinilo",
+      "precio": 0,
+      "referencia": "",
+      "descripcionCorta": "<div class=\"customcont01\">\n<p>Crea tu pegatina personalizada. Sigue estos <span>sencillos pasos:</span></p>\n<p><span>1.</span> Introduce las medidas que desees</p>\n<p><span>2.</span> Elige la cantidad</p>\n<p><span>3.</span> Ahora puedes subir tu fichero...</p>\n<p>... o puedes personalizar tu diseño con nuestro editor aquí:</p>\n<p><a class=\"custombtn01 dsn-customize\">Crea tu diseño</a></p>\n<p>... o creamos nosotros un diseño para tí por muy poco</p>\n<p><span>4.</span> ¿Algo que debamos tener en cuenta? Indícanoslo</p>\n<p><span>5.</span> Añade al carrito</p>\n</div>",
+      "descripcion": "<p>Descripción del producto</p>",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [
+        {
+          "id": 11238,
+          "ruta": "/img/p/1/1/2/3/8/11238-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        }
+      ],
+      "colores": [],
+      "tallas": [],
+      "personalizable": false,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 151
+    },
+    {
+      "id": 2078,
+      "slug": "pegatina-personalizada",
+      "nombre": "Pegatina de pared / fotomural",
+      "categoriaSlug": "pegatinas-de-vinilo",
+      "precio": 0,
+      "referencia": "",
+      "descripcionCorta": "<div class=\"customcont01\">\n<p>Crea tu pegatina personalizada. Sigue estos <span>sencillos pasos:</span></p>\n<p><span>1.</span> Introduce las medidas que desees</p>\n<p><span>2.</span> Elige la cantidad</p>\n<p><span>3.</span> Ahora puedes subir tu fichero...</p>\n<p>... o puedes personalizar tu diseño con nuestro editor aquí:</p>\n<p><a class=\"custombtn01 dsn-customize\">Crea tu diseño</a></p>\n<p>... o creamos nosotros un diseño para tí por muy poco</p>\n<p><span>4.</span> ¿Algo que debamos tener en cuenta? Indícanoslo</p>\n<p><span>5.</span> Añade al carrito</p>\n</div>",
+      "descripcion": "<p>Descripción del producto</p>",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [
+        {
+          "id": 11239,
+          "ruta": "/img/p/1/1/2/3/9/11239-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        }
+      ],
+      "colores": [],
+      "tallas": [],
+      "personalizable": false,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 152
+    },
+    {
+      "id": 2130,
+      "slug": "tarjetas-visita-ivan",
+      "nombre": "Tarjetas visita clásicas",
+      "categoriaSlug": "inicio",
+      "precio": 25,
+      "referencia": "",
+      "descripcionCorta": "",
+      "descripcion": "",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [
+        {
+          "id": 11261,
+          "ruta": "/img/p/1/1/2/6/1/11261-thickbox_default.jpg",
+          "ancho": 1100,
+          "alto": 1422,
+          "leyenda": ""
+        }
+      ],
+      "colores": [],
+      "tallas": [],
+      "personalizable": false,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 17
+    },
+    {
+      "id": 2003,
+      "slug": "pantalon-personalizado-",
+      "nombre": "Pantalón personalizado",
+      "categoriaSlug": "personaliza",
+      "precio": 12,
+      "referencia": "",
+      "descripcionCorta": "",
+      "descripcion": "",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [],
+      "colores": [],
+      "tallas": [],
+      "personalizable": false,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 97
+    },
+    {
+      "id": 2004,
+      "slug": "calcetines-personalizados-",
+      "nombre": "Calcetines personalizados",
+      "categoriaSlug": "personaliza",
+      "precio": 10,
+      "referencia": "",
+      "descripcionCorta": "",
+      "descripcion": "",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [],
+      "colores": [],
+      "tallas": [],
+      "personalizable": false,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 97
+    },
+    {
+      "id": 2007,
+      "slug": "polo-personalizado-",
+      "nombre": "Polo personalizado",
+      "categoriaSlug": "personaliza",
+      "precio": 12,
+      "referencia": "",
+      "descripcionCorta": "",
+      "descripcion": "",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [],
+      "colores": [],
+      "tallas": [],
+      "personalizable": false,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 97
+    },
+    {
+      "id": 2008,
+      "slug": "polar-personalizado-",
+      "nombre": "Polar personalizado",
+      "categoriaSlug": "personaliza",
+      "precio": 15,
+      "referencia": "",
+      "descripcionCorta": "",
+      "descripcion": "",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [],
+      "colores": [],
+      "tallas": [],
+      "personalizable": false,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 97
+    },
+    {
+      "id": 2009,
+      "slug": "cazadora-personalizada",
+      "nombre": "Cazadora personalizada",
+      "categoriaSlug": "personaliza",
+      "precio": 20,
+      "referencia": "",
+      "descripcionCorta": "",
+      "descripcion": "",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [],
+      "colores": [],
+      "tallas": [],
+      "personalizable": false,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 97
+    },
+    {
+      "id": 2010,
+      "slug": "mandildelantal-personalizado-",
+      "nombre": "Mandil/Delantal personalizado",
+      "categoriaSlug": "personaliza",
+      "precio": 10,
+      "referencia": "",
+      "descripcionCorta": "",
+      "descripcion": "",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [],
+      "colores": [],
+      "tallas": [],
+      "personalizable": false,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 97
+    },
+    {
+      "id": 2011,
+      "slug": "camiseta-adulto-para-colorear-personalizada-",
+      "nombre": "Camiseta adulto para colorear personalizada",
+      "categoriaSlug": "personaliza",
+      "precio": 10,
+      "referencia": "",
+      "descripcionCorta": "",
+      "descripcion": "",
+      "metaTitulo": "",
+      "metaDescripcion": "",
+      "imagenes": [],
+      "colores": [],
+      "tallas": [],
+      "personalizable": false,
+      "camposTexto": 0,
+      "camposArchivo": 0,
+      "avisos": [],
+      "categoriaId": 97
+    }
+  ]
+}

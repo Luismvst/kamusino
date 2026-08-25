@@ -78,9 +78,22 @@ describe('integridad del catálogo rescatado', { skip: contenido === null ? 'aú
     assert.equal(huerfanos.length, 0, `categoría inexistente: ${huerfanos.map((p) => p.slug).join(', ')}`);
   });
 
-  test('todo producto tiene al menos una imagen', () => {
-    const sinFoto = catalogo.productos.filter((p) => !p.imagenes?.length);
-    assert.equal(sinFoto.length, 0, `sin imágenes: ${sinFoto.map((p) => p.slug).join(', ')}`);
+  // La tienda de origen NO tiene foto para estos siete: su ficha devuelve
+  // id_image "es-default", cover false e images vacío, es decir, el marcador de
+  // posición de PrestaShop. El rescate no puede inventarlas. Se fijan aquí para
+  // que cualquier OTRO producto que se quede sin imagen salte como fallo.
+  // La web nueva necesita que el cliente aporte estas siete fotos.
+  const SIN_FOTO_EN_ORIGEN = new Set([2003, 2004, 2007, 2008, 2009, 2010, 2011]);
+
+  test('ningún producto pierde su imagen salvo los que no la tienen en origen', () => {
+    const inesperados = catalogo.productos.filter(
+      (p) => !p.imagenes?.length && !SIN_FOTO_EN_ORIGEN.has(p.id),
+    );
+    assert.equal(
+      inesperados.length,
+      0,
+      `productos sin imagen que sí deberían tenerla: ${inesperados.map((p) => `${p.id} ${p.slug}`).join(', ')}`,
+    );
   });
 
   test('toda imagen existe en disco y no está vacía', async () => {
