@@ -5,14 +5,36 @@ import { join } from 'node:path';
 
 const RUTA = new URL('../src/data/catalogo.json', import.meta.url);
 
-let catalogo;
+let catalogo = null;
+let contenido = null;
+let errorDeParseo = null;
+
 try {
-  catalogo = JSON.parse(await readFile(RUTA, 'utf8'));
+  contenido = await readFile(RUTA, 'utf8');
 } catch {
-  catalogo = null;
+  contenido = null; // Todavía no se ha ejecutado el rescate: es una situación esperada.
 }
 
-describe('integridad del catálogo rescatado', { skip: catalogo ? false : 'aún no se ha ejecutado npm run scrape' }, () => {
+if (contenido !== null) {
+  try {
+    catalogo = JSON.parse(contenido);
+  } catch (err) {
+    errorDeParseo = err;
+  }
+}
+
+// Un fichero corrupto NO puede saltarse la red de seguridad: eso daría verde a un
+// rescate roto. Solo la ausencia del fichero justifica saltarse los tests.
+test('si catalogo.json existe, es JSON válido', { skip: contenido === null ? 'aún no se ha ejecutado npm run scrape' : false }, () => {
+  assert.equal(
+    errorDeParseo,
+    null,
+    `src/data/catalogo.json existe (${contenido?.length ?? 0} bytes) pero no es JSON válido: ${errorDeParseo?.message}. ` +
+      'Probablemente se cortó a media escritura. Vuelve a ejecutar npm run scrape ANTES del 10 de septiembre.',
+  );
+});
+
+describe('integridad del catálogo rescatado', { skip: contenido === null ? 'aún no se ha ejecutado npm run scrape' : false }, () => {
   test('hay categorías y productos', () => {
     // Umbral deliberadamente bajo: varias de las 26 categorías son padres
     // (97-textil) o subcategorías de género (242-247), así que el total real
