@@ -1,7 +1,7 @@
-import { mkdir, rename, writeFile } from 'node:fs/promises';
+import { copyFile, mkdir, readFile, rename, writeFile } from 'node:fs/promises';
 import { BASE, extraerCategorias } from './categorias.mjs';
 import { pedirTexto } from './http.mjs';
-import { extraerUrlsProducto, urlCategoriaCompleta } from './listado.mjs';
+import { articulosDeclarados, extraerUrlsProducto, urlCategoriaCompleta } from './listado.mjs';
 import { normalizar } from './producto.mjs';
 import { descargarImagen } from './imagenes.mjs';
 
@@ -11,6 +11,8 @@ function fallo(etapa, url, err) {
   incidencias.push({ etapa, url, error: String(err.message ?? err) });
   console.error(`  x ${etapa}: ${url} — ${err.message ?? err}`);
 }
+
+const RUTA_CATALOGO = 'src/data/catalogo.json';
 
 // Estado acumulado, visible para guardar() desde cualquier punto de la ejecución.
 let categorias = [];
@@ -29,10 +31,32 @@ async function escribirAtomico(ruta, contenido) {
   await rename(temporal, ruta);
 }
 
+/**
+ * Un segundo intento no puede dejarnos peor que el primero. Sin esto, el
+ * finally de una ejecución que falle pronto sustituiría un catálogo bueno por
+ * uno vacío — y "si se corta, vuelve a lanzarlo" es el procedimiento normal.
+ * Devuelve los ids ya rescatados SIN avisos, que son los que no hace falta
+ * volver a pedir. Los que traen avisos sí se reintentan.
+ */
+async function sembrarDesdeDisco() {
+  let previo;
+  try {
+    previo = JSON.parse(await readFile(RUTA_CATALOGO, 'utf8'));
+  } catch {
+    return new Set(); // No hay catálogo previo, o no parsea: empezamos de cero.
+  }
+  await copyFile(RUTA_CATALOGO, `${RUTA_CATALOGO}.bak`).catch(() => {});
+  categorias = previo.categorias ?? [];
+  productos.push(...(previo.productos ?? []));
+  const buenos = new Set(productos.filter((p) => !p.avisos?.length).map((p) => p.id));
+  console.log(`Reanudando: ${productos.length} productos en disco, ${buenos.size} sin avisos que no se volverán a pedir.`);
+  return buenos;
+}
+
 async function guardar() {
   await mkdir('src/data', { recursive: true });
   await escribirAtomico(
-    'src/data/catalogo.json',
+    RUTA_CATALOGO,
     JSON.stringify({ generado: new Date().toISOString(), origen: BASE, categorias, productos }, null, 2),
   );
   await escribirAtomico('scrape-report.json', JSON.stringify({ incidencias }, null, 2));
@@ -50,6 +74,8 @@ process.on('SIGTERM', () => guardarYSalir('SIGTERM'));
 
 async function main() {
   try {
+    const yaBuenos = await sembrarDesdeDisco();
+
     console.log('1/4 Categorías…');
     let html;
     try {
@@ -60,6 +86,10 @@ async function main() {
     }
     categorias = extraerCategorias(html);
     console.log(`    ${categorias.length} categorías`);
+    if (categorias.length < 26) {
+      fallo('categorias-incompletas', BASE,
+        new Error(`esperaba 26 categorías y salieron ${categorias.length}`));
+    }
 
     console.log('2/4 Listados…');
     const urlsProducto = new Map(); // idProducto -> {url, categoriaId}
@@ -67,6 +97,11 @@ async function main() {
       try {
         const html = await pedirTexto(urlCategoriaCompleta(cat.url));
         const urls = extraerUrlsProducto(html);
+        const declarados = articulosDeclarados(html);
+        if (declarados !== null && declarados !== urls.length) {
+          fallo('listado-incompleto', cat.url,
+            new Error(`la página declara ${declarados} artículos y extrajimos ${urls.length}`));
+        }
         for (const u of urls) {
           const m = u.match(/\/(\d+)-\d+-/);
           if (!m) {
@@ -85,12 +120,15 @@ async function main() {
 
     console.log('3/4 Fichas…');
     let n = 0;
-    for (const [, { url, categoriaId }] of urlsProducto) {
+    for (const [id, { url, categoriaId }] of urlsProducto) {
+      if (yaBuenos.has(id)) { n++; continue; }
       n++;
       try {
         const p = normalizar(await pedirTexto(url));
         p.categoriaId = categoriaId;
-        productos.push(p);
+        const iExistente = productos.findIndex((x) => x.id === p.id);
+        if (iExistente >= 0) productos[iExistente] = p;
+        else productos.push(p);
         console.log(`    [${n}/${urlsProducto.size}] ${p.slug} — ${p.precio} € — ${p.imagenes.length} img`);
       } catch (err) {
         fallo('ficha', url, err);

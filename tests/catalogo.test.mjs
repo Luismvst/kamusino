@@ -36,11 +36,11 @@ test('si catalogo.json existe, es JSON válido', { skip: contenido === null ? 'a
 
 describe('integridad del catálogo rescatado', { skip: contenido === null ? 'aún no se ha ejecutado npm run scrape' : false }, () => {
   test('hay categorías y productos', () => {
-    // Umbral deliberadamente bajo: varias de las 26 categorías son padres
-    // (97-textil) o subcategorías de género (242-247), así que el total real
-    // se desconoce hasta la primera ejecución. Este test solo detecta un
-    // rescate catastróficamente vacío; el número real se fija en la Task 8.
-    assert.ok(catalogo.categorias.length >= 20, `solo ${catalogo.categorias.length} categorías`);
+    // La portada declara 26 categorías: perder cinco con sus productos no puede
+    // pasar en verde. El umbral de productos sigue siendo deliberadamente bajo
+    // porque el total real se desconoce hasta la primera ejecución; solo detecta
+    // un rescate catastróficamente vacío.
+    assert.ok(catalogo.categorias.length >= 26, `solo ${catalogo.categorias.length} categorías de las 26 esperadas`);
     assert.ok(catalogo.productos.length >= 50, `solo ${catalogo.productos.length} productos`);
   });
 

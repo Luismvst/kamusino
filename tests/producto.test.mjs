@@ -90,3 +90,20 @@ test('extraerTallas elige el select por id de grupo, no por posición', () => {
   assert.deepEqual(extraerTallas(doc, '2'), ['S', 'M']);
   assert.deepEqual(extraerTallas(doc, '1'), ['Rojo', 'Azul']);
 });
+
+test('rescata la foto de portada además de la de la variante', () => {
+  const p = normalizar(html);
+  const ids = p.imagenes.map((i) => i.id);
+  assert.ok(ids.includes(11308), `falta la portada 11308; hay ${JSON.stringify(ids)}`);
+  assert.equal(ids.length, new Set(ids).size, 'no debe repetir imágenes');
+});
+
+test('sin grupo de talla no se cuelan los colores como tallas', () => {
+  const dp = JSON.stringify({
+    id_product: 97, link_rewrite: 'z', name: 'Z', category: 'c', price_amount: 3,
+    customizable: 0, text_fields: 0, uploadable_files: 0, images: [],
+    attributes: { 1: { id_attribute_group: '1', name: 'Rojo', group: 'Color de camisetas' } },
+  }).replace(/"/g, '&quot;');
+  const p = normalizar(`<div data-product="${dp}"><select name="group[1]"><option>Rojo</option><option>Azul</option></select></div>`);
+  assert.deepEqual(p.tallas, [], `no hay grupo de talla, obtuve ${JSON.stringify(p.tallas)}`);
+});

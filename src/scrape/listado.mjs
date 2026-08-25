@@ -11,6 +11,12 @@ export function extraerUrlsProducto(html) {
   return [...porProducto.values()];
 }
 
+/** El total que la propia página declara, para contrastarlo con lo que extraemos. */
+export function articulosDeclarados(html) {
+  const m = html.match(/de\s+(\d+)\s+art[íi]culo/i);
+  return m ? Number(m[1]) : null;
+}
+
 export function urlCategoriaCompleta(urlCategoria) {
   return `${urlCategoria}?resultsPerPage=9999999`;
 }

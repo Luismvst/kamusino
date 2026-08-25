@@ -61,7 +61,10 @@ export function extraerTallas(html, idGrupo) {
 
 export function normalizar(html) {
   const d = extraerDataProduct(html);
-  const imagenes = (d.images ?? []).map((img) => ({
+  // La portada (d.cover) NO siempre está en d.images: la ficha llega filtrada a
+  // la combinación de la URL. Sin esto se pierde la foto principal del producto.
+  const brutas = [d.cover, ...(d.images ?? [])].filter(Boolean);
+  const imagenes = [...new Map(brutas.map((i) => [Number(i.id_image), i])).values()].map((img) => ({
     id: Number(img.id_image),
     ruta: rutaImagen(img.id_image),
     ancho: img.bySize?.thickbox_default?.width ?? img.large?.width ?? null,
@@ -77,7 +80,7 @@ export function normalizar(html) {
   const declaraColor = grupos.some((a) => /color/i.test(String(a.group ?? '')));
 
   const colores = extraerColores(html);
-  const tallas = extraerTallas(html, grupoTalla?.id_attribute_group);
+  const tallas = grupoTalla ? extraerTallas(html, grupoTalla.id_attribute_group) : [];
 
   const avisos = [];
   if (declaraColor && colores.length === 0) avisos.push('declara grupo de color pero no se extrajo ninguno');

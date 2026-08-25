@@ -1,4 +1,4 @@
-import { mkdir, writeFile, stat } from 'node:fs/promises';
+import { mkdir, rename, writeFile, stat } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { pedirBinario } from './http.mjs';
 import { BASE } from './categorias.mjs';
@@ -25,6 +25,8 @@ export async function descargarImagen(ruta, { destinoBase = 'public', traer = pe
   if (!datos || datos.length === 0) throw new Error(`respuesta vacía para ${ruta}`);
 
   await mkdir(dirname(destino), { recursive: true });
-  await writeFile(destino, datos);
+  const temporal = `${destino}.tmp`;
+  await writeFile(temporal, datos);
+  await rename(temporal, destino);
   return 'descargada';
 }

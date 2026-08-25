@@ -27,7 +27,7 @@ async function traer(url, intentos = 3) {
   let ultimoError;
   for (let i = 0; i < intentos; i++) {
     try {
-      const res = await fetch(url, { headers: { 'User-Agent': UA } });
+      const res = await fetch(url, { headers: { 'User-Agent': UA }, signal: AbortSignal.timeout(30_000) });
       if (res.ok) return res;
       const err = new Error(`HTTP ${res.status} en ${url}`);
       // Un 4xx (salvo 429) es un recurso que no está: reintentarlo solo gasta tiempo.
