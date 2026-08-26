@@ -6,3 +6,7 @@ dist/
 # datos parciales de pruebas
 src/data/*.tmp
 scrape-report.json.tmp
+
+# artefactos locales de despliegue y backup
+.wrangler/
+*.tar.gz
