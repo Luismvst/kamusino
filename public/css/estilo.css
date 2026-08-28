@@ -343,3 +343,160 @@ section { padding: 2.5rem 0; }
 @media (max-width: 640px) {
   .nav-principal { display: none; }
 }
+
+/* ---------- Documentos legales ---------- */
+
+.legal { max-width: 46rem; padding-top: 2.5rem; padding-bottom: 4rem; }
+.legal h1 { font-size: 2rem; margin-bottom: 1.25rem; }
+.legal h2 {
+  font-size: 1.1rem;
+  margin: 2.25rem 0 0.6rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--linea);
+}
+.legal p, .legal li { line-height: 1.65; }
+.legal ul, .legal ol { padding-left: 1.4rem; }
+.legal li { margin-bottom: 0.4rem; }
+.legal a { text-decoration: underline; text-underline-offset: 2px; }
+.legal code {
+  font-size: 0.88em;
+  background: var(--acento-suave);
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+
+.tabla-legal {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 1.25rem;
+  font-size: 0.9rem;
+  display: block;
+  overflow-x: auto;
+}
+.tabla-legal th, .tabla-legal td {
+  border: 1px solid var(--linea);
+  padding: 0.55rem 0.7rem;
+  text-align: left;
+  vertical-align: top;
+}
+.tabla-legal thead th { background: var(--acento-suave); font-weight: 600; }
+
+.pasos-legales { counter-reset: paso; list-style: none; padding-left: 0; }
+.pasos-legales > li {
+  counter-increment: paso;
+  position: relative;
+  padding-left: 2.2rem;
+  margin-bottom: 0.8rem;
+}
+.pasos-legales > li::before {
+  content: counter(paso);
+  position: absolute;
+  left: 0;
+  top: 0.1rem;
+  display: grid;
+  place-items: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  background: var(--acento);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* Lo que un cliente necesita leer aunque no lea el resto. */
+.destacado-legal {
+  background: var(--acento-suave);
+  border-left: 4px solid var(--acento);
+  border-radius: var(--radio-chico);
+  padding: 1rem 1.15rem;
+  margin: 1.5rem 0;
+  line-height: 1.6;
+}
+
+/* El formulario de desistimiento es un anexo legal: se marca como tal. */
+.formulario-legal {
+  border: 1px solid var(--linea);
+  border-radius: var(--radio-chico);
+  background: var(--tarjeta);
+  padding: 1.25rem 1.4rem;
+  margin: 1.25rem 0;
+  font-size: 0.92rem;
+  line-height: 1.9;
+}
+
+/* Un dato fiscal sin rellenar tiene que saltar a la vista, no pasar por texto. */
+mark.pendiente {
+  background: #ffe08a;
+  color: #5a3d00;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.revision {
+  margin-top: 2.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--linea);
+  font-size: 0.85rem;
+  color: var(--tinta-suave);
+}
+
+.aviso-plantilla {
+  border: 1px solid #e8c9a0;
+  background: #fdf6ec;
+  border-radius: var(--radio-chico);
+  padding: 1rem 1.15rem;
+  margin: 1.25rem 0;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+/* ---------- Llamadas al editor ---------- */
+
+.nav-disenar {
+  padding: 0.4rem 0.85rem;
+  border: 1.5px solid var(--acento);
+  border-radius: 999px;
+  color: var(--acento-oscuro);
+  font-weight: 600;
+}
+.nav-disenar:hover, .nav-disenar.activo { background: var(--acento); color: #fff; }
+
+.hero-nota {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--tinta-suave);
+}
+
+/* Banda de la categoría de ropa: lleva al editor sin robarle sitio al catálogo. */
+.banda-editor {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: var(--acento-suave);
+  border: 1px solid var(--acento);
+  border-radius: var(--radio);
+  padding: 1.1rem 1.35rem;
+  margin-bottom: 1.75rem;
+}
+.banda-editor:hover { background: var(--acento); color: #fff; }
+.banda-editor:hover .banda-flecha { transform: translateX(4px); }
+.banda-editor strong { display: block; font-size: 1.05rem; margin-bottom: 0.15rem; }
+.banda-editor span { font-size: 0.9rem; opacity: 0.85; }
+.banda-flecha {
+  font-size: 1.4rem;
+  flex: none;
+  transition: transform 0.15s;
+}
+
+/* En la ficha, las dos acciones se apilan: la principal arriba y a todo ancho. */
+.cta-pedido { display: flex; flex-direction: column; align-items: flex-start; gap: 0.6rem; }
+.cta-pedido .boton-primario.grande {
+  width: 100%;
+  text-align: center;
+  padding: 0.85rem 1rem;
+  font-size: 1.02rem;
+}
+.cta-pedido .boton-secundario { font-size: 0.9rem; }

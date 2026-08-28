@@ -14,19 +14,19 @@ export const GRUPOS = [
   {
     slug: 'ropa-personalizada',
     nombre: 'Ropa personalizada',
-    resumen: 'Camisetas, sudaderas, polos y ropa de trabajo, personalizados a tu gusto.',
+    resumen: 'Camisetas, sudaderas, polos, delantales y ropa de trabajo. Eliges color y talla, subes tu diseño y lo colocas tú mismo sobre la prenda.',
     categoriaIds: [97],
   },
   {
     slug: 'pegatinas-y-rotulacion',
     nombre: 'Pegatinas y rotulación',
-    resumen: 'Pegatinas a medida y rotulación para vehículos, escaparates y paredes.',
+    resumen: 'Pegatinas a medida y rotulación para vehículos, escaparates y paredes. Cortadas a la forma que necesites, en vinilo transparente, opaco o translúcido.',
     categoriaIds: [39, 40, 150, 151, 152],
   },
   {
     slug: 'tarjetas-de-visita',
     nombre: 'Tarjetas de visita',
-    resumen: 'Tarjetas de visita personalizadas para tu negocio.',
+    resumen: 'Tarjetas de visita personalizadas para tu negocio, impresas a todo color por las dos caras y con el acabado que elijas.',
     categoriaIds: [17],
   },
 ];
@@ -41,13 +41,13 @@ export async function cargarCatalogo() {
   const catalogo = JSON.parse(await readFile(RUTA_CATALOGO, 'utf8'));
   const productos = catalogo.productos
     .filter((p) => !EXCLUIDOS.has(p.id))
-    .map((p) => ({ ...p, grupo: grupoDe(p.categoriaId) }))
+    .map((p) => ({ ...p, grupo: grupoDeCategoria(p.categoriaId) }))
     .filter((p) => p.grupo); // descarta productos de categorías sin grupo asignado
 
   return { ...catalogo, productos };
 }
 
-function grupoDe(categoriaId) {
+export function grupoDeCategoria(categoriaId) {
   return GRUPOS.find((g) => g.categoriaIds.includes(categoriaId)) ?? null;
 }
 

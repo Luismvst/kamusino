@@ -1,21 +1,22 @@
 import { GRUPOS, CONTACTO, urlProducto, urlCategoria, esPresupuesto, formatoPrecio, enlaceWhatsApp, mensajePedido } from './datos.mjs';
 import { cuerpoEditor, datosEditor } from './editor-plantilla.mjs';
 import { admiteEditor } from '../../public/js/editor/prenda.mjs';
+import {
+  cabeceraSeo, jsonLdNegocio, jsonLdSitio, jsonLdMigas, jsonLdProducto, jsonLdPreguntas,
+} from './seo.mjs';
+import { EMPRESA, COMERCIAL } from './negocio.mjs';
+import {
+  textoAvisoLegal, textoPrivacidad, textoCookies, textoCondiciones, textoDevoluciones,
+} from './legal.mjs';
 
-// El sitio vive hoy en un dominio de previsualización (*.pages.dev), no en
-// kamusino.com todavía. Mientras tanto no debe indexarse, para que Google no
-// lo confunda con la web definitiva. Cambiar a `true` en cuanto se publique
-// en el dominio real.
-export const SITIO_INDEXABLE = false;
+// Reexportado para que `build.mjs` decida qué avisar por consola. La
+// definición vive en `negocio.mjs`, que es el único sitio configurable.
+export { SITIO_INDEXABLE } from './negocio.mjs';
 
 const ICONO_WHATSAPP = `<svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.8-.9-.2-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.1.2-.3.2-.6.1-.3-.1-1.2-.4-2.2-1.4-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.4.1-.6l.4-.5c.1-.1.2-.3.2-.4.1-.1 0-.3 0-.4C11.9 9 11.4 7.8 11.2 7.3c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-1 1-1 2.3 0 1.4 1 2.7 1.1 2.9.1.2 2 3 4.8 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.6-.7 1.9-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 00-8.5 15.2L2 22l4.9-1.3A10 10 0 1012 2z"/></svg>`;
 
 function escapar(s = '') {
   return String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-}
-
-function metaRobots() {
-  return SITIO_INDEXABLE ? '' : '<meta name="robots" content="noindex, nofollow">';
 }
 
 function cabeceraHtml(activo = '') {
@@ -29,6 +30,7 @@ function cabeceraHtml(activo = '') {
       ${nav('inicio', 'Inicio', '/')}
       ${GRUPOS.map((g) => nav(g.slug, g.nombre, urlCategoria(g))).join('')}
       ${nav('contacto', 'Contacto', '/contacto/')}
+      <a href="/personalizar/" class="nav-disenar${activo === 'personalizar' ? ' activo' : ''}">Diseñar</a>
     </nav>
     <a class="boton-whatsapp" href="${enlaceWhatsApp('Hola, tengo una consulta sobre vuestros productos.')}" target="_blank" rel="noopener">
       ${ICONO_WHATSAPP} WhatsApp
@@ -64,6 +66,7 @@ function pieHtml() {
           <li><a href="/aviso-legal/">Aviso legal</a></li>
           <li><a href="/privacidad/">Privacidad</a></li>
           <li><a href="/condiciones-de-contratacion/">Condiciones de contratación</a></li>
+          <li><a href="/cookies/">Cookies</a></li>
         </ul>
       </div>
     </div>
@@ -75,7 +78,15 @@ function pieHtml() {
 </footer>`;
 }
 
-export function pagina({ titulo, descripcion, activo = '', contenido, canonical = '', extraCabeza = '', extraFinal = '' }) {
+/**
+ * `ruta` no es opcional: de ella salen la canónica, la URL de OpenGraph y la
+ * entrada del sitemap. Una página sin canónica se reparte entre varias URLs
+ * la autoridad que debería concentrar en una.
+ */
+export function pagina({
+  titulo, descripcion, ruta, activo = '', contenido,
+  imagen = '', tipo = 'website', jsonLd = '', extraCabeza = '', extraFinal = '',
+}) {
   return `<!doctype html>
 <html lang="es">
 <head>
@@ -83,11 +94,10 @@ export function pagina({ titulo, descripcion, activo = '', contenido, canonical 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${escapar(titulo)}</title>
 <meta name="description" content="${escapar(descripcion)}">
-${metaRobots()}
-${canonical ? `<link rel="canonical" href="${canonical}">` : ''}
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+${cabeceraSeo({ titulo, descripcion, ruta, imagen, tipo })}
+${jsonLd}
+<link rel="preload" href="/fonts/v9-3y9K6as8bTXq_nANBjzKo3IeZx8z6up5BeSl9D4dj_x9PpZBMlGIInE.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/fonts/tipografias.css">
 <link rel="stylesheet" href="/css/estilo.css">
 ${extraCabeza}
 </head>
@@ -150,9 +160,10 @@ export function paginaHome({ productos }) {
     <h1>Personaliza tu ropa, tus pegatinas y tus tarjetas, a tu manera</h1>
     <p>En Kamusino eliges el producto, el color, la talla y tu diseño. Nosotros nos encargamos del resto — sin catálogos genéricos ni pedidos mínimos imposibles.</p>
     <div class="acciones">
-      <a class="boton-primario" href="#categorias">Ver catálogo</a>
-      <a class="boton-secundario" href="${enlaceWhatsApp('Hola, quiero información sobre vuestros productos personalizados.')}" target="_blank" rel="noopener">Pedir por WhatsApp</a>
+      <a class="boton-primario" href="/personalizar/">Diseñar mi camiseta</a>
+      <a class="boton-secundario" href="#categorias">Ver el catálogo</a>
     </div>
+    <p class="hero-nota">Sube tu diseño, colócalo sobre la prenda y mándanoslo. Sin programas ni cuentas de usuario.</p>
   </section>
 
   <section id="categorias">
@@ -176,8 +187,10 @@ export function paginaHome({ productos }) {
   return pagina({
     titulo: 'Kamusino — Ropa, pegatinas y tarjetas personalizadas',
     descripcion: 'Personaliza camisetas, sudaderas, ropa de trabajo, pegatinas y tarjetas de visita. Pide directamente por WhatsApp.',
+    ruta: '/',
     activo: 'inicio',
     contenido,
+    jsonLd: jsonLdNegocio() + jsonLdSitio(),
   });
 }
 
@@ -213,6 +226,14 @@ export function paginaCategoria({ grupo, productos }) {
     <h1>${escapar(grupo.nombre)}</h1>
     <p>${escapar(grupo.resumen)}</p>
   </div>
+  ${grupo.slug === 'ropa-personalizada' ? `
+  <a class="banda-editor" href="/personalizar/">
+    <div>
+      <strong>Diseña tu prenda aquí mismo</strong>
+      <span>Sube tu logo o tu foto, colócala sobre la camiseta y mándanosla. Se ve al momento.</span>
+    </div>
+    <span class="banda-flecha" aria-hidden="true">→</span>
+  </a>` : ''}
   ${productos.length
     ? `<div class="rejilla-productos">${productos.map(tarjetaProducto).join('')}</div>`
     : `<div class="vacio">Todavía no hay productos publicados en esta categoría.</div>`}
@@ -221,9 +242,14 @@ export function paginaCategoria({ grupo, productos }) {
   return pagina({
     titulo: `${grupo.nombre} — Kamusino`,
     descripcion: grupo.resumen,
+    ruta: urlCategoria(grupo),
     activo: grupo.slug,
     contenido,
-    canonical: '',
+    imagen: productos.find((p) => p.imagenes?.length)?.imagenes[0].ruta,
+    jsonLd: jsonLdMigas([
+      { nombre: 'Inicio', ruta: '/' },
+      { nombre: grupo.nombre, ruta: urlCategoria(grupo) },
+    ]),
   });
 }
 
@@ -260,9 +286,15 @@ export function paginaProducto({ producto }) {
       ? `<div class="bloque-ficha"><h3>Descripción</h3><div class="descripcion">${p.descripcionCorta}</div></div>`
       : '';
 
-  const notaPedido = p.personalizable
-    ? 'Cuéntanos color, talla y adjunta tu diseño o texto por WhatsApp: te confirmamos el pedido enseguida.'
-    : 'Escríbenos por WhatsApp para confirmar el pedido y la forma de entrega.';
+  // El editor solo sabe representar prendas de vestir. Para lo demás
+  // (pegatinas, tarjetas) el pedido sigue cerrándose por WhatsApp.
+  const disenable = admiteEditor(p.nombre) && p.grupo.slug === 'ropa-personalizada';
+
+  const notaPedido = disenable
+    ? 'Eliges color y talla, colocas tu diseño y nos lo mandas. Te respondemos con el presupuesto y el plazo; no se produce nada hasta que lo confirmas.'
+    : p.personalizable
+      ? 'Cuéntanos las medidas y adjunta tu diseño por WhatsApp: te pasamos el presupuesto sin compromiso.'
+      : 'Escríbenos por WhatsApp para confirmar el pedido y la forma de entrega.';
 
   const contenido = `
 <div class="envoltorio">
@@ -276,7 +308,10 @@ export function paginaProducto({ producto }) {
       ${tallas}
       ${descripcion}
       <div class="cta-pedido">
-        <a class="boton-primario" href="${enlaceWhatsApp(mensajePedido(p))}" target="_blank" rel="noopener">Pedir por WhatsApp</a>
+        ${disenable
+          ? `<a class="boton-primario grande" href="/personalizar/?producto=${p.id}">Diseñar esta prenda</a>
+             <a class="boton-secundario" href="${enlaceWhatsApp(mensajePedido(p))}" target="_blank" rel="noopener">Prefiero preguntar por WhatsApp</a>`
+          : `<a class="boton-primario" href="${enlaceWhatsApp(mensajePedido(p))}" target="_blank" rel="noopener">Pedir por WhatsApp</a>`}
         <p class="nota">${notaPedido}</p>
       </div>
     </div>
@@ -285,9 +320,18 @@ export function paginaProducto({ producto }) {
 
   return pagina({
     titulo: `${p.nombre} — Kamusino`,
-    descripcion: p.metaDescripcion || `${p.nombre}. Personalízalo y pídelo por WhatsApp en Kamusino.`,
+    descripcion: p.metaDescripcion || `${p.nombre}. Personalízalo a tu gusto y pídelo en Kamusino: eliges color, talla y tu propio diseño.`,
+    ruta: urlProducto(p),
     activo: p.grupo.slug,
     contenido,
+    imagen: p.imagenes?.[0]?.ruta,
+    tipo: 'product',
+    jsonLd: jsonLdProducto({ producto: p, ruta: urlProducto(p), categoria: p.grupo.nombre })
+      + jsonLdMigas([
+        { nombre: 'Inicio', ruta: '/' },
+        { nombre: p.grupo.nombre, ruta: urlCategoria(p.grupo) },
+        { nombre: p.nombre, ruta: urlProducto(p) },
+      ]),
   });
 }
 
@@ -316,108 +360,71 @@ export function paginaContacto() {
   return pagina({
     titulo: 'Contacto — Kamusino',
     descripcion: 'Contacta con Kamusino por WhatsApp o email para tu pedido personalizado.',
+    ruta: '/contacto/',
     activo: 'contacto',
     contenido,
   });
 }
 
 // ---------- Legal ----------
-const AVISO_PLANTILLA = `<div class="aviso-plantilla"><strong>Nota para el titular del negocio:</strong> este texto es una plantilla estándar de uso habitual en tiendas online españolas. Antes de publicarla debe completarse con los datos fiscales reales de la empresa (CIF/NIF, domicilio social, datos de registro) y revisarla con un asesor legal.</div>`;
+//
+// El contenido vive en `legal.mjs`. Aquí solo se envuelve con la plantilla y
+// se le pone título y descripción: separarlos permite que un asesor revise
+// los textos sin tener que leer código.
+
+function paginaLegal({ titulo, descripcion, ruta, texto }) {
+  return pagina({
+    titulo: `${titulo} — Kamusino`,
+    descripcion,
+    ruta,
+    contenido: `<div class="envoltorio legal">${texto}</div>`,
+  });
+}
 
 export function paginaAvisoLegal() {
-  const contenido = `
-<div class="envoltorio legal">
-  <h1>Aviso legal</h1>
-  ${AVISO_PLANTILLA}
-  <p>En cumplimiento de la Ley 34/2002, de Servicios de la Sociedad de la Información y Comercio Electrónico (LSSI-CE), se informa de los siguientes datos:</p>
-  <h2>Datos identificativos</h2>
-  <p>Titular: <em>[razón social pendiente]</em><br>
-  NIF/CIF: <em>[pendiente]</em><br>
-  Domicilio: <em>[pendiente]</em><br>
-  Email de contacto: ${CONTACTO.email}</p>
-  <h2>Objeto</h2>
-  <p>Kamusino ofrece productos textiles y de impresión personalizados (ropa, pegatinas, rotulación y tarjetas de visita) bajo pedido, gestionado directamente con el cliente por WhatsApp o email.</p>
-  <h2>Propiedad intelectual</h2>
-  <p>Los contenidos de este sitio (textos, imágenes, diseño) son propiedad de Kamusino o se usan con la autorización correspondiente. Los diseños que el cliente aporta para personalizar un producto son responsabilidad exclusiva de quien los envía.</p>
-  <h2>Responsabilidad sobre los diseños aportados</h2>
-  <p>El cliente garantiza que dispone de los derechos necesarios sobre cualquier imagen, texto o diseño que envíe para personalizar un producto, y exime a Kamusino de cualquier reclamación derivada de un uso indebido de derechos de terceros.</p>
-</div>`;
-  return pagina({
-    titulo: 'Aviso legal — Kamusino',
-    descripcion: 'Información legal de Kamusino.',
-    contenido,
+  return paginaLegal({
+    titulo: 'Aviso legal',
+    descripcion: 'Datos identificativos del titular de Kamusino, condiciones de uso del sitio y responsabilidad sobre los diseños que aporta el cliente.',
+    ruta: '/aviso-legal/',
+    texto: textoAvisoLegal(),
   });
 }
 
 export function paginaPrivacidad() {
-  const contenido = `
-<div class="envoltorio legal">
-  <h1>Política de privacidad</h1>
-  ${AVISO_PLANTILLA}
-  <h2>Responsable del tratamiento</h2>
-  <p><em>[razón social pendiente]</em>, con contacto en ${CONTACTO.email}.</p>
-  <h2>Finalidad</h2>
-  <p>Los datos que nos facilitas por WhatsApp o email (nombre, teléfono, dirección de entrega, diseño a personalizar) se usan exclusivamente para gestionar tu pedido y responder a tus consultas.</p>
-  <h2>Legitimación</h2>
-  <p>La relación contractual derivada de tu pedido y, en su caso, tu consentimiento al escribirnos.</p>
-  <h2>Conservación</h2>
-  <p>Los datos se conservan mientras dure la relación comercial y, posteriormente, durante los plazos legalmente exigidos (por ejemplo, obligaciones fiscales).</p>
-  <h2>Destinatarios</h2>
-  <p>No se ceden datos a terceros salvo obligación legal o los proveedores estrictamente necesarios para la entrega del pedido (por ejemplo, empresas de transporte).</p>
-  <h2>Tus derechos</h2>
-  <p>Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición, limitación y portabilidad escribiendo a ${CONTACTO.email}.</p>
-</div>`;
-  return pagina({
-    titulo: 'Política de privacidad — Kamusino',
-    descripcion: 'Cómo tratamos tus datos personales en Kamusino.',
-    contenido,
+  return paginaLegal({
+    titulo: 'Política de privacidad',
+    descripcion: 'Qué datos personales tratamos en Kamusino, para qué, cuánto tiempo los guardamos, quién más accede a ellos y cómo ejercer tus derechos.',
+    ruta: '/privacidad/',
+    texto: textoPrivacidad(),
+  });
+}
+
+export function paginaCookies() {
+  return paginaLegal({
+    titulo: 'Política de cookies',
+    descripcion: 'Kamusino no usa cookies ni analítica. Solo guarda en tu navegador el diseño que estás montando, para que no lo pierdas al recargar.',
+    ruta: '/cookies/',
+    texto: textoCookies(),
   });
 }
 
 export function paginaCondiciones() {
-  const contenido = `
-<div class="envoltorio legal">
-  <h1>Condiciones de contratación</h1>
-  ${AVISO_PLANTILLA}
-  <h2>Proceso de pedido</h2>
-  <p>Los pedidos se gestionan directamente por WhatsApp o email: el cliente indica el producto, las opciones (color, talla, cantidad) y, si procede, el diseño a personalizar. Kamusino confirma precio, plazo y forma de pago antes de iniciar la producción.</p>
-  <h2>Precios</h2>
-  <p>Los precios mostrados en la web son orientativos y están en euros. Los productos marcados como "presupuesto a medida" se cotizan según las necesidades del cliente antes de confirmar el pedido.</p>
-  <h2>Personalización</h2>
-  <p>Al aportar un diseño, texto o imagen para personalizar un producto, el cliente confirma tener los derechos necesarios sobre ese contenido.</p>
-  <h2>Pago y entrega</h2>
-  <p>La forma de pago y el plazo de entrega se acuerdan directamente con el cliente al confirmar el pedido.</p>
-  <h2>Legislación aplicable</h2>
-  <p>Estas condiciones se rigen por la legislación española de consumidores y usuarios.</p>
-</div>`;
-  return pagina({
-    titulo: 'Condiciones de contratación — Kamusino',
-    descripcion: 'Condiciones de compra en Kamusino.',
-    contenido,
+  return paginaLegal({
+    titulo: 'Condiciones de contratación',
+    descripcion: 'Cómo se hace un pedido en Kamusino paso a paso: precios con IVA, gastos de envío, formas de pago, plazos y garantía legal de tres años.',
+    ruta: '/condiciones-de-contratacion/',
+    texto: textoCondiciones(),
   });
 }
 
 export function paginaDevoluciones() {
-  const contenido = `
-<div class="envoltorio legal">
-  <h1>Devoluciones y desistimiento</h1>
-  ${AVISO_PLANTILLA}
-  <h2>Derecho de desistimiento</h2>
-  <p>Con carácter general, dispones de 14 días naturales desde la recepción del pedido para desistir de la compra sin justificar el motivo, conforme al Real Decreto Legislativo 1/2007 (Ley General para la Defensa de los Consumidores y Usuarios).</p>
-  <h2>Excepción: productos personalizados</h2>
-  <p><strong>Los productos confeccionados conforme a las especificaciones del cliente o claramente personalizados —que son la mayor parte de nuestro catálogo— quedan excluidos del derecho de desistimiento</strong>, de acuerdo con el artículo 103.c) de la misma ley. Te lo confirmamos siempre antes de cerrar el pedido.</p>
-  <h2>Productos con defectos</h2>
-  <p>Si un producto llega dañado o con un defecto de fabricación, contáctanos por WhatsApp o email y lo resolvemos: reposición o devolución según el caso.</p>
-  <h2>Cómo tramitarlo</h2>
-  <p>Escríbenos a ${CONTACTO.email} o por WhatsApp indicando el número de pedido y el motivo.</p>
-</div>`;
-  return pagina({
-    titulo: 'Devoluciones — Kamusino',
-    descripcion: 'Política de devoluciones y derecho de desistimiento en Kamusino.',
-    contenido,
+  return paginaLegal({
+    titulo: 'Devoluciones y desistimiento',
+    descripcion: 'Los productos personalizados están excluidos del desistimiento por ley, pero un producto defectuoso se repone siempre. Incluye el formulario oficial.',
+    ruta: '/devoluciones/',
+    texto: textoDevoluciones(),
   });
 }
-
 
 // ---------- Editor de diseño ----------
 
@@ -430,9 +437,80 @@ export function paginaEditor({ productos }) {
   return pagina({
     titulo: 'Diseña tu camiseta online — Kamusino',
     descripcion: 'Sube tu diseño, colócalo sobre la prenda y envíanoslo. Camisetas, sudaderas y polos personalizados, sin programas ni cuentas de usuario.',
-    activo: 'ropa-personalizada',
+    ruta: '/personalizar/',
+    activo: 'personalizar',
     contenido: cuerpoEditor(),
+    jsonLd: jsonLdPreguntas(PREGUNTAS_EDITOR),
     extraCabeza: '<link rel="stylesheet" href="/css/editor.css">',
     extraFinal: datosEditor(disenables),
   });
 }
+
+// ---------- 404 ----------
+
+/**
+ * Página de error. Cloudflare Pages sirve `404.html` sola.
+ *
+ * Una 404 útil no dice «no encontrado» y se queda tan ancha: ofrece a dónde
+ * ir. Buena parte de quien llega aquí viene de un enlace viejo de la tienda
+ * anterior, y lo que buscaba sigue existiendo con otra dirección.
+ */
+export function pagina404() {
+  const contenido = `
+<div class="envoltorio">
+  <section class="hero" style="padding-top:3rem;">
+    <h1>Esta página ya no está aquí</h1>
+    <p>Puede que el enlace sea de la tienda anterior. Lo que buscabas casi seguro que sigue existiendo:</p>
+    <div class="acciones">
+      <a class="boton-primario" href="/personalizar/">Diseñar mi camiseta</a>
+      <a class="boton-secundario" href="/">Ver el catálogo</a>
+    </div>
+  </section>
+  <section>
+    <div class="titulo-seccion"><h2>Nuestras secciones</h2></div>
+    <div class="rejilla-categorias">
+      ${GRUPOS.map((g) => `
+      <a class="tarjeta-categoria" href="${urlCategoria(g)}">
+        <div class="capa"><div><h3>${g.nombre}</h3><p>${escapar(g.resumen)}</p></div></div>
+      </a>`).join('')}
+    </div>
+  </section>
+</div>`;
+
+  return pagina({
+    titulo: 'Página no encontrada — Kamusino',
+    descripcion: 'La página que buscas ya no existe. Te ayudamos a encontrar lo que necesitas.',
+    ruta: '/404.html',
+    contenido,
+  });
+}
+
+/**
+ * Preguntas del editor. No son relleno de SEO: son las cuatro que decide
+ * responder cualquiera antes de subir un archivo, y Google puede enseñarlas
+ * desplegadas bajo el resultado.
+ */
+export const PREGUNTAS_EDITOR = [
+  {
+    pregunta: '¿Qué formatos de archivo puedo subir para personalizar mi camiseta?',
+    respuesta: 'PNG, JPG, WEBP, GIF y SVG se ven al momento sobre la prenda. '
+      + 'También aceptamos PDF, AI, EPS y PSD: no se previsualizan en el navegador, '
+      + 'pero llegan enteros al taller y suelen ser los que mejor imprimen.',
+  },
+  {
+    pregunta: '¿Puedo poner varios diseños en la misma prenda?',
+    respuesta: 'Sí. Puedes añadir hasta ocho diseños por pedido y repartirlos entre '
+      + 'la parte delantera y la trasera, moverlos, girarlos y cambiarles el tamaño.',
+  },
+  {
+    pregunta: '¿Qué resolución necesita mi diseño para que se imprima bien?',
+    respuesta: 'Recomendamos 300 puntos por pulgada al tamaño real de la estampación. '
+      + 'El editor calcula la resolución mientras colocas el diseño y te avisa si baja '
+      + 'de 150 ppp, que es donde se empieza a notar pixelado.',
+  },
+  {
+    pregunta: '¿Me cobráis al enviar el diseño?',
+    respuesta: 'No. Al enviarlo recibes una referencia de pedido y te respondemos con el '
+      + 'presupuesto y el plazo. No se produce nada hasta que lo confirmas.',
+  },
+];
