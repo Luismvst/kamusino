@@ -332,16 +332,31 @@ describe('enlaces internos', () => {
   });
 });
 
+/**
+ * Páginas que existen pero no deben salir en Google: solo tienen sentido
+ * llegando desde un error o desde la pasarela de pago.
+ */
+const FUERA_DEL_INDICE = ['/404.html', '/pedido/gracias/', '/pedido/cancelado/'];
+
 describe('sitemap', () => {
-  test('incluye todas las páginas menos la de error', () => {
+  test('incluye todas las páginas indexables', () => {
     for (const p of paginas) {
-      if (p.ruta === '/404.html') continue;
+      if (FUERA_DEL_INDICE.includes(p.ruta)) continue;
       assert.ok(sitemap.includes(`<loc>${DOMINIO}${p.ruta}</loc>`), 'falta en el sitemap: ' + p.ruta);
     }
   });
 
-  test('no anuncia la página de error', () => {
-    assert.ok(!sitemap.includes('/404'), 'la 404 no debe indexarse');
+  test('no anuncia la de error ni las de vuelta del pago', () => {
+    for (const ruta of FUERA_DEL_INDICE) {
+      assert.ok(!sitemap.includes(`<loc>${DOMINIO}${ruta}</loc>`), ruta + ' no debe estar en el sitemap');
+    }
+  });
+
+  test('esas páginas además se marcan como no indexables', () => {
+    for (const ruta of FUERA_DEL_INDICE) {
+      const pagina = paginas.find((p) => p.ruta === ruta);
+      assert.ok(pagina.html.includes('content="noindex, nofollow"'), ruta + ' debería llevar noindex');
+    }
   });
 
   test('todas las entradas llevan fecha en formato ISO', () => {

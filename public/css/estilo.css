@@ -341,7 +341,20 @@ section { padding: 2.5rem 0; }
 .vacio { text-align: center; padding: 3rem 1rem; color: var(--tinta-suave); }
 
 @media (max-width: 640px) {
-  .nav-principal { display: none; }
+  /* En el movil no cabe la navegacion entera, pero esconderla del todo dejaba
+     la cabecera con el logo y WhatsApp y nada mas. Se conserva la accion
+     principal, que es justo la que mas se usa desde el movil. */
+  .nav-principal { display: flex; gap: 0.5rem; margin-left: auto; }
+  .nav-principal a:not(.nav-disenar) { display: none; }
+  .nav-disenar { padding: 0.45rem 0.8rem; font-size: 0.85rem; }
+  .boton-whatsapp span { display: none; }
+  .boton-whatsapp { padding: 0.6rem 0.75rem; }
+}
+
+/* En pantallas muy estrechas, el rotulo de WhatsApp se lleva todo el sitio. */
+@media (max-width: 400px) {
+  .cabecera .envoltorio { padding-left: 1rem; padding-right: 1rem; gap: 0.5rem; }
+  .logo img { height: 34px; }
 }
 
 /* ---------- Documentos legales ---------- */

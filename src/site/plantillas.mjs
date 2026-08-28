@@ -33,7 +33,7 @@ function cabeceraHtml(activo = '') {
       <a href="/personalizar/" class="nav-disenar${activo === 'personalizar' ? ' activo' : ''}">Diseñar</a>
     </nav>
     <a class="boton-whatsapp" href="${enlaceWhatsApp('Hola, tengo una consulta sobre vuestros productos.')}" target="_blank" rel="noopener">
-      ${ICONO_WHATSAPP} WhatsApp
+      ${ICONO_WHATSAPP} <span>WhatsApp</span>
     </a>
   </div>
 </header>`;
@@ -85,7 +85,7 @@ function pieHtml() {
  */
 export function pagina({
   titulo, descripcion, ruta, activo = '', contenido,
-  imagen = '', tipo = 'website', jsonLd = '', extraCabeza = '', extraFinal = '',
+  imagen = '', tipo = 'website', indexable = true, jsonLd = '', extraCabeza = '', extraFinal = '',
 }) {
   return `<!doctype html>
 <html lang="es">
@@ -94,7 +94,7 @@ export function pagina({
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${escapar(titulo)}</title>
 <meta name="description" content="${escapar(descripcion)}">
-${cabeceraSeo({ titulo, descripcion, ruta, imagen, tipo })}
+${cabeceraSeo({ titulo, descripcion, ruta, imagen, tipo, indexable })}
 ${jsonLd}
 <link rel="preload" href="/fonts/v9-3y9K6as8bTXq_nANBjzKo3IeZx8z6up5BeSl9D4dj_x9PpZBMlGIInE.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/fonts/tipografias.css">
@@ -475,6 +475,7 @@ export function paginaPagoCorrecto() {
     titulo: 'Pago recibido — Kamusino',
     descripcion: 'Hemos recibido tu pago y tu diseño. Te confirmamos el pedido por email con tu referencia y empezamos a producirlo.',
     ruta: '/pedido/gracias/',
+    indexable: false,
     contenido,
   });
 }
@@ -497,6 +498,7 @@ export function paginaPagoCancelado() {
     titulo: 'Pago no completado — Kamusino',
     descripcion: 'El pago no se ha completado y no se te ha cobrado nada. Tu diseño sigue guardado con su referencia y puedes retomarlo cuando quieras.',
     ruta: '/pedido/cancelado/',
+    indexable: false,
     contenido,
   });
 }
@@ -536,6 +538,7 @@ export function pagina404() {
     titulo: 'Página no encontrada — Kamusino',
     descripcion: 'La página que buscas ya no existe. Te ayudamos a encontrar lo que necesitas.',
     ruta: '/404.html',
+    indexable: false,
     contenido,
   });
 }

@@ -28,14 +28,19 @@ const IMAGEN_POR_DEFECTO = url('/img/marca/og.png');
  * `canonical` es obligatoria y absoluta. Sin ella, Google trata
  * `/producto/x/`, `/producto/x/index.html` y `/producto/x/?utm_source=…` como
  * tres páginas distintas y reparte entre las tres la autoridad de una sola.
+ *
+ * `indexable: false` es para las páginas que solo tienen sentido llegando
+ * desde otro sitio: la de error y las de vuelta de la pasarela. Una página de
+ * «gracias por tu compra» indexada aparece en las búsquedas de marca y, peor,
+ * la visita cualquiera y desvirtúa la analítica de conversiones.
  */
-export function cabeceraSeo({ titulo, descripcion, ruta, imagen, tipo = 'website' }) {
+export function cabeceraSeo({ titulo, descripcion, ruta, imagen, tipo = 'website', indexable = true }) {
   const absoluta = url(ruta);
   const foto = imagen ? url(imagen) : IMAGEN_POR_DEFECTO;
 
   return [
     `<link rel="canonical" href="${absoluta}">`,
-    SITIO_INDEXABLE
+    SITIO_INDEXABLE && indexable
       ? '<meta name="robots" content="index, follow, max-image-preview:large">'
       : '<meta name="robots" content="noindex, nofollow">',
     `<meta property="og:type" content="${tipo}">`,
