@@ -24,6 +24,7 @@
 <link rel="preload" href="/fonts/v9-3y9K6as8bTXq_nANBjzKo3IeZx8z6up5BeSl9D4dj_x9PpZBMlGIInE.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/fonts/tipografias.css">
 <link rel="stylesheet" href="/css/estilo.css">
+<link rel="stylesheet" href="/css/cookies.css">
 
 </head>
 <body>
@@ -48,12 +49,18 @@
   <div class="ficha">
     
 <div class="galeria">
-  <div class="principal"><img src="/img/p/1/1/2/6/1/11261-thickbox_default.jpg" alt="Tarjetas visita clásicas" width="1100" height="1422"></div>
+  <div class="principal"><picture>
+  <source type="image/webp" srcset="/img/p/1/1/2/6/1/11261-thickbox_default-600.webp 600w, /img/p/1/1/2/6/1/11261-thickbox_default-1100.webp 1100w" sizes="(max-width: 900px) 92vw, 560px">
+  <img src="/img/p/1/1/2/6/1/11261-thickbox_default.jpg" alt="Tarjetas visita clásicas"
+       width="1100" height="1422"
+       fetchpriority="high" decoding="async">
+</picture></div>
   
 </div>
     <div>
       <h1>Tarjetas visita clásicas</h1>
       <p class="precio-grande">25,00 €</p>
+      
       
       
       
@@ -63,6 +70,8 @@
       </div>
     </div>
   </div>
+
+  
 </div>
 
 <footer class="pie">
@@ -79,6 +88,9 @@
       <div>
         <h4>Ayuda</h4>
         <ul>
+          <li><a href="/guias/">Guías y consejos</a></li>
+          <li><a href="/precios/">Cuánto cuesta</a></li>
+          <li><a href="/preparar-tu-diseno/">Preparar tu diseño</a></li>
           <li><a href="/contacto/">Contacto</a></li>
           <li><a href="/devoluciones/">Devoluciones</a></li>
         </ul>
@@ -90,6 +102,7 @@
           <li><a href="/privacidad/">Privacidad</a></li>
           <li><a href="/condiciones-de-contratacion/">Condiciones de contratación</a></li>
           <li><a href="/cookies/">Cookies</a></li>
+          <li><a href="/cookies/" data-abrir-cookies>Preferencias de cookies</a></li>
         </ul>
       </div>
     </div>
@@ -99,6 +112,70 @@
     </div>
   </div>
 </footer>
+
+<script type="application/json" id="config-cookies">{"analitica":{"activa":false,"proveedor":"cloudflare","token":"","dominio":""},"meses":24}</script>
+
+<div class="aviso-cookies" id="aviso-cookies" role="dialog" aria-modal="false"
+     aria-labelledby="cookies-titulo" hidden>
+  <div class="cookies-caja">
+    <h2 id="cookies-titulo" tabindex="-1">Cookies</h2>
+    <p>Usamos una medición de visitas para saber qué páginas resultan útiles. No
+    identifica a nadie ni se comparte con terceros para publicidad. Lo que
+    necesita la web para funcionar va siempre, y de eso no se puede prescindir.</p>
+    <div class="cookies-botones">
+      <button type="button" class="cookies-boton" id="cookies-rechazar">Rechazar</button>
+      <button type="button" class="cookies-boton" id="cookies-aceptar">Aceptar</button>
+    </div>
+    <div class="cookies-enlaces">
+      <button type="button" class="cookies-texto" id="cookies-configurar">Configurar</button>
+      <a href="/cookies/">Política de cookies</a>
+    </div>
+  </div>
+</div>
+
+<div class="panel-cookies" id="panel-cookies" role="dialog" aria-modal="true"
+     aria-labelledby="cookies-panel-titulo" hidden>
+  <div class="cookies-caja">
+    <h2 id="cookies-panel-titulo" tabindex="-1">Preferencias de cookies</h2>
+
+    <div class="cookies-grupo">
+      <div class="cookies-fila">
+        <strong>Necesarias</strong>
+        <span class="cookies-fijo">Siempre activas</span>
+      </div>
+      <p>Guardan en tu navegador el diseño que estás montando en el editor, para
+      que no lo pierdas al recargar. No salen de tu dispositivo y nosotros no
+      podemos leerlas.</p>
+    </div>
+
+    <div class="cookies-grupo" id="cookies-bloque-analitica" hidden>
+      <div class="cookies-fila">
+        <strong>Medición de visitas</strong>
+        <label class="cookies-interruptor">
+          <input type="checkbox" id="cookies-analitica">
+          <span aria-hidden="true"></span>
+          <span class="visualmente-oculto">Permitir la medición de visitas</span>
+        </label>
+      </div>
+      <p>Cuenta cuántas personas visitan cada página y desde dónde llegan. Sin
+      perfiles y sin seguirte por otras webs.</p>
+    </div>
+
+    <p id="cookies-nada" class="cookies-nada">
+      Ahora mismo esta web no usa ninguna cookie que necesite tu permiso, así que
+      no hay nada que configurar. Si eso cambia, te lo preguntaremos antes.
+    </p>
+
+    <div class="cookies-botones">
+      <button type="button" class="cookies-boton" id="cookies-cerrar">Cerrar</button>
+      <button type="button" class="cookies-boton" id="cookies-guardar">Guardar</button>
+    </div>
+    <div class="cookies-enlaces">
+      <a href="/cookies/">Qué guardamos exactamente</a>
+    </div>
+  </div>
+</div>
+<script type="module" src="/js/consentimiento.mjs"></script>
 
 </body>
 </html>

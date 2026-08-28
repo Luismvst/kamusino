@@ -1,0 +1,168 @@
+/* Aviso y preferencias de cookies.
+
+   La regla que importa está en `.cookies-boton`: «Aceptar» y «Rechazar»
+   comparten una sola declaración, sin ninguna variante que distinga a uno del
+   otro. No es una casualidad estética. La guía de cookies de la AEPD considera
+   infracción que el botón de rechazar sea más pequeño, más gris o esté un
+   nivel por debajo del de aceptar, y la forma de garantizar que eso no ocurra
+   por descuido es que no exista la regla que los diferencia. */
+
+.aviso-cookies,
+.panel-cookies {
+  position: fixed;
+  z-index: 100;
+  inset-inline: 0;
+  bottom: 0;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+}
+.aviso-cookies[hidden],
+.panel-cookies[hidden] { display: none; }
+
+/* El panel de preferencias sí atenúa el fondo: es una decisión que se toma con
+   calma, no un aviso que se lee de paso. */
+.panel-cookies {
+  inset: 0;
+  align-items: center;
+  background: rgba(36, 29, 21, .45);
+  overflow-y: auto;
+}
+
+.cookies-caja {
+  background: var(--tarjeta);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  box-shadow: 0 12px 40px rgba(36, 29, 21, .18);
+  padding: 1.35rem 1.5rem 1.5rem;
+  width: 100%;
+  max-width: 34rem;
+}
+.cookies-caja h2 { font-size: 1.15rem; margin: 0 0 .6rem; }
+.cookies-caja h2:focus-visible { outline: 2px solid var(--acento); outline-offset: 3px; }
+.cookies-caja p { margin: 0 0 1rem; font-size: .88rem; line-height: 1.6; color: var(--tinta-suave); }
+
+.cookies-botones { display: flex; gap: .6rem; }
+
+/* Una sola regla para los dos botones. Ver la nota de arriba. */
+.cookies-boton {
+  flex: 1;
+  padding: .7rem 1rem;
+  border: 1.5px solid var(--acento);
+  border-radius: var(--radio-chico);
+  background: var(--acento);
+  color: #fff;
+  font: inherit;
+  font-size: .92rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.cookies-boton:hover { background: var(--acento-oscuro); border-color: var(--acento-oscuro); }
+.cookies-boton:focus-visible { outline: 2px solid var(--tinta); outline-offset: 2px; }
+
+.cookies-enlaces {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem 1.25rem;
+  margin-top: .9rem;
+  font-size: .82rem;
+}
+.cookies-enlaces a { color: var(--tinta-suave); text-decoration: underline; text-underline-offset: 2px; }
+.cookies-enlaces a:hover { color: var(--acento); }
+.cookies-texto {
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  font-size: .82rem;
+  color: var(--tinta-suave);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+.cookies-texto:hover { color: var(--acento); }
+
+/* ---------- Panel de preferencias ---------- */
+
+.cookies-grupo {
+  border: 1px solid var(--linea);
+  border-radius: var(--radio-chico);
+  padding: .85rem 1rem;
+  margin-bottom: .75rem;
+  background: var(--hueso);
+}
+.cookies-grupo[hidden] { display: none; }
+.cookies-grupo p { margin: .4rem 0 0; font-size: .83rem; }
+.cookies-fila { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.cookies-fila strong { font-size: .95rem; }
+.cookies-fijo { font-size: .78rem; color: var(--tinta-suave); white-space: nowrap; }
+
+.cookies-nada {
+  font-size: .86rem;
+  background: var(--acento-suave);
+  border-radius: var(--radio-chico);
+  padding: .85rem 1rem;
+  margin-bottom: .75rem;
+}
+.cookies-nada[hidden] { display: none; }
+
+/* Interruptor. Se construye sobre un checkbox de verdad para que siga
+   funcionando con teclado y con lector de pantalla. */
+.cookies-interruptor { position: relative; display: inline-flex; flex: none; cursor: pointer; }
+.cookies-interruptor input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  cursor: pointer;
+}
+.cookies-interruptor > span[aria-hidden] {
+  width: 2.6rem;
+  height: 1.5rem;
+  border-radius: 999px;
+  background: var(--linea);
+  border: 1px solid var(--linea);
+  transition: background .15s;
+  position: relative;
+}
+.cookies-interruptor > span[aria-hidden]::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .25);
+  transition: transform .15s;
+}
+.cookies-interruptor input:checked + span[aria-hidden] {
+  background: var(--acento);
+  border-color: var(--acento);
+}
+.cookies-interruptor input:checked + span[aria-hidden]::after { transform: translateX(1.1rem); }
+.cookies-interruptor input:focus-visible + span[aria-hidden] {
+  outline: 2px solid var(--acento);
+  outline-offset: 2px;
+}
+
+/* Texto solo para lectores de pantalla: se saca de la vista sin usar
+   `display: none`, que lo escondería también de ellos. */
+.visualmente-oculto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cookies-interruptor > span[aria-hidden],
+  .cookies-interruptor > span[aria-hidden]::after { transition: none; }
+}

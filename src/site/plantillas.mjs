@@ -4,7 +4,8 @@ import { admiteEditor } from '../../public/js/editor/prenda.mjs';
 import {
   cabeceraSeo, jsonLdNegocio, jsonLdSitio, jsonLdMigas, jsonLdProducto, jsonLdPreguntas,
 } from './seo.mjs';
-import { EMPRESA, COMERCIAL } from './negocio.mjs';
+import { EMPRESA, COMERCIAL, ANALITICA, MESES_CONSENTIMIENTO } from './negocio.mjs';
+import { GUIAS, rutaGuia, guia } from './guias.mjs';
 import {
   textoAvisoLegal, textoPrivacidad, textoCookies, textoCondiciones, textoDevoluciones,
 } from './legal.mjs';
@@ -39,6 +40,88 @@ function cabeceraHtml(activo = '') {
 </header>`;
 }
 
+/**
+ * Aviso de cookies y panel de preferencias.
+ *
+ * El marcado va en todas las páginas aunque hoy no haya nada que consentir:
+ * así, el día que se active la analítica, el aviso aparece sin tocar ni una
+ * plantilla. Sale oculto y solo lo enseña `consentimiento.mjs` si hace falta.
+ *
+ * Los dos botones de la primera capa son idénticos a propósito. La guía de
+ * cookies de la AEPD considera infracción que «rechazar» sea más pequeño, más
+ * gris o esté un nivel más abajo que «aceptar».
+ */
+function cookiesHtml() {
+  const configuracion = JSON.stringify({
+    analitica: ANALITICA,
+    meses: MESES_CONSENTIMIENTO,
+  }).replace(/</g, '\u003c');
+
+  return `
+<script type="application/json" id="config-cookies">${configuracion}</script>
+
+<div class="aviso-cookies" id="aviso-cookies" role="dialog" aria-modal="false"
+     aria-labelledby="cookies-titulo" hidden>
+  <div class="cookies-caja">
+    <h2 id="cookies-titulo" tabindex="-1">Cookies</h2>
+    <p>Usamos una medición de visitas para saber qué páginas resultan útiles. No
+    identifica a nadie ni se comparte con terceros para publicidad. Lo que
+    necesita la web para funcionar va siempre, y de eso no se puede prescindir.</p>
+    <div class="cookies-botones">
+      <button type="button" class="cookies-boton" id="cookies-rechazar">Rechazar</button>
+      <button type="button" class="cookies-boton" id="cookies-aceptar">Aceptar</button>
+    </div>
+    <div class="cookies-enlaces">
+      <button type="button" class="cookies-texto" id="cookies-configurar">Configurar</button>
+      <a href="/cookies/">Política de cookies</a>
+    </div>
+  </div>
+</div>
+
+<div class="panel-cookies" id="panel-cookies" role="dialog" aria-modal="true"
+     aria-labelledby="cookies-panel-titulo" hidden>
+  <div class="cookies-caja">
+    <h2 id="cookies-panel-titulo" tabindex="-1">Preferencias de cookies</h2>
+
+    <div class="cookies-grupo">
+      <div class="cookies-fila">
+        <strong>Necesarias</strong>
+        <span class="cookies-fijo">Siempre activas</span>
+      </div>
+      <p>Guardan en tu navegador el diseño que estás montando en el editor, para
+      que no lo pierdas al recargar. No salen de tu dispositivo y nosotros no
+      podemos leerlas.</p>
+    </div>
+
+    <div class="cookies-grupo" id="cookies-bloque-analitica" hidden>
+      <div class="cookies-fila">
+        <strong>Medición de visitas</strong>
+        <label class="cookies-interruptor">
+          <input type="checkbox" id="cookies-analitica">
+          <span aria-hidden="true"></span>
+          <span class="visualmente-oculto">Permitir la medición de visitas</span>
+        </label>
+      </div>
+      <p>Cuenta cuántas personas visitan cada página y desde dónde llegan. Sin
+      perfiles y sin seguirte por otras webs.</p>
+    </div>
+
+    <p id="cookies-nada" class="cookies-nada">
+      Ahora mismo esta web no usa ninguna cookie que necesite tu permiso, así que
+      no hay nada que configurar. Si eso cambia, te lo preguntaremos antes.
+    </p>
+
+    <div class="cookies-botones">
+      <button type="button" class="cookies-boton" id="cookies-cerrar">Cerrar</button>
+      <button type="button" class="cookies-boton" id="cookies-guardar">Guardar</button>
+    </div>
+    <div class="cookies-enlaces">
+      <a href="/cookies/">Qué guardamos exactamente</a>
+    </div>
+  </div>
+</div>`;
+}
+
 function pieHtml() {
   const anio = new Date().getFullYear();
   return `
@@ -56,6 +139,9 @@ function pieHtml() {
       <div>
         <h4>Ayuda</h4>
         <ul>
+          <li><a href="/guias/">Guías y consejos</a></li>
+          <li><a href="/precios/">Cuánto cuesta</a></li>
+          <li><a href="/preparar-tu-diseno/">Preparar tu diseño</a></li>
           <li><a href="/contacto/">Contacto</a></li>
           <li><a href="/devoluciones/">Devoluciones</a></li>
         </ul>
@@ -67,6 +153,7 @@ function pieHtml() {
           <li><a href="/privacidad/">Privacidad</a></li>
           <li><a href="/condiciones-de-contratacion/">Condiciones de contratación</a></li>
           <li><a href="/cookies/">Cookies</a></li>
+          <li><a href="/cookies/" data-abrir-cookies>Preferencias de cookies</a></li>
         </ul>
       </div>
     </div>
@@ -99,23 +186,52 @@ ${jsonLd}
 <link rel="preload" href="/fonts/v9-3y9K6as8bTXq_nANBjzKo3IeZx8z6up5BeSl9D4dj_x9PpZBMlGIInE.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/fonts/tipografias.css">
 <link rel="stylesheet" href="/css/estilo.css">
+<link rel="stylesheet" href="/css/cookies.css">
 ${extraCabeza}
 </head>
 <body>
 ${cabeceraHtml(activo)}
 ${contenido}
 ${pieHtml()}
+${cookiesHtml()}
+<script type="module" src="/js/consentimiento.mjs"></script>
 ${extraFinal}
 </body>
 </html>`;
 }
 
+/**
+ * Imagen con sus versiones WebP.
+ *
+ * Las fotos del catálogo son JPEG de 1100 px que en una rejilla se ven a 280.
+ * `npm run imagenes` genera un WebP de 600 y otro de 1100 al lado de cada una,
+ * y aquí se ofrecen los dos: el navegador elige el que le conviene según la
+ * pantalla, y el JPEG queda de respaldo por si alguno no entiende WebP.
+ *
+ * `sizes` no es opcional: sin él el navegador supone que la imagen ocupa todo
+ * el ancho de la ventana y se descarga la grande igualmente.
+ */
+function imagenResponsiva({ img, alt, sizes, prioritaria = false }) {
+  const sinExtension = img.ruta.replace(/\.jpe?g$/i, '');
+  const srcset = `${sinExtension}-600.webp 600w, ${sinExtension}-1100.webp 1100w`;
+
+  return `<picture>
+  <source type="image/webp" srcset="${srcset}" sizes="${sizes}">
+  <img src="${img.ruta}" alt="${escapar(alt)}"
+       width="${img.ancho || 1100}" height="${img.alto || 1422}"
+       ${prioritaria ? 'fetchpriority="high" decoding="async"' : 'loading="lazy" decoding="async"'}>
+</picture>`;
+}
+
 function fotoProducto(p, claseFoto = 'foto') {
   const img = p.imagenes?.[0];
-  if (img) {
-    return `<div class="${claseFoto}"><img src="${img.ruta}" loading="lazy" alt="${escapar(p.nombre)}" width="${img.ancho || 600}" height="${img.alto || 780}"></div>`;
-  }
-  return `<div class="${claseFoto}"><div class="sin-foto">${escapar(p.nombre)}</div></div>`;
+  if (!img) return `<div class="${claseFoto}"><div class="sin-foto">${escapar(p.nombre)}</div></div>`;
+
+  return `<div class="${claseFoto}">${imagenResponsiva({
+    img,
+    alt: p.nombre,
+    sizes: '(max-width: 640px) 45vw, (max-width: 1180px) 30vw, 280px',
+  })}</div>`;
 }
 
 export function tarjetaProducto(p) {
@@ -140,7 +256,7 @@ export function paginaHome({ productos }) {
     const productosGrupo = productos.filter((p) => p.grupo.slug === g.slug);
     const conFoto = productosGrupo.find((p) => p.imagenes?.length);
     const fondo = conFoto
-      ? `<img src="${conFoto.imagenes[0].ruta}" alt="" loading="lazy">`
+      ? `<img src="${conFoto.imagenes[0].ruta.replace(/\.jpe?g$/i, '-600.webp')}" alt="" loading="lazy" decoding="async" width="600" height="776">`
       : '';
     return `
 <a class="tarjeta-categoria" href="${urlCategoria(g)}">
@@ -237,6 +353,18 @@ export function paginaCategoria({ grupo, productos }) {
   ${productos.length
     ? `<div class="rejilla-productos">${productos.map(tarjetaProducto).join('')}</div>`
     : `<div class="vacio">Todavía no hay productos publicados en esta categoría.</div>`}
+
+  ${grupo.slug === 'ropa-personalizada' ? `
+  <section class="mas-guias">
+    <div class="titulo-seccion"><h2>Antes de pedir</h2></div>
+    <div class="rejilla-guias">
+      ${GUIAS.slice(0, 4).map((g) => `
+      <a class="tarjeta-guia" href="${rutaGuia(g)}">
+        <strong>${escapar(g.tituloPagina)}</strong>
+        <span>${escapar(g.resumen)}</span>
+      </a>`).join('')}
+    </div>
+  </section>` : ''}
 </div>`;
 
   return pagina({
@@ -254,13 +382,39 @@ export function paginaCategoria({ grupo, productos }) {
 }
 
 // ---------- Producto ----------
-export function paginaProducto({ producto }) {
+/**
+ * Cuatro productos del mismo grupo, sin repetir el actual.
+ *
+ * No es un adorno de tienda: son los enlaces que reparten autoridad entre las
+ * 47 fichas. Sin ellos, cada ficha cuelga solo de su categoría y Google las
+ * trata como hojas sueltas.
+ */
+function relacionados(p, todos) {
+  return todos
+    .filter((otro) => otro.id !== p.id && otro.grupo.slug === p.grupo.slug && otro.imagenes?.length)
+    .slice(0, 4);
+}
+
+/** La guía que de verdad ayuda a quien está mirando esta prenda. */
+function guiaParaProducto(p) {
+  if (/sudadera|polar|cazadora/i.test(p.nombre)) return guia('ropa-de-trabajo-personalizada');
+  if (/nin|niñ/i.test(p.nombre)) return guia('ropa-personalizada-colegios');
+  if (/polo|mandil|delantal/i.test(p.nombre)) return guia('ropa-de-trabajo-personalizada');
+  return guia('camisetas-despedida-soltera');
+}
+
+export function paginaProducto({ producto, catalogo = [] }) {
   const p = producto;
   const galeria = p.imagenes?.length
     ? `
 <div class="galeria">
-  <div class="principal"><img src="${p.imagenes[0].ruta}" alt="${escapar(p.nombre)}" width="${p.imagenes[0].ancho || 600}" height="${p.imagenes[0].alto || 780}"></div>
-  ${p.imagenes.length > 1 ? `<div class="miniaturas">${p.imagenes.slice(1).map((i) => `<img src="${i.ruta}" alt="" loading="lazy">`).join('')}</div>` : ''}
+  <div class="principal">${imagenResponsiva({
+    img: p.imagenes[0],
+    alt: p.nombre,
+    sizes: '(max-width: 900px) 92vw, 560px',
+    prioritaria: true,
+  })}</div>
+  ${p.imagenes.length > 1 ? `<div class="miniaturas">${p.imagenes.slice(1).map((i) => `<img src="${i.ruta.replace(/\.jpe?g$/i, '-600.webp')}" alt="" loading="lazy" decoding="async" width="600" height="776">`).join('')}</div>` : ''}
 </div>`
     : `<div class="galeria"><div class="principal"><div class="sin-foto" style="border-radius:var(--radio);width:100%;height:100%;"><span>${escapar(p.nombre)}</span><span class="subtitulo">Foto disponible bajo pedido</span></div></div></div>`;
 
@@ -296,6 +450,9 @@ export function paginaProducto({ producto }) {
       ? 'Cuéntanos las medidas y adjunta tu diseño por WhatsApp: te pasamos el presupuesto sin compromiso.'
       : 'Escríbenos por WhatsApp para confirmar el pedido y la forma de entrega.';
 
+  const otros = relacionados(p, catalogo);
+  const guiaUtil = disenable ? guiaParaProducto(p) : null;
+
   const contenido = `
 <div class="envoltorio">
   <p class="migas"><a href="/">Inicio</a> / <a href="${urlCategoria(p.grupo)}">${escapar(p.grupo.nombre)}</a> / ${escapar(p.nombre)}</p>
@@ -307,6 +464,11 @@ export function paginaProducto({ producto }) {
       ${colores}
       ${tallas}
       ${descripcion}
+      ${guiaUtil ? `
+      <p class="pista-guia">
+        ¿Primera vez? <a href="${rutaGuia(guiaUtil)}">${escapar(guiaUtil.tituloPagina)}</a>
+        · <a href="/preparar-tu-diseno/">Cómo preparar tu diseño</a>
+      </p>` : ''}
       <div class="cta-pedido">
         ${disenable
           ? `<a class="boton-primario grande" href="/personalizar/?producto=${p.id}">Diseñar esta prenda</a>
@@ -316,6 +478,12 @@ export function paginaProducto({ producto }) {
       </div>
     </div>
   </div>
+
+  ${otros.length ? `
+  <section class="relacionados">
+    <div class="titulo-seccion"><h2>Otras prendas de ${escapar(p.grupo.nombre.toLowerCase())}</h2></div>
+    <div class="rejilla-productos">${otros.map(tarjetaProducto).join('')}</div>
+  </section>` : ''}
 </div>`;
 
   return pagina({
@@ -500,6 +668,86 @@ export function paginaPagoCancelado() {
     ruta: '/pedido/cancelado/',
     indexable: false,
     contenido,
+  });
+}
+
+// ---------- Guías y páginas de uso ----------
+
+/**
+ * Estas páginas son las que pueden traer visitas a un dominio nuevo. Las
+ * fichas de producto no: todas las tiendas venden la misma camiseta Gildan y
+ * compiten con la descripción del fabricante. Aquí se responde a lo que
+ * alguien escribe en el buscador cuando ya quiere comprar algo.
+ */
+export function paginaGuia({ guia }) {
+  const otras = GUIAS.filter((g) => g.slug !== guia.slug).slice(0, 3);
+
+  const contenido = `
+<div class="envoltorio">
+  <p class="migas"><a href="/">Inicio</a> / <a href="/guias/">Guías</a> / ${escapar(guia.titulo)}</p>
+  <article class="guia">
+    <h1>${escapar(guia.tituloPagina)}</h1>
+    ${guia.cuerpo()}
+    ${guia.preguntas?.length ? `
+    <section class="preguntas">
+      <h2>Preguntas frecuentes</h2>
+      <dl>
+        ${guia.preguntas.map((p) => `<dt>${escapar(p.pregunta)}</dt><dd>${escapar(p.respuesta)}</dd>`).join('')}
+      </dl>
+    </section>` : ''}
+  </article>
+
+  <aside class="mas-guias">
+    <h2>Te puede servir</h2>
+    <div class="rejilla-guias">
+      ${otras.map((g) => `
+      <a class="tarjeta-guia" href="${rutaGuia(g)}">
+        <strong>${escapar(g.titulo)}</strong>
+        <span>${escapar(g.resumen)}</span>
+      </a>`).join('')}
+    </div>
+  </aside>
+</div>`;
+
+  return pagina({
+    titulo: `${guia.tituloPagina} — Kamusino`,
+    descripcion: guia.descripcion,
+    ruta: rutaGuia(guia),
+    tipo: 'article',
+    contenido,
+    jsonLd: jsonLdMigas([
+      { nombre: 'Inicio', ruta: '/' },
+      { nombre: 'Guías', ruta: '/guias/' },
+      { nombre: guia.titulo, ruta: rutaGuia(guia) },
+    ]) + (guia.preguntas?.length ? jsonLdPreguntas(guia.preguntas) : ''),
+  });
+}
+
+/** Índice de guías: es lo que las enlaza entre sí y desde el pie. */
+export function paginaIndiceGuias() {
+  const contenido = `
+<div class="envoltorio">
+  <p class="migas"><a href="/">Inicio</a> / Guías</p>
+  <div class="cabecera-categoria">
+    <h1>Guías y consejos</h1>
+    <p>Lo que hemos aprendido preparando pedidos, contado para que no tengas que
+    preguntarlo. Sin rodeos y sin vender nada por el camino.</p>
+  </div>
+  <div class="rejilla-guias grande">
+    ${GUIAS.map((g) => `
+    <a class="tarjeta-guia" href="${rutaGuia(g)}">
+      <strong>${escapar(g.tituloPagina)}</strong>
+      <span>${escapar(g.resumen)}</span>
+    </a>`).join('')}
+  </div>
+</div>`;
+
+  return pagina({
+    titulo: 'Guías sobre ropa personalizada — Kamusino',
+    descripcion: 'Cómo preparar un diseño, qué técnica de estampación elegir, cuánto cuesta personalizar una camiseta y qué tener en cuenta según para qué sea el pedido.',
+    ruta: '/guias/',
+    contenido,
+    jsonLd: jsonLdMigas([{ nombre: 'Inicio', ruta: '/' }, { nombre: 'Guías', ruta: '/guias/' }]),
   });
 }
 

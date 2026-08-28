@@ -6,10 +6,12 @@ import {
 import {
   sitemapXml, robotsTxt, cabecerasHttp, redirecciones, faviconSvg,
 } from './seo.mjs';
+import { GUIAS, rutaGuia } from './guias.mjs';
 import {
   paginaHome, paginaCategoria, paginaProducto, paginaContacto,
   paginaAvisoLegal, paginaPrivacidad, paginaCookies, paginaCondiciones, paginaDevoluciones,
   paginaEditor, pagina404, paginaPagoCorrecto, paginaPagoCancelado,
+  paginaGuia, paginaIndiceGuias,
   SITIO_INDEXABLE,
 } from './plantillas.mjs';
 
@@ -24,7 +26,8 @@ async function escribir(rutaRelativa, html) {
 // Todo lo que este script genera, para poder borrarlo limpio en cada build.
 // Sin esto, una página cuya URL cambia entre ejecuciones (por ejemplo al
 // arreglar un slug) deja huérfana la versión vieja en vez de sustituirla.
-const DIRECTORIOS_GENERADOS = ['producto', 'categoria', 'contacto', 'aviso-legal', 'privacidad', 'condiciones-de-contratacion', 'devoluciones', 'personalizar', 'cookies', 'pedido'];
+const DIRECTORIOS_GENERADOS = ['producto', 'categoria', 'contacto', 'aviso-legal', 'privacidad', 'condiciones-de-contratacion', 'devoluciones', 'personalizar', 'cookies', 'pedido', 'guias',
+  ...GUIAS.map((g) => g.slug)];
 const FICHEROS_GENERADOS = [
   'index.html', '404.html', 'sitemap.xml', 'robots.txt', 'catalogo.json',
   'favicon.svg', '_headers', '_redirects',
@@ -83,7 +86,7 @@ async function main() {
   }
 
   for (const producto of catalogo.productos) {
-    await escribir(`${urlProducto(producto)}index.html`, paginaProducto({ producto }));
+    await escribir(`${urlProducto(producto)}index.html`, paginaProducto({ producto, catalogo: catalogo.productos }));
     rutas.push({ ruta: urlProducto(producto), prioridad: 0.8 });
   }
 
@@ -93,6 +96,16 @@ async function main() {
 
   await escribir('/contacto/index.html', paginaContacto());
   rutas.push({ ruta: '/contacto/', prioridad: 0.7 });
+
+  // Las guías son lo que puede traer visitas a un dominio sin historial, así
+  // que van con prioridad alta y revisión frecuente.
+  await escribir('/guias/index.html', paginaIndiceGuias());
+  rutas.push({ ruta: '/guias/', prioridad: 0.8, frecuencia: 'weekly' });
+  for (const g of GUIAS) {
+    await escribir(`${rutaGuia(g)}index.html`, paginaGuia({ guia: g }));
+    rutas.push({ ruta: rutaGuia(g), prioridad: 0.9, frecuencia: 'monthly' });
+  }
+  console.log(`  Guías: ${GUIAS.length}`);
 
   // Destinos de vuelta de la pasarela. No entran en el sitemap: solo tienen
   // sentido llegando desde un pago, y no aportan nada a quien busca en Google.

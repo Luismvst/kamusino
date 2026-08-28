@@ -14,14 +14,16 @@ Está en orden: cada paso solo depende de los anteriores.
 
 | | |
 |---|---|
-| **Web** | 61 páginas: portada, 3 categorías, 47 fichas, editor, contacto, 5 legales, 404 y las dos de vuelta del pago |
+| **Web** | 66 páginas: portada, 3 categorías, 47 fichas, editor, 7 guías, contacto, 5 legales, 404 y las dos de vuelta del pago |
 | **Editor de diseño** | `/personalizar/` — importar PNG, JPG, WEBP, GIF, SVG, PDF, AI, EPS y PSD; colocar, escalar y girar con ratón, dedo o teclado; hasta 8 diseños repartidos entre delantera y trasera; texto; deshacer y rehacer; la sesión se guarda sola |
 | **Envío del pedido** | Email al taller con el mockup, el archivo de estampación a 300 ppp y los originales; email de confirmación al cliente con su referencia |
 | **Pago** | Stripe Checkout, con el importe calculado en el servidor y webhook con firma verificada |
 | **SEO** | Canónicas, OpenGraph, JSON-LD (`Product`, `BreadcrumbList`, `LocalBusiness`, `FAQPage`), sitemap, robots y 106 redirecciones 301 desde las URLs de la tienda anterior |
 | **Legal** | Aviso legal, privacidad, cookies, condiciones y devoluciones, con el formulario oficial de desistimiento |
-| **Privacidad** | Cero peticiones a dominios de terceros. Por eso no hace falta banner de cookies |
-| **Pruebas** | 317, de las cuales 63 conducen un Chrome real contra el editor |
+| **Contenido** | 7 guías para las búsquedas que traen a quien ya quiere comprar: despedidas, ropa laboral, eventos, colegios, preparar el diseño, técnicas de estampación y precios |
+| **Rendimiento** | Fotos en WebP a dos tamaños: una página de categoría pasa de ~1,9 MB de imágenes a 39 KB |
+| **Privacidad** | Cero peticiones a dominios de terceros. El aviso de cookies está escrito y probado, y se enciende solo el día que se active la analítica |
+| **Pruebas** | 336, de las cuales 63 conducen un Chrome real contra el editor |
 
 ---
 
@@ -50,25 +52,81 @@ Después, `npm run build:site`. El aviso amarillo desaparece solo.
 `tucamisetaonline@outlook.es`, que era el único que aparecía en la web vieja. Si
 va a haber uno de `@kamusino.es`, este es el momento de decidirlo.
 
-### A2 · Dominio · 1 hora más la propagación
+### A2 · Dominio y redirección · 1 hora más la propagación
 
 La web está preparada para `kamusino.es`. Ese dominio **hoy no tiene ni DNS**,
-así que hay que registrarlo o recuperarlo.
+así que hay que registrarlo o recuperarlo — y, sobre todo, **redirigir el `.com`
+hacia él**.
 
-1. Comprueba en quién está `kamusino.es` (whois de `.es` en <https://www.dominios.es>).
+#### Por qué la redirección lo cambia todo
+
+Un 301 no es «mandar a la gente al sitio nuevo». Es la instrucción que le dice a
+Google que la página se ha mudado **de forma permanente**, y que traslade al
+destino todo lo que tenía la de origen: posiciones, antigüedad y los enlaces que
+apuntan a ella desde otras webs.
+
+Es decir: con el 301 puesto, `kamusino.es` **no empieza de cero**. Hereda los
+casi dos años de historial de `kamusino.com`. Google tarda unas semanas en
+consolidarlo, pero no se pierde por el camino.
+
+Lo que sí destruye el historial es dejar el `.com` muerto, apuntando a un 404 o
+sin renovar. Ahí sí se tira todo.
+
+> **Por eso el `.com` no se puede dejar caducar.** Aunque la web viva en el
+> `.es`, el `.com` hay que renovarlo cada año: es lo que sostiene el 301. El día
+> que caduque, se pierde el historial que traslada. Es una renovación de unos
+> 12 € al año que protege todo el posicionamiento.
+
+#### Qué hacer
+
+1. Comprueba en quién está `kamusino.es`, con el whois de `.es` en
+   <https://www.dominios.es>.
 2. Regístralo o recupéralo **a nombre del titular del negocio**, no del técnico.
 3. En Cloudflare Pages → proyecto `kamusino` → *Custom domains*, añade
    `kamusino.es` y `www.kamusino.es`.
-4. Activa la renovación automática. *(El `.com` caduca el 26 de noviembre de
-   2026: revísalo también.)*
+4. Trae también `kamusino.com` a Cloudflare como zona (no hace falta que apunte
+   a la web: solo que Cloudflare gestione su DNS).
+5. Crea la regla de redirección. En Cloudflare, con la zona `kamusino.com`
+   seleccionada: **Rules → Redirect Rules → Create rule**.
 
-> **Una decisión que conviene pensar dos veces.** `kamusino.com` es el que hoy
-> está vivo, indexado y con historial en Google; `kamusino.es` no existe para
-> Google. Empezar en el `.es` significa empezar de cero en posiciones.
->
-> Si prefieres conservar el historial, cambia una línea:
-> `DOMINIO = 'https://kamusino.com'` en `negocio.mjs`, y apunta el `.es` al
-> `.com` con un 301. Todo lo demás se recalcula solo.
+   | Campo | Valor |
+   |---|---|
+   | Nombre | `kamusino.com a kamusino.es` |
+   | Cuando… | `hostname` contiene `kamusino.com` |
+   | Tipo de URL | Expresión dinámica |
+   | Expresión | `concat("https://kamusino.es", http.request.uri.path)` |
+   | Código de estado | **301** (permanente) |
+   | Conservar cadena de consulta | Sí |
+
+   La expresión es la parte que importa: conserva la **ruta**. Sin ella,
+   `kamusino.com/2158-camiseta-gildan-sofstyle.html` acabaría en la portada del
+   `.es`, y Google trata eso casi como un 404. Con ella, cae en la ficha nueva,
+   que es donde tiene que caer.
+
+6. Renueva `kamusino.com` cada año, indefinidamente.
+
+#### Comprobarlo
+
+```bash
+curl -sI https://kamusino.com/2158-camiseta-gildan-sofstyle.html | head -3
+```
+
+Tiene que responder `301` y una cabecera `location:` apuntando a
+`https://kamusino.es/producto/2158-camiseta-gildan-sofstyle-unisex/`. Si
+responde `302`, la regla está mal: un 302 es temporal y **no traslada
+posiciones**.
+
+#### Si prefieres quedarte en el `.com`
+
+Cambia una línea en `src/site/negocio.mjs`:
+
+```js
+export const DOMINIO = 'https://kamusino.com';
+```
+
+y monta la regla al revés. Canónicas, sitemap, redirecciones y datos
+estructurados se recalculan solos con `npm run build:site`. Es una decisión
+reversible en cinco minutos mientras no se haya enviado el sitemap a Google.
 
 ### A3 · Envío de correo · 30 minutos
 
@@ -126,7 +184,7 @@ Luego `npm run build:site` y despliega.
 ### B2 · Repasar antes de dar el paso
 
 ```bash
-npm test           # las 317 tienen que pasar
+npm test           # las 336 tienen que pasar
 npm run build:site
 ```
 
@@ -174,13 +232,31 @@ Para un negocio local es lo que más tráfico da por lo poco que cuesta.
 
 ### C4 · Analítica · opcional
 
-Si la quieres, **usa una que no ponga cookies** (Plausible o Cloudflare Web
-Analytics). Con cualquiera de esas, la política de cookies actual sigue siendo
-cierta y no hace falta banner.
+Hoy la web no hace **ni una sola petición a un dominio ajeno**, y por eso no
+lleva cartel de cookies: no habría nada que consentir.
 
-Si acabas poniendo Google Analytics, entonces **sí** hacen falta un banner con
-botón de rechazar igual de visible que el de aceptar, y reescribir
-`textoCookies()` en `src/site/legal.mjs`.
+El aviso está escrito, probado y montado, pero dormido. Se enciende solo:
+
+```js
+// src/site/negocio.mjs
+export const ANALITICA = {
+  activa: true,
+  proveedor: 'cloudflare',   // o 'plausible'
+  token: '…',                // el del panel de Cloudflare Web Analytics
+};
+```
+
+Con eso aparece el aviso, el script de medición **no se carga hasta que alguien
+acepta**, y el enlace «Preferencias de cookies» del pie permite cambiar de
+opinión en cualquier momento. No hay que tocar ninguna plantilla.
+
+Las dos opciones que trae son cookieless, así que técnicamente estarían exentas
+del consentimiento. Se pide igual: pedirlo cuando no hace falta no cuesta nada,
+y no pedirlo cuando sí hace falta cuesta una sanción.
+
+> Si acabas poniendo **Google Analytics**, revisa el texto de
+> `textoCookies()` en `src/site/legal.mjs`: la política actual dice que no se
+> comparte nada con terceros, y con GA dejaría de ser verdad.
 
 ---
 
@@ -265,7 +341,7 @@ No es olvido: es que hoy no compensan.
 ## Referencia rápida
 
 ```bash
-npm test                # 317 pruebas (63 en un Chrome de verdad)
+npm test                # 336 pruebas (63 en un Chrome de verdad)
 npm run build:site      # regenera public/ desde el catálogo
 npm run ver:prendas     # hoja de contactos de las siluetas del editor
 npm run fuentes         # vuelve a bajar las tipografías (solo si cambian)

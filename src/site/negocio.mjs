@@ -64,6 +64,82 @@ export const COMERCIAL = {
 };
 
 /**
+ * Lo que el taller sabe hacer.
+ *
+ * Alimenta las guías y las páginas de uso. Está aquí y no escrito dentro de
+ * los textos porque son afirmaciones sobre el negocio: si mañana se deja de
+ * hacer serigrafía, hay que poder quitarla de la web en un sitio, no ir
+ * buscándola por seis páginas.
+ *
+ * **Verificar antes de publicar.** Los valores de partida son los habituales
+ * en un taller de personalización español, pero no están confirmados con el
+ * negocio.
+ */
+export const CAPACIDADES = {
+  tecnicas: [
+    {
+      id: 'vinilo',
+      nombre: 'Vinilo textil',
+      minimo: 1,
+      colores: 'Colores planos, sin degradados',
+      ideal: 'Nombres, dorsales, textos y logos de pocos colores',
+      tacto: 'Se nota al pasar la mano',
+      durabilidad: 'Muy alta si se lava del revés',
+      activa: true,
+    },
+    {
+      id: 'dtg',
+      nombre: 'Impresión directa (DTG)',
+      minimo: 1,
+      colores: 'Fotografías y degradados, sin límite de colores',
+      ideal: 'Diseños con muchos colores o fotos, en pocas unidades',
+      tacto: 'Casi imperceptible sobre algodón',
+      durabilidad: 'Alta; pierde algo de intensidad con los años',
+      activa: true,
+    },
+    {
+      id: 'serigrafia',
+      nombre: 'Serigrafía',
+      minimo: 25,
+      colores: 'Colores planos; cada color es una pantalla',
+      ideal: 'Tiradas grandes del mismo diseño',
+      tacto: 'Ligero, muy resistente',
+      durabilidad: 'La que más aguanta lavados',
+      activa: true,
+    },
+    {
+      id: 'sublimacion',
+      nombre: 'Sublimación',
+      minimo: 1,
+      colores: 'Fotografías y degradados a todo color',
+      ideal: 'Poliéster claro: deportiva, tazas, banderas',
+      tacto: 'Ninguno: la tinta se mete en la fibra',
+      durabilidad: 'No se cuartea ni se despega',
+      activa: true,
+    },
+    {
+      id: 'bordado',
+      nombre: 'Bordado',
+      minimo: 10,
+      colores: 'Hilos planos, sin degradados finos',
+      ideal: 'Ropa de trabajo, polos y gorras; da imagen de acabado caro',
+      tacto: 'En relieve',
+      durabilidad: 'La prenda se rompe antes que el bordado',
+      activa: true,
+    },
+  ],
+
+  /** Unidades a partir de las cuales el precio por prenda empieza a bajar. */
+  tramosCantidad: [1, 10, 25, 50, 100],
+
+  /** Si se admite mezclar tallas y colores dentro de un mismo pedido. */
+  mezclarTallas: true,
+
+  /** Plazo mínimo que conviene pedir para un evento con fecha. */
+  avisoEventos: '2 semanas',
+};
+
+/**
  * Límites del editor. Se aplican **también** en el servidor: un límite que
  * solo vive en el navegador no es un límite, es una sugerencia.
  */
@@ -81,6 +157,42 @@ export const CLAVES_ENTORNO = {
   stripeSecreta: 'STRIPE_SECRET_KEY',
   stripeWebhook: 'STRIPE_WEBHOOK_SECRET',
 };
+
+/**
+ * Analítica.
+ *
+ * Mientras `activa` sea `false` la web no carga absolutamente nada de
+ * terceros, y por eso no aparece ningún cartel de cookies: no habría nada que
+ * consentir, y pedir permiso para nada es peor que no pedirlo.
+ *
+ * En cuanto se pone en `true`, el aviso de cookies se enciende solo, el script
+ * de medición no se carga hasta que el visitante acepta, y la política de
+ * cookies pasa a describir lo que se mide. No hay que tocar nada más.
+ *
+ * `proveedor` admite:
+ *   'cloudflare'  Web Analytics. Sin cookies y sin huella del visitante; es la
+ *                 opción que menos molesta y la que ya está en la misma cuenta.
+ *   'plausible'   De pago, también sin cookies, con informes más completos.
+ *
+ * Los dos son cookieless, así que técnicamente estarían exentos del
+ * consentimiento. Se pide igual: el aviso está escrito y probado, y pedirlo
+ * cuando no hace falta no cuesta nada, mientras que no pedirlo cuando sí hace
+ * falta cuesta una sanción.
+ */
+export const ANALITICA = {
+  activa: false,
+  proveedor: 'cloudflare',
+  /** Cloudflare: el token del fragmento que da el panel de Web Analytics. */
+  token: '',
+  /** Plausible: el dominio dado de alta en la cuenta. */
+  dominio: '',
+};
+
+/**
+ * Meses que vale un consentimiento antes de volver a preguntar. La guía de
+ * cookies de la AEPD fija 24 como máximo.
+ */
+export const MESES_CONSENTIMIENTO = 24;
 
 /** Clave pública de Stripe: es pública por diseño, puede ir en el HTML. */
 export const STRIPE_CLAVE_PUBLICA = '';

@@ -11,6 +11,7 @@
     "scrape": "node src/scrape/index.mjs",
     "build:site": "node src/site/build.mjs",
     "fuentes": "node src/site/descargar-fuentes.mjs",
+    "imagenes": "node src/site/optimizar-imagenes.mjs",
     "ver:prendas": "node tests/ver-prendas.mjs"
   },
   "devDependencies": {

@@ -513,3 +513,161 @@ mark.pendiente {
   font-size: 1.02rem;
 }
 .cta-pedido .boton-secundario { font-size: 0.9rem; }
+
+/* ---------- Guías ---------- */
+
+.guia { max-width: 44rem; padding-top: 1.5rem; }
+.guia h1 { font-size: clamp(1.9rem, 4.5vw, 2.6rem); line-height: 1.1; margin-bottom: 1rem; }
+.guia h2 {
+  font-size: 1.35rem;
+  margin: 2.5rem 0 .75rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--linea);
+}
+.guia h3 { font-size: 1.05rem; margin: 1.5rem 0 .4rem; }
+.guia p, .guia li { line-height: 1.7; }
+.guia ul, .guia ol { padding-left: 1.35rem; }
+.guia li { margin-bottom: .45rem; }
+.guia a { color: var(--acento-oscuro); text-decoration: underline; text-underline-offset: 2px; }
+
+.entradilla-guia {
+  font-size: 1.12rem;
+  line-height: 1.6;
+  color: var(--tinta-suave);
+  margin: 0 0 1.5rem;
+}
+
+/* Los pasos numerados solo se usan donde el orden significa algo de verdad:
+   una cuenta atrás de plazos, o un proceso que hay que seguir en ese orden. */
+.pasos-guia { counter-reset: paso-guia; list-style: none; padding-left: 0; }
+.pasos-guia > li {
+  counter-increment: paso-guia;
+  position: relative;
+  padding-left: 2.4rem;
+  margin-bottom: .8rem;
+}
+.pasos-guia > li::before {
+  content: counter(paso-guia);
+  position: absolute;
+  left: 0;
+  top: .05rem;
+  display: grid;
+  place-items: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 50%;
+  background: var(--acento-suave);
+  color: var(--acento-oscuro);
+  font-size: .82rem;
+  font-weight: 700;
+}
+
+.repaso { list-style: none; padding-left: 0; }
+.repaso > li { position: relative; padding-left: 1.5rem; }
+.repaso > li::before {
+  content: "";
+  position: absolute;
+  left: .15rem;
+  top: .62em;
+  width: .42rem;
+  height: .42rem;
+  border-radius: 50%;
+  background: var(--turquesa);
+}
+
+.comparativa {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 1rem;
+  margin: 1.25rem 0;
+}
+.comparativa > div {
+  background: var(--tarjeta);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  padding: 1.1rem 1.25rem;
+}
+.comparativa h3 { margin-top: 0; font-size: 1rem; }
+.comparativa p { font-size: .93rem; margin: .4rem 0 0; }
+.comparativa .dato {
+  margin-top: .75rem;
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--acento-oscuro);
+}
+.comparativa .repaso { margin: .5rem 0 0; font-size: .93rem; }
+
+.tabla-guia { width: 100%; border-collapse: collapse; font-size: .89rem; min-width: 30rem; }
+.tabla-guia th, .tabla-guia td {
+  border: 1px solid var(--linea);
+  padding: .55rem .75rem;
+  text-align: left;
+  vertical-align: top;
+}
+.tabla-guia thead th { background: var(--acento-suave); }
+.tabla-guia tbody th { background: var(--hueso); font-weight: 600; white-space: nowrap; }
+
+.aviso-guia {
+  background: #fdf6ec;
+  border-left: 3px solid #d8a45a;
+  border-radius: 0 var(--radio-chico) var(--radio-chico) 0;
+  padding: .95rem 1.15rem;
+  margin: 1.25rem 0;
+  font-size: .94rem;
+  line-height: 1.6;
+}
+
+.cta-guia {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: var(--acento-suave);
+  border: 1px solid var(--acento);
+  border-radius: var(--radio);
+  padding: 1.15rem 1.35rem;
+  margin: 2rem 0;
+}
+.cta-guia strong { display: block; font-size: 1.05rem; }
+.cta-guia span { font-size: .9rem; color: var(--tinta-suave); }
+.cta-guia .boton-primario { flex: none; }
+
+.preguntas { margin-top: 2.5rem; }
+.preguntas dl { display: grid; gap: 1.1rem; margin: 0; }
+.preguntas dt { font-weight: 600; font-size: 1rem; }
+.preguntas dd { margin: .3rem 0 0; color: var(--tinta-suave); line-height: 1.65; }
+
+.mas-guias { margin: 3.5rem 0 4rem; }
+.mas-guias h2 { font-size: 1.15rem; margin-bottom: .9rem; }
+.rejilla-guias {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: .75rem;
+}
+.rejilla-guias.grande { margin-bottom: 4rem; gap: 1rem; }
+.tarjeta-guia {
+  display: block;
+  background: var(--tarjeta);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  padding: 1.1rem 1.25rem;
+  transition: border-color .15s, transform .15s;
+}
+.tarjeta-guia:hover { border-color: var(--acento); transform: translateY(-2px); }
+.tarjeta-guia strong { display: block; margin-bottom: .3rem; font-size: 1rem; }
+.tarjeta-guia span { font-size: .88rem; color: var(--tinta-suave); line-height: 1.55; }
+
+/* Enlaces desde la ficha hacia la guía que de verdad ayuda a quien la mira. */
+.pista-guia {
+  font-size: .87rem;
+  color: var(--tinta-suave);
+  margin: 0 0 1rem;
+  padding: .7rem .9rem;
+  background: var(--hueso);
+  border-radius: var(--radio-chico);
+  line-height: 1.55;
+}
+.pista-guia a { color: var(--acento-oscuro); text-decoration: underline; text-underline-offset: 2px; }
+
+.relacionados { margin: 4rem 0 2rem; }
