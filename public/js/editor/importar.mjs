@@ -8,9 +8,10 @@
 //             en la lista de capas y viajan al taller en su formato original,
 //             que además es el bueno para imprimir.
 //
-// Se comprueba tipo **y** extensión: Windows manda a menudo los .ai y .eps
-// con el tipo vacío o con uno inventado, y fiarse solo del tipo declarado
-// dejaría fuera ficheros perfectamente válidos.
+// Se mira la extensión antes que el tipo declarado: el navegador manda
+// `application/postscript` tanto para un .ai como para un .eps, y Windows a
+// menudo no manda tipo ninguno. El tipo queda de respaldo para los ficheros
+// que llegan sin extensión.
 
 export const FORMATOS_IMAGEN = {
   'image/png': 'PNG',
@@ -46,15 +47,20 @@ export function extension(nombre = '') {
 
 /**
  * Clasifica el fichero. Devuelve `{ clase, formato }` o `null` si no se
- * admite. El tipo declarado manda; la extensión es la red de seguridad.
+ * admite.
+ *
+ * Manda la extensión, y el tipo declarado queda de respaldo. Es al revés de
+ * lo que parece razonable, pero el tipo es demasiado impreciso: Chrome manda
+ * `application/postscript` tanto para un .ai como para un .eps, y solo el
+ * nombre los distingue. Un fichero sin extensión sí se clasifica por el tipo.
  */
 export function clasificar({ type = '', name = '' } = {}) {
-  if (FORMATOS_IMAGEN[type]) return { clase: 'imagen', formato: FORMATOS_IMAGEN[type] };
-  if (FORMATOS_ADJUNTO[type]) return { clase: 'adjunto', formato: FORMATOS_ADJUNTO[type] };
-
   const ext = extension(name);
   if (EXTENSIONES_IMAGEN[ext]) return { clase: 'imagen', formato: EXTENSIONES_IMAGEN[ext] };
   if (EXTENSIONES_ADJUNTO[ext]) return { clase: 'adjunto', formato: EXTENSIONES_ADJUNTO[ext] };
+
+  if (FORMATOS_IMAGEN[type]) return { clase: 'imagen', formato: FORMATOS_IMAGEN[type] };
+  if (FORMATOS_ADJUNTO[type]) return { clase: 'adjunto', formato: FORMATOS_ADJUNTO[type] };
 
   return null;
 }

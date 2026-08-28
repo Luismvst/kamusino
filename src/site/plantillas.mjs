@@ -1,4 +1,6 @@
 import { GRUPOS, CONTACTO, urlProducto, urlCategoria, esPresupuesto, formatoPrecio, enlaceWhatsApp, mensajePedido } from './datos.mjs';
+import { cuerpoEditor, datosEditor } from './editor-plantilla.mjs';
+import { admiteEditor } from '../../public/js/editor/prenda.mjs';
 
 // El sitio vive hoy en un dominio de previsualización (*.pages.dev), no en
 // kamusino.com todavía. Mientras tanto no debe indexarse, para que Google no
@@ -73,7 +75,7 @@ function pieHtml() {
 </footer>`;
 }
 
-export function pagina({ titulo, descripcion, activo = '', contenido, canonical = '' }) {
+export function pagina({ titulo, descripcion, activo = '', contenido, canonical = '', extraCabeza = '', extraFinal = '' }) {
   return `<!doctype html>
 <html lang="es">
 <head>
@@ -87,11 +89,13 @@ ${canonical ? `<link rel="canonical" href="${canonical}">` : ''}
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/estilo.css">
+${extraCabeza}
 </head>
 <body>
 ${cabeceraHtml(activo)}
 ${contenido}
 ${pieHtml()}
+${extraFinal}
 </body>
 </html>`;
 }
@@ -411,5 +415,24 @@ export function paginaDevoluciones() {
     titulo: 'Devoluciones — Kamusino',
     descripcion: 'Política de devoluciones y derecho de desistimiento en Kamusino.',
     contenido,
+  });
+}
+
+
+// ---------- Editor de diseño ----------
+
+/**
+ * `productos` es el catálogo completo de ropa: el editor deja cambiar de
+ * prenda sin salir de la página, así que los necesita todos incrustados.
+ */
+export function paginaEditor({ productos }) {
+  const disenables = productos.filter((p) => admiteEditor(p.nombre));
+  return pagina({
+    titulo: 'Diseña tu camiseta online — Kamusino',
+    descripcion: 'Sube tu diseño, colócalo sobre la prenda y envíanoslo. Camisetas, sudaderas y polos personalizados, sin programas ni cuentas de usuario.',
+    activo: 'ropa-personalizada',
+    contenido: cuerpoEditor(),
+    extraCabeza: '<link rel="stylesheet" href="/css/editor.css">',
+    extraFinal: datosEditor(disenables),
   });
 }

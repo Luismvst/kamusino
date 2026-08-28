@@ -51,10 +51,40 @@ function rutaChrome() {
   return encontrado;
 }
 
-/** Servidor estático sobre `public/`, con index.html implícito en los directorios. */
-export async function servirPublico() {
+function leerCuerpo(peticion) {
+  return new Promise((resolver, rechazar) => {
+    const trozos = [];
+    peticion.on('data', (t) => trozos.push(t));
+    peticion.on('end', () => resolver(Buffer.concat(trozos)));
+    peticion.on('error', rechazar);
+  });
+}
+
+/**
+ * Servidor estático sobre `public/`, con index.html implícito en los
+ * directorios.
+ *
+ * `api` es un mapa de ruta a manejador. Sirve para que las pruebas reciban de
+ * verdad lo que manda el editor: el cuerpo de un envío multiparte lleva
+ * imágenes binarias, y Puppeteer no lo deja leer desde el lado del navegador.
+ * Recibiéndolo aquí se puede parsear con `FormData` de verdad.
+ */
+export async function servirPublico({ api = {} } = {}) {
   const servidor = createServer(async (peticion, respuesta) => {
     try {
+      const manejador = api[new URL(peticion.url, 'http://x').pathname];
+      if (manejador) {
+        const cuerpo = await leerCuerpo(peticion);
+        const formulario = await new Response(cuerpo, {
+          headers: { 'content-type': peticion.headers['content-type'] ?? '' },
+        }).formData().catch(() => null);
+
+        const resultado = await manejador({ formulario, cuerpo, peticion });
+        respuesta.writeHead(resultado.status ?? 200, { 'content-type': 'application/json; charset=utf-8' });
+        respuesta.end(JSON.stringify(resultado.json ?? {}));
+        return;
+      }
+
       const ruta = decodeURIComponent(new URL(peticion.url, 'http://x').pathname);
       // Sin esta normalización, una petición a `/../../secreto` saldría de
       // `public/`. Es un servidor de pruebas, pero un servidor con recorrido
@@ -114,8 +144,8 @@ export async function abrirNavegador({ visible = false } = {}) {
  * errores de consola. Una excepción silenciosa en el editor no se ve en una
  * captura, así que las pruebas comprueban `errores` explícitamente.
  */
-export async function contexto({ visible = false, ancho = 1280, alto = 900 } = {}) {
-  const servidor = await servirPublico();
+export async function contexto({ visible = false, ancho = 1280, alto = 900, api = {} } = {}) {
+  const servidor = await servirPublico({ api });
   const { navegador, cerrar: cerrarNavegador } = await abrirNavegador({ visible });
   const pagina = await navegador.newPage();
   await pagina.setViewport({ width: ancho, height: alto });

@@ -1,0 +1,409 @@
+/* Editor de diseño.
+   Solo lo carga /personalizar/: es la única página con interfaz interactiva,
+   y no tiene sentido que las otras 56 paguen su peso.
+   Usa las variables de estilo.css, que se carga antes. */
+
+.cabecera-editor { max-width: 60ch; margin: 2rem 0 1.25rem; }
+.cabecera-editor p { color: var(--tinta-suave); margin: 0; }
+
+/* Pasos: el cliente tiene que ver en todo momento por dónde va. */
+.pasos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  list-style: none;
+  margin: 0 0 1.5rem;
+  padding: 0;
+  font-size: 0.9rem;
+  color: var(--tinta-suave);
+}
+.paso { display: flex; align-items: center; gap: 0.5rem; }
+.paso > span {
+  display: grid;
+  place-items: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  border: 1.5px solid var(--linea);
+  font-size: 0.8rem;
+  font-weight: 600;
+  flex: none;
+}
+.paso.activo { color: var(--tinta); font-weight: 600; }
+.paso.activo > span { border-color: var(--acento); color: var(--acento); }
+.paso.hecho > span {
+  background: var(--acento);
+  border-color: var(--acento);
+  color: #fff;
+  font-size: 0;
+}
+.paso.hecho > span::after { content: "\2713"; font-size: 0.85rem; }
+
+.editor {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 25rem;
+  gap: 2rem;
+  align-items: start;
+  padding-bottom: 4rem;
+}
+@media (max-width: 900px) {
+  .editor { grid-template-columns: 1fr; gap: 1.5rem; }
+}
+
+/* ---------- Lienzo ---------- */
+
+.editor-lienzo {
+  position: sticky;
+  top: 5.5rem;
+  background: var(--tarjeta);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  padding: 1rem;
+  box-shadow: var(--sombra);
+}
+@media (max-width: 900px) { .editor-lienzo { position: static; } }
+
+.caras { display: flex; gap: 0.375rem; margin-bottom: 0.875rem; }
+.cara {
+  flex: 1;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--linea);
+  border-radius: var(--radio-chico);
+  background: transparent;
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--tinta-suave);
+  cursor: pointer;
+}
+.cara:hover { border-color: var(--acento); }
+.cara.activa {
+  background: var(--acento-suave);
+  border-color: var(--acento);
+  color: var(--acento-oscuro);
+  font-weight: 600;
+}
+.cara[data-cuantas]:not([data-cuantas=""])::after {
+  content: " (" attr(data-cuantas) ")";
+  opacity: 0.65;
+  font-weight: 400;
+}
+
+/* Damero de fondo: deja claro que lo blanco de la prenda es la prenda,
+   no un hueco transparente. */
+.lienzo-marco {
+  background:
+    linear-gradient(45deg, #f1ece2 25%, transparent 25%, transparent 75%, #f1ece2 75%),
+    linear-gradient(45deg, #f1ece2 25%, transparent 25%, transparent 75%, #f1ece2 75%);
+  background-size: 22px 22px;
+  background-position: 0 0, 11px 11px;
+  background-color: var(--hueso);
+  border-radius: var(--radio-chico);
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+/* `touch-action: none` es imprescindible: sin ello el navegador se queda el
+   gesto para hacer scroll y arrastrar un diseño con el dedo no funciona. */
+#lienzo { display: block; touch-action: none; max-width: 100%; }
+
+.herramientas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  align-items: center;
+  margin-top: 0.875rem;
+}
+.boton-icono {
+  padding: 0.45rem 0.7rem;
+  border: 1px solid var(--linea);
+  border-radius: var(--radio-chico);
+  background: var(--tarjeta);
+  font: inherit;
+  font-size: 0.85rem;
+  color: var(--tinta);
+  cursor: pointer;
+}
+.boton-icono:hover:not(:disabled) { border-color: var(--acento); color: var(--acento-oscuro); }
+.boton-icono:disabled { opacity: 0.38; cursor: default; }
+.boton-icono.peligro:hover:not(:disabled) { border-color: #b3261e; color: #b3261e; }
+.herramientas .separador { flex: 1; }
+
+.pista {
+  margin: 0.75rem 0 0;
+  font-size: 0.8rem;
+  color: var(--tinta-suave);
+  line-height: 1.45;
+}
+
+/* ---------- Panel lateral ---------- */
+
+.editor-panel { display: flex; flex-direction: column; gap: 1rem; min-width: 0; }
+
+.bloque {
+  background: var(--tarjeta);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  padding: 1.125rem 1.25rem 1.25rem;
+}
+.bloque h2 {
+  font-size: 1.02rem;
+  margin: 0 0 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.bloque .numero {
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: var(--acento);
+  color: #fff;
+  font-size: 0.78rem;
+  flex: none;
+}
+
+.campo { display: block; margin-bottom: 0.875rem; }
+.campo > span {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  color: var(--tinta);
+}
+.campo > span em { font-weight: 400; font-style: normal; color: var(--tinta-suave); }
+.campo:last-child { margin-bottom: 0; }
+.campo-doble { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+
+.campo input[type="text"],
+.campo input[type="email"],
+.campo input[type="tel"],
+.campo input[type="number"],
+.campo select,
+.campo textarea {
+  width: 100%;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--linea);
+  border-radius: var(--radio-chico);
+  background: var(--hueso);
+  font: inherit;
+  font-size: 0.92rem;
+  color: var(--tinta);
+}
+.campo textarea { resize: vertical; }
+.campo input:focus-visible,
+.campo select:focus-visible,
+.campo textarea:focus-visible {
+  outline: 2px solid var(--acento);
+  outline-offset: 1px;
+  border-color: var(--acento);
+}
+.campo.estrecho input { max-width: 7rem; }
+.campo input[type="range"] { width: 100%; accent-color: var(--acento); }
+.campo input[type="color"] {
+  width: 100%;
+  height: 2.4rem;
+  padding: 0.15rem;
+  border: 1px solid var(--linea);
+  border-radius: var(--radio-chico);
+  background: var(--hueso);
+}
+.nota-campo { font-size: 0.78rem; color: var(--tinta-suave); margin: 0.35rem 0 0; line-height: 1.5; }
+
+/* Muestras de color */
+.muestras { display: flex; flex-wrap: wrap; gap: 0.375rem; }
+.muestra {
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  padding: 0;
+}
+/* Un swatch blanco sobre fondo blanco sería invisible sin este contorno. */
+.muestra.clara { box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.28); }
+.muestra:hover { transform: scale(1.08); }
+.muestra.elegida {
+  border-color: var(--acento);
+  outline: 2px solid var(--acento);
+  outline-offset: 2px;
+}
+
+/* Tallas */
+.tallas-elegibles { display: flex; flex-wrap: wrap; gap: 0.375rem; }
+.talla-elegible {
+  min-width: 2.6rem;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--linea);
+  border-radius: var(--radio-chico);
+  background: var(--hueso);
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+.talla-elegible:hover { border-color: var(--acento); }
+.talla-elegible.elegida {
+  background: var(--acento);
+  border-color: var(--acento);
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Zona de soltar */
+.soltar {
+  display: grid;
+  gap: 0.2rem;
+  place-items: center;
+  padding: 1.6rem 1rem;
+  border: 2px dashed var(--linea);
+  border-radius: var(--radio);
+  background: var(--hueso);
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+.soltar span { font-size: 0.83rem; color: var(--tinta-suave); }
+.soltar:hover, .soltar:focus-visible { border-color: var(--acento); }
+.soltar.encima { border-color: var(--acento); background: var(--acento-suave); }
+
+.botonera { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.875rem; }
+.botonera .boton-secundario {
+  flex: 1;
+  text-align: center;
+  font-size: 0.88rem;
+  padding: 0.55rem 0.8rem;
+}
+.boton-alternar {
+  min-width: 2.4rem;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid var(--linea);
+  border-radius: var(--radio-chico);
+  background: var(--hueso);
+  font: inherit;
+  cursor: pointer;
+}
+.boton-alternar[aria-pressed="true"] {
+  background: var(--acento);
+  border-color: var(--acento);
+  color: #fff;
+}
+
+/* Lista de capas */
+.capas { list-style: none; margin: 0.875rem 0 0; padding: 0; display: grid; gap: 0.375rem; }
+.capa {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1px solid var(--linea);
+  border-radius: var(--radio-chico);
+  background: var(--hueso);
+  padding: 0.25rem 0.35rem 0.25rem 0;
+}
+.capa.elegida { border-color: var(--acento); background: var(--acento-suave); }
+.capa-nombre {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.5rem;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 0.85rem;
+  text-align: left;
+  cursor: pointer;
+  color: inherit;
+}
+.capa-tipo {
+  flex: none;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 0.2rem 0.3rem;
+  border-radius: 4px;
+  background: var(--tinta);
+  color: var(--hueso);
+}
+.capa-texto { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.capa-peso { flex: none; font-size: 0.72rem; color: var(--tinta-suave); }
+.capa-acciones { display: flex; gap: 0.15rem; flex: none; }
+.capa-acciones button {
+  width: 1.7rem;
+  height: 1.7rem;
+  border: 0;
+  border-radius: 5px;
+  background: none;
+  font: inherit;
+  font-size: 0.85rem;
+  color: var(--tinta-suave);
+  cursor: pointer;
+}
+.capa-acciones button:hover:not(:disabled) { background: rgba(0, 0, 0, 0.07); color: var(--tinta); }
+.capa-acciones button:disabled { opacity: 0.28; cursor: default; }
+.vacio-capas { font-size: 0.83rem; color: var(--tinta-suave); margin: 0.875rem 0 0; }
+
+.medidas {
+  margin: 0.5rem 0 0;
+  font-size: 0.8rem;
+  color: var(--tinta-suave);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Avisos */
+.bloque.avisos { border-color: #e8c9a0; background: #fdf6ec; }
+.bloque.avisos ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; }
+.bloque.avisos li {
+  font-size: 0.84rem;
+  line-height: 1.5;
+  padding-left: 1.4rem;
+  position: relative;
+}
+.bloque.avisos li::before { position: absolute; left: 0; top: 0; }
+.bloque.avisos li.aviso::before { content: "\26A0"; }
+.bloque.avisos li.info::before { content: "\2139"; }
+
+/* Envío */
+.casilla {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  margin: 0.5rem 0 1rem;
+  font-size: 0.83rem;
+  line-height: 1.5;
+}
+.casilla input {
+  margin-top: 0.15rem;
+  flex: none;
+  width: 1.05rem;
+  height: 1.05rem;
+  accent-color: var(--acento);
+}
+.casilla a { text-decoration: underline; }
+
+/* La trampa antispam se saca de la pantalla en vez de ocultarse con
+   `display: none`: muchos robots ignoran los campos ocultos, y entonces no
+   caerían en ella. */
+.trampa { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+.total { font-weight: 600; margin: 0 0 0.875rem; font-variant-numeric: tabular-nums; }
+.boton-primario.grande { width: 100%; text-align: center; padding: 0.8rem 1rem; font-size: 1rem; }
+
+.estado-envio { margin: 0.75rem 0 0; font-size: 0.86rem; line-height: 1.5; min-height: 1.2em; }
+.estado-envio.error { color: #b3261e; }
+.estado-envio.trabajando { color: var(--tinta-suave); }
+
+.enviado {
+  grid-column: 1 / -1;
+  text-align: center;
+  background: var(--tarjeta);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  padding: 3rem 1.5rem;
+  box-shadow: var(--sombra);
+}
+.enviado h2 { font-size: 1.6rem; }
+.enviado p { color: var(--tinta-suave); max-width: 46ch; margin: 0 auto 0.75rem; }
+.enviado .boton-primario { margin-top: 1rem; display: inline-block; }

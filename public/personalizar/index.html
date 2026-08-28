@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diseña tu camiseta online — Kamusino</title>
+<meta name="description" content="Sube tu diseño, colócalo sobre la prenda y envíanoslo. Camisetas, sudaderas y polos personalizados, sin programas ni cuentas de usuario.">
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/estilo.css">
+<link rel="stylesheet" href="/css/editor.css">
+</head>
+<body>
+
+<header class="cabecera">
+  <div class="envoltorio">
+    <a href="/" class="logo"><img src="/img/marca/logo.png" alt="Kamusino" width="182" height="50"></a>
+    <nav class="nav-principal">
+      <a href="/" class="">Inicio</a>
+      <a href="/categoria/ropa-personalizada/" class="activo">Ropa personalizada</a><a href="/categoria/pegatinas-y-rotulacion/" class="">Pegatinas y rotulación</a><a href="/categoria/tarjetas-de-visita/" class="">Tarjetas de visita</a>
+      <a href="/contacto/" class="">Contacto</a>
+    </nav>
+    <a class="boton-whatsapp" href="https://wa.me/34747413526?text=Hola%2C%20tengo%20una%20consulta%20sobre%20vuestros%20productos." target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.8-.9-.2-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.1.2-.3.2-.6.1-.3-.1-1.2-.4-2.2-1.4-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.4.1-.6l.4-.5c.1-.1.2-.3.2-.4.1-.1 0-.3 0-.4C11.9 9 11.4 7.8 11.2 7.3c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-1 1-1 2.3 0 1.4 1 2.7 1.1 2.9.1.2 2 3 4.8 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.6-.7 1.9-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 00-8.5 15.2L2 22l4.9-1.3A10 10 0 1012 2z"/></svg> WhatsApp
+    </a>
+  </div>
+</header>
+
+<div class="envoltorio">
+  <p class="migas"><a href="/">Inicio</a> / <a href="/categoria/ropa-personalizada/">Ropa personalizada</a> / Diseñar</p>
+  <div class="cabecera-editor">
+    <h1>Diseña tu prenda</h1>
+    <p>Sube tu diseño, colócalo donde quieras y mándanoslo. Sin programas raros ni cuentas de usuario.</p>
+  </div>
+  
+<ol class="pasos" aria-label="Pasos del pedido">
+  <li class="paso"><span>1</span> Elige la prenda</li>
+  <li class="paso"><span>2</span> Sube tu diseño</li>
+  <li class="paso"><span>3</span> Envíanoslo</li>
+</ol>
+</div>
+
+<div class="envoltorio editor" id="editor">
+  <div class="editor-lienzo">
+    <div class="caras" role="tablist" aria-label="Cara de la prenda">
+      <button type="button" role="tab" class="cara activa" data-cara="delantera" aria-selected="true">Delantera</button>
+      <button type="button" role="tab" class="cara" data-cara="trasera" aria-selected="false">Trasera</button>
+    </div>
+
+    <div class="lienzo-marco" id="lienzo-marco">
+      <canvas id="lienzo" role="img" aria-label="Vista previa de la prenda con tu diseño"></canvas>
+    </div>
+
+    <div class="herramientas">
+      <button type="button" class="boton-icono" id="btn-deshacer" title="Deshacer (Ctrl+Z)" disabled>↶ Deshacer</button>
+      <button type="button" class="boton-icono" id="btn-rehacer" title="Rehacer (Ctrl+Y)" disabled>↷ Rehacer</button>
+      <span class="separador" aria-hidden="true"></span>
+      <button type="button" class="boton-icono" id="btn-centrar" disabled>Centrar</button>
+      <button type="button" class="boton-icono" id="btn-encajar" disabled>Encajar</button>
+      <button type="button" class="boton-icono" id="btn-duplicar" disabled>Duplicar</button>
+      <button type="button" class="boton-icono peligro" id="btn-borrar" disabled>Borrar</button>
+    </div>
+
+    <p class="pista">
+      Arrastra el diseño para moverlo · tira de las esquinas para cambiar el tamaño ·
+      usa el círculo de arriba para girarlo. En el móvil, pellizca con dos dedos.
+    </p>
+  </div>
+
+  <aside class="editor-panel">
+    
+<section class="bloque" aria-labelledby="t-prenda">
+  <h2 id="t-prenda"><span class="numero">1</span> Tu prenda</h2>
+
+  <label class="campo">
+    <span>Producto</span>
+    <select id="sel-producto"></select>
+  </label>
+
+  <div class="campo">
+    <span id="et-color">Color</span>
+    <div class="muestras" id="muestras-color" role="radiogroup" aria-labelledby="et-color"></div>
+    <p class="nota-campo" id="nombre-color"></p>
+  </div>
+
+  <div class="campo">
+    <span id="et-talla">Talla</span>
+    <div class="tallas-elegibles" id="tallas" role="radiogroup" aria-labelledby="et-talla"></div>
+  </div>
+
+  <label class="campo estrecho">
+    <span>Cantidad</span>
+    <input type="number" id="cantidad" min="1" max="999" step="1" value="1" inputmode="numeric">
+  </label>
+</section>
+    
+<section class="bloque" aria-labelledby="t-disenos">
+  <h2 id="t-disenos"><span class="numero">2</span> Tus diseños</h2>
+
+  <div class="soltar" id="soltar" tabindex="0" role="button" aria-describedby="ayuda-formatos">
+    <strong>Arrastra aquí tu diseño</strong>
+    <span>o pulsa para elegir un archivo</span>
+  </div>
+  <p class="nota-campo" id="ayuda-formatos">
+    PNG, JPG, WEBP, GIF y SVG se ven al momento. PDF, AI, EPS y PSD también valen:
+    no se previsualizan, pero llegan enteros al taller. Máximo 10 MB por archivo
+    y 8 diseños por pedido.
+  </p>
+  <input type="file" id="fichero" accept=".png,.jpg,.jpeg,.webp,.gif,.svg,.pdf,.ai,.eps,.psd,image/png,image/jpeg,image/webp,image/gif,image/svg+xml,application/pdf,application/postscript" multiple hidden>
+
+  <div class="botonera">
+    <button type="button" class="boton-secundario" id="btn-subir">Subir archivo</button>
+    <button type="button" class="boton-secundario" id="btn-texto">Añadir texto</button>
+  </div>
+
+  <ul class="capas" id="capas" aria-label="Diseños añadidos"></ul>
+  <p class="vacio-capas" id="capas-vacio">Todavía no has añadido ningún diseño.</p>
+</section>
+
+<section class="bloque" id="bloque-propiedades" hidden aria-labelledby="t-propiedades">
+  <h2 id="t-propiedades">Ajustes del diseño</h2>
+  <div id="propiedades-texto" hidden>
+    <label class="campo"><span>Texto</span><input type="text" id="texto-contenido" maxlength="60"></label>
+    <label class="campo"><span>Tipo de letra</span><select id="texto-fuente"></select></label>
+    <div class="campo-doble">
+      <label class="campo"><span>Color</span><input type="color" id="texto-color"></label>
+      <div class="campo">
+        <span>Estilo</span>
+        <div class="botonera">
+          <button type="button" class="boton-alternar" id="texto-negrita" aria-pressed="false" title="Negrita"><b>B</b></button>
+          <button type="button" class="boton-alternar" id="texto-cursiva" aria-pressed="false" title="Cursiva"><i>I</i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <label class="campo">
+    <span>Opacidad <output id="valor-opacidad">100%</output></span>
+    <input type="range" id="opacidad" min="10" max="100" value="100">
+  </label>
+  <p class="medidas" id="medidas"></p>
+</section>
+
+<section class="bloque avisos" id="bloque-avisos" hidden aria-labelledby="t-avisos">
+  <h2 id="t-avisos">Antes de enviar</h2>
+  <ul id="avisos" aria-live="polite"></ul>
+</section>
+    
+<section class="bloque" aria-labelledby="t-envio">
+  <h2 id="t-envio"><span class="numero">3</span> Envíanos el diseño</h2>
+  <form id="form-envio" novalidate>
+    <label class="campo">
+      <span>Nombre y apellidos</span>
+      <input type="text" name="nombre" id="f-nombre" required autocomplete="name" maxlength="80">
+    </label>
+    <label class="campo">
+      <span>Email</span>
+      <input type="email" name="email" id="f-email" required autocomplete="email" maxlength="120"
+             placeholder="para mandarte el presupuesto">
+    </label>
+    <label class="campo">
+      <span>Teléfono <em>(opcional)</em></span>
+      <input type="tel" name="telefono" id="f-telefono" autocomplete="tel" maxlength="20">
+    </label>
+    <label class="campo">
+      <span>¿Algo que debamos saber? <em>(opcional)</em></span>
+      <textarea name="notas" id="f-notas" rows="3" maxlength="600"
+                placeholder="Fecha de entrega, colores exactos, dudas…"></textarea>
+    </label>
+
+    <!-- Trampa antispam: es invisible para las personas y los robots la
+         rellenan. Si llega con contenido, el servidor descarta el envío. -->
+    <div class="trampa" aria-hidden="true">
+      <label>No rellenes este campo<input type="text" name="empresa" tabindex="-1" autocomplete="off"></label>
+    </div>
+
+    <label class="casilla">
+      <input type="checkbox" name="acepta" id="f-acepta" required>
+      <span>He leído y acepto las <a href="/condiciones-de-contratacion/" target="_blank" rel="noopener">condiciones de contratación</a>
+      y la <a href="/privacidad/" target="_blank" rel="noopener">política de privacidad</a>, y confirmo que tengo derecho a usar los diseños que envío.</span>
+    </label>
+
+    <p class="nota-campo">Te confirmamos el precio final y la forma de pago al responderte, siempre antes de producir nada.</p>
+
+    <button type="submit" class="boton-primario grande" id="btn-enviar">Enviar diseño</button>
+    <p class="estado-envio" id="estado-envio" role="status" aria-live="polite"></p>
+  </form>
+</section>
+  </aside>
+</div>
+
+<noscript>
+  <div class="envoltorio">
+    <div class="aviso-plantilla">
+      El editor necesita JavaScript. Si prefieres no activarlo, mándanos tu diseño
+      por <a href="/contacto/">email o WhatsApp</a> y lo montamos nosotros.
+    </div>
+  </div>
+</noscript>
+
+<footer class="pie">
+  <div class="envoltorio">
+    <div class="columnas">
+      <div>
+        <div class="logo"><img src="/img/marca/logo.png" alt="Kamusino" width="140" height="38"></div>
+        <p style="font-size:0.85rem;color:var(--tinta-suave);max-width:32ch;">Personalización de ropa, pegatinas y tarjetas de visita, a tu medida.</p>
+      </div>
+      <div>
+        <h4>Catálogo</h4>
+        <ul><li><a href="/categoria/ropa-personalizada/">Ropa personalizada</a></li><li><a href="/categoria/pegatinas-y-rotulacion/">Pegatinas y rotulación</a></li><li><a href="/categoria/tarjetas-de-visita/">Tarjetas de visita</a></li></ul>
+      </div>
+      <div>
+        <h4>Ayuda</h4>
+        <ul>
+          <li><a href="/contacto/">Contacto</a></li>
+          <li><a href="/devoluciones/">Devoluciones</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="/aviso-legal/">Aviso legal</a></li>
+          <li><a href="/privacidad/">Privacidad</a></li>
+          <li><a href="/condiciones-de-contratacion/">Condiciones de contratación</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="franja-final">
+      <span>© 2026 Kamusino</span>
+      <span>Pedidos por WhatsApp: +34 747413526</span>
+    </div>
+  </div>
+</footer>
+<script type="application/json" id="datos-editor">{"limites":{"maxCapas":8,"maxBytesPorFichero":10485760,"maxBytesTotales":20971520,"ppp":300},"comercial":{"ivaPorcentaje":21,"gastosEnvio":4.95,"envioGratisDesde":60},"pagoActivo":false,"productos":[{"id":2158,"nombre":"Camiseta Gildan Sofstyle® Unisex","precio":12,"tallas":["XS","S","M","L","XL","2XL","3XL"],"colores":[{"nombre":"Blanco","hex":"#ffffff"},{"nombre":"Negro","hex":"#000000"},{"nombre":"Gris","hex":"#989898"},{"nombre":"Gris Claro","hex":"#d4d4d4"},{"nombre":"Daisy","hex":"#fff325"},{"nombre":"Militar Green","hex":"#586800"},{"nombre":"Iris Green","hex":"#28a400"},{"nombre":"Lima","hex":"#beff19"},{"nombre":"Rojo oscuro","hex":"#a82600"},{"nombre":"Rojo","hex":"#ff0000"},{"nombre":"Orange","hex":"#ff9554"},{"nombre":"Navy","hex":"#003870"},{"nombre":"Royal Blue","hex":"#0048e7"},{"nombre":"Tropical Blue","hex":"#2debff"},{"nombre":"Morado","hex":"#490090"},{"nombre":"Azalea","hex":"#ff89de"}],"imagen":"/img/p/1/1/3/0/8/11308-thickbox_default.jpg"},{"id":2159,"nombre":"Camiseta JHK TSRA190 Unisex","precio":12,"tallas":["XS","S","M","L","XL","2XL","3XL"],"colores":[{"nombre":"Blanco","hex":"#ffffff"},{"nombre":"Negro","hex":"#000000"},{"nombre":"Gris","hex":"#989898"},{"nombre":"Daisy","hex":"#fff325"},{"nombre":"Iris Green","hex":"#28a400"},{"nombre":"Lima","hex":"#beff19"},{"nombre":"Rojo","hex":"#ff0000"},{"nombre":"Orange","hex":"#ff9554"},{"nombre":"Navy","hex":"#003870"},{"nombre":"Royal Blue","hex":"#0048e7"},{"nombre":"Tropical Blue","hex":"#2debff"},{"nombre":"Lila","hex":"#bdb0ff"}],"imagen":"/img/p/1/1/3/4/0/11340-thickbox_default.jpg"},{"id":2160,"nombre":"Camiseta B&C E150 Manga larga Unisex","precio":12,"tallas":["XS","S","M","L","XL","2XL","3XL"],"colores":[{"nombre":"Blanco","hex":"#ffffff"},{"nombre":"Negro","hex":"#000000"},{"nombre":"Gris Claro","hex":"#d4d4d4"},{"nombre":"Militar Green","hex":"#586800"},{"nombre":"Iris Green","hex":"#28a400"},{"nombre":"Rojo","hex":"#ff0000"},{"nombre":"Orange","hex":"#ff9554"},{"nombre":"Royal Blue","hex":"#0048e7"}],"imagen":"/img/p/1/1/4/0/4/11404-thickbox_default.jpg"},{"id":2161,"nombre":"Camiseta JHK Manga larga TSRA150LS Unisex","precio":12,"tallas":["XS","S","M","L","XL","2XL","3XL"],"colores":[{"nombre":"Blanco","hex":"#ffffff"},{"nombre":"Negro","hex":"#000000"},{"nombre":"Gris","hex":"#989898"},{"nombre":"Daisy","hex":"#fff325"},{"nombre":"Rojo","hex":"#ff0000"},{"nombre":"Navy","hex":"#003870"},{"nombre":"Royal Blue","hex":"#0048e7"},{"nombre":"Khaki","hex":"#7c5200"}],"imagen":"/img/p/1/1/4/1/7/11417-thickbox_default.jpg"},{"id":2162,"nombre":"Camiseta Gildan de Tirantes Unisex","precio":12,"tallas":["S","M","L","XL","2XL"],"colores":[{"nombre":"Blanco","hex":"#ffffff"},{"nombre":"Negro","hex":"#000000"},{"nombre":"Gris","hex":"#989898"},{"nombre":"Rojo","hex":"#ff0000"},{"nombre":"Navy","hex":"#003870"},{"nombre":"Charcoal","hex":"#5f5f5f"}],"imagen":"/img/p/1/1/4/4/3/11443-thickbox_default.jpg"},{"id":2163,"nombre":"Camiseta JHK de Tirantes Unisex TSUASTRPM","precio":12,"tallas":["S","M","L","XL","2XL"],"colores":[{"nombre":"Blanco","hex":"#ffffff"},{"nombre":"Negro","hex":"#000000"},{"nombre":"Gris","hex":"#989898"},{"nombre":"Gris Claro","hex":"#d4d4d4"},{"nombre":"Daisy","hex":"#fff325"},{"nombre":"Rojo","hex":"#ff0000"},{"nombre":"Navy","hex":"#003870"},{"nombre":"Royal Blue","hex":"#0048e7"}],"imagen":"/img/p/1/1/4/5/9/11459-thickbox_default.jpg"},{"id":2164,"nombre":"Camiseta JHK de cuello V TSUAPICO Unisex","precio":12,"tallas":["S","M","L","XL","2XL"],"colores":[{"nombre":"Blanco","hex":"#ffffff"},{"nombre":"Negro","hex":"#000000"},{"nombre":"Gris","hex":"#989898"},{"nombre":"Daisy","hex":"#fff325"},{"nombre":"Verde oscuro","hex":"#006404"},{"nombre":"Rojo","hex":"#ff0000"},{"nombre":"Navy","hex":"#003870"},{"nombre":"Royal Blue","hex":"#0048e7"},{"nombre":"Tropical Blue","hex":"#2debff"},{"nombre":"Azalea","hex":"#ff89de"},{"nombre":"Lila","hex":"#bdb0ff"}],"imagen":"/img/p/1/1/4/7/1/11471-thickbox_default.jpg"},{"id":2165,"nombre":"Camiseta Fruit of the Loom de cuello V Unisex","precio":12,"tallas":["S","M","L","XL","2XL","3XL"],"colores":[{"nombre":"Blanco","hex":"#ffffff"},{"nombre":"Negro","hex":"#000000"},{"nombre":"Gris","hex":"#989898"},{"nombre":"Gris Claro","hex":"#d4d4d4"},{"nombre":"Daisy","hex":"#fff325"},{"nombre":"Iris Green","hex":"#28a400"},{"nombre":"Rojo","hex":"#ff0000"},{"nombre":"Orange","hex":"#ff9554"},{"nombre":"Navy","hex":"#003870"},{"nombre":"Royal Blue","hex":"#0048e7"},{"nombre":"Tropical Blue","hex":"#2debff"},{"nombre":"Charcoal","hex":"#5f5f5f"}],"imagen":"/img/p/1/1/4/9/1/11491-thickbox_default.jpg"},{"id":2168,"nombre":"Camiseta JHK TSRLCMF Mujer","precio":12,"tallas":["S","M","L","XL","2XL"],"colores":[{"nombre":"Blanco","hex":"#ffffff"},{"nombre":"Negro","hex":"#000000"},{"nombre":"Gris","hex":"#989898"},{"nombre":"Gris Claro","hex":"#d4d4d4"},{"nombre":"Daisy","hex":"#fff325"},{"nombre":"Verde oscuro","hex":"#006404"},{"nombre":"Lima","hex":"#beff19"},{"nombre":"Rojo","hex":"#ff0000"},{"nombre":"Navy","hex":"#003870"},{"nombre":"Royal Blue","hex":"#0048e7"},{"nombre":"Aqua","hex":"#0078cb"},{"nombre":"Azul","hex":"#008eef"},{"nombre":"Tropical Blue","hex":"#2debff"},{"nombre":"Sky","hex":"#c0f2ff"},{"nombre":"Mint Green","hex":"#d4fff7"},{"nombre":"Morado","hex":"#490090"},{"nombre":"Fucsia","hex":"#df00ae"},{"nombre":"Fucsia Fluor","hex":"#ff64f1"},{"nombre":"Azalea","hex":"#ff89de"},{"nombre":"Pink","hex":"#ffbcf9"},{"nombre":"Lila","hex":"#bdb0ff"},{"nombre":"Camuflaje","hex":"#787500"}],"imagen":"/img/p/1/1/5/6/6/11566-thickbox_default.jpg"},{"id":2169,"nombre":"Camiseta B&C E150 Manga larga Mujer","precio":12,"tallas":["XS","S","M","L","XL","2XL"],"colores":[{"nombre":"Blanco","hex":"#ffffff"},{"nombre":"Negro","hex":"#000000"},{"nombre":"Gris","hex":"#989898"},{"nombre":"Gris Claro","hex":"#d4d4d4"},{"nombre":"Militar Green","hex":"#586800"},{"nombre":"Rojo","hex":"#ff0000"},{"nombre":"Orange","hex":"#ff9554"},{"nombre":"Navy","hex":"#003870"},{"nombre":"Royal Blue","hex":"#0048e7"},{"nombre":"Pink","hex":"#ffbcf9"},{"nombre":"Chocolate","hex":"#582f00"},{"nombre":"Urban Khaki","hex":"#4c5400"}],"imagen":"/img/p/1/1/6/2/3/11623-thickbox_default.jpg"},{"id":2170,"nombre":"Camiseta JHK Manga larga Mujer TSRLPRMLS","precio":12,"tallas":["S","M","L","XL","2XL"],"colores":[{"nombre":"Blanco","hex":"#ffffff"},{"nombre":"Negro","hex":"#000000"},{"nombre":"Gris Claro","hex":"#d4d4d4"},{"nombre":"Rojo","hex":"#ff0000"},{"nombre":"Navy","hex":"#003870"},{"nombre":"Azul","hex":"#008eef"}],"imagen":"/img/p/1/1/6/5/0/11650-thickbox_default.jpg"},{"id":2171,"nombre":"Camiseta JHK de Tirantes Mujer TSULARB","precio":12,"tallas":["XS","S","M","L","XL"],"colores":[{"nombre":"Blanco","hex":"#ffffff"},{"nombre":"Negro","hex":"#000000"},{"nombre":"Daisy","hex":"#fff325"},{"nombre":"Lima","hex":"#beff19"},{"nombre":"Rojo","hex":"#ff0000"},{"nombre":"Orange","hex":"#ff9554"},{"nombre":"Salmón","hex":"#ffe180"},{"nombre":"Royal Blue","hex":"#0048e7"},{"nombre":"Tropical Blue","hex":"#2debff"},{"nombre":"Sky","hex":"#c0f2ff"},{"nombre":"Morado","hex":"#490090"},{"nombre":"Azalea","hex":"#ff89de"},{"nombre":"Chocolate","hex":"#582f00"}],"imagen":"/img/p/1/1/6/7/2/11672-thickbox_default.jpg"},{"id":2172,"nombre":"Camiseta Fruit of the Loom de tirantes Mujer","precio":12,"tallas":["XS","S","M","L","XL","2XL"],"colores":[{"nombre":"Blanco","hex":"#ffffff"},{"nombre":"Negro","hex":"#000000"},{"nombre":"Gris Claro","hex":"#d4d4d4"},{"nombre":"Rojo","hex":"#ff0000"},{"nombre":"Navy","hex":"#003870"}],"imagen":"/img/p/1/1/6/8/8/11688-thickbox_default.jpg"},{"id":2173,"nombre":"Camiseta JHK cuello V Mujer TSRLCMFP","precio":12,"tallas":["S","M","L","XL","2XL"],"colores":[{"nombre":"Blanco","hex":"#ffffff"},{"nombre":"Negro","hex":"#000000"},{"nombre":"Gris","hex":"#989898"},{"nombre":"Gris Claro","hex":"#d4d4d4"},{"nombre":"Daisy","hex":"#fff325"},{"nombre":"Verde oscuro","hex":"#006404"},{"nombre":"Lima","hex":"#beff19"},{"nombre":"Rojo oscuro","hex":"#a82600"},{"nombre":"Rojo","hex":"#ff0000"},{"nombre":"Navy","hex":"#003870"},{"nombre":"Royal Blue","hex":"#0048e7"},{"nombre":"Tropical Blue","hex":"#2debff"},{"nombre":"Morado","hex":"#490090"},{"nombre":"Fucsia","hex":"#df00ae"},{"nombre":"Pink","hex":"#ffbcf9"},{"nombre":"Lila","hex":"#bdb0ff"},{"nombre":"Charcoal","hex":"#5f5f5f"}],"imagen":"/img/p/1/1/7/0/6/11706-thickbox_default.jpg"},{"id":2174,"nombre":"Camiseta Fruit of the loom manga corta Niñ@","precio":12,"tallas":["1-2 años","2-3 años","3-4 años","5-6 años","7-8 años","9-11 años","12-13 años","14-15 años"],"colores":[{"nombre":"Blanco","hex":"#ffffff"},{"nombre":"Negro","hex":"#000000"},{"nombre":"Gris","hex":"#989898"},{"nombre":"Gris Claro","hex":"#d4d4d4"},{"nombre":"Daisy","hex":"#fff325"},{"nombre":"Verde oscuro","hex":"#006404"},{"nombre":"Militar Green","hex":"#586800"},{"nombre":"Iris Green","hex":"#28a400"},{"nombre":"Lima","hex":"#beff19"},{"nombre":"Rojo oscuro","hex":"#a82600"},{"nombre":"Rojo","hex":"#ff0000"},{"nombre":"Orange","hex":"#ff9554"},{"nombre":"Deep Navy","hex":"#002460"},{"nombre":"Navy","hex":"#003870"},{"nombre":"Royal Blue","hex":"#0048e7"},{"nombre":"Aqua","hex":"#0078cb"},{"nombre":"Tropical Blue","hex":"#2debff"},{"nombre":"Sky","hex":"#c0f2ff"},{"nombre":"Morado","hex":"#490090"},{"nombre":"Burgundy","hex":"#740048"},{"nombre":"Azalea","hex":"#ff89de"},{"nombre":"Pink","hex":"#ffbcf9"},{"nombre":"Natural","hex":"#fff7c8"},{"nombre":"SunFlower","hex":"#ffdd40"}],"imagen":"/img/p/1/1/7/4/5/11745-thickbox_default.jpg"},{"id":2175,"nombre":"Camiseta JHK manga corta Niñ@","precio":12,"tallas":["3-4 años","5-6 años","7-8 años","9-11 años","12-13 años"],"colores":[{"nombre":"Blanco","hex":"#ffffff"},{"nombre":"Negro","hex":"#000000"},{"nombre":"Gris","hex":"#989898"},{"nombre":"Gris Claro","hex":"#d4d4d4"},{"nombre":"Daisy","hex":"#fff325"},{"nombre":"Verde oscuro","hex":"#006404"},{"nombre":"Militar Green","hex":"#586800"},{"nombre":"Iris Green","hex":"#28a400"},{"nombre":"Lima","hex":"#beff19"},{"nombre":"Rojo oscuro","hex":"#a82600"},{"nombre":"Rojo","hex":"#ff0000"},{"nombre":"Orange","hex":"#ff9554"},{"nombre":"Naranja Claro","hex":"#ffc164"},{"nombre":"Navy","hex":"#003870"},{"nombre":"Royal Blue","hex":"#0048e7"},{"nombre":"Azul","hex":"#008eef"},{"nombre":"Tropical Blue","hex":"#2debff"},{"nombre":"Sky","hex":"#c0f2ff"},{"nombre":"Mint Green","hex":"#d4fff7"},{"nombre":"Morado","hex":"#490090"},{"nombre":"Fucsia","hex":"#df00ae"},{"nombre":"Azalea","hex":"#ff89de"},{"nombre":"Pink","hex":"#ffbcf9"},{"nombre":"Charcoal","hex":"#5f5f5f"},{"nombre":"Chocolate","hex":"#582f00"},{"nombre":"Natural","hex":"#fff7c8"},{"nombre":"SunFlower","hex":"#ffdd40"},{"nombre":"Marrón claro","hex":"#cfa300"},{"nombre":"Marrón","hex":"#986900"},{"nombre":"Amarillo pastel","hex":"#fffcc4"}],"imagen":"/img/p/1/1/7/8/1/11781-thickbox_default.jpg"},{"id":2176,"nombre":"Camiseta JHK manga larga Niñ@","precio":12,"tallas":["1-2 años","2-3 años","3-4 años","5-6 años","7-8 años","9-11 años","12-13 años"],"colores":[{"nombre":"Blanco","hex":"#ffffff"},{"nombre":"Negro","hex":"#000000"},{"nombre":"Gris","hex":"#989898"},{"nombre":"Daisy","hex":"#fff325"},{"nombre":"Iris Green","hex":"#28a400"},{"nombre":"Orange","hex":"#ff9554"},{"nombre":"Navy","hex":"#003870"},{"nombre":"Royal Blue","hex":"#0048e7"},{"nombre":"Sky","hex":"#c0f2ff"},{"nombre":"Pink","hex":"#ffbcf9"},{"nombre":"Charcoal","hex":"#5f5f5f"}],"imagen":"/img/p/1/1/8/4/3/11843-thickbox_default.jpg"},{"id":2177,"nombre":"Camiseta JHK tirantes Niña","precio":12,"tallas":["3-4 años","5-6 años","7-8 años","9-11 años","12-13 años"],"colores":[{"nombre":"Blanco","hex":"#ffffff"},{"nombre":"Negro","hex":"#000000"},{"nombre":"Daisy","hex":"#fff325"},{"nombre":"Lima","hex":"#beff19"},{"nombre":"Rojo","hex":"#ff0000"},{"nombre":"Orange","hex":"#ff9554"},{"nombre":"Navy","hex":"#003870"},{"nombre":"Azul","hex":"#008eef"},{"nombre":"Sky","hex":"#c0f2ff"},{"nombre":"Fucsia Fluor","hex":"#ff64f1"},{"nombre":"Azalea","hex":"#ff89de"},{"nombre":"Pink","hex":"#ffbcf9"},{"nombre":"Amarillo pastel","hex":"#fffcc4"}],"imagen":"/img/p/1/1/8/6/9/11869-thickbox_default.jpg"},{"id":2178,"nombre":"Camiseta JHK tirantes Niño","precio":12,"tallas":["3-4 años","5-6 años","7-8 años","9-11 años","12-13 años"],"colores":[{"nombre":"Negro","hex":"#000000"},{"nombre":"Gris","hex":"#989898"},{"nombre":"Rojo","hex":"#ff0000"},{"nombre":"Navy","hex":"#003870"},{"nombre":"Royal Blue","hex":"#0048e7"}],"imagen":"/img/p/1/1/8/9/6/11896-thickbox_default.jpg"},{"id":2179,"nombre":"Camiseta JHK manga corta doble color Niñ@","precio":12,"tallas":["3-4 años","5-6 años","7-8 años","9-11 años","12-13 años"],"colores":[{"nombre":"Gris Claro","hex":"#d4d4d4"},{"nombre":"Rojo","hex":"#ff0000"},{"nombre":"Navy","hex":"#003870"},{"nombre":"Royal Blue","hex":"#0048e7"}],"imagen":"/img/p/1/1/9/0/7/11907-thickbox_default.jpg"},{"id":2180,"nombre":"Sudadera unisex B&C 280gr","precio":25,"tallas":["XS","S","M","L","XL","2XL","3XL"],"colores":[{"nombre":"Blanco","hex":"#ffffff"},{"nombre":"Negro","hex":"#000000"},{"nombre":"Gris","hex":"#989898"},{"nombre":"Gris Claro","hex":"#d4d4d4"},{"nombre":"Daisy","hex":"#fff325"},{"nombre":"Verde oscuro","hex":"#006404"},{"nombre":"Militar Green","hex":"#586800"},{"nombre":"Rojo oscuro","hex":"#a82600"},{"nombre":"Rojo","hex":"#ff0000"},{"nombre":"Orange","hex":"#ff9554"},{"nombre":"Naranja Claro","hex":"#ffc164"},{"nombre":"Salmón","hex":"#ffe180"},{"nombre":"Deep Navy","hex":"#002460"},{"nombre":"Navy","hex":"#003870"},{"nombre":"Royal Blue","hex":"#0048e7"},{"nombre":"Azul","hex":"#008eef"},{"nombre":"Sky","hex":"#c0f2ff"},{"nombre":"Morado","hex":"#490090"},{"nombre":"Azalea","hex":"#ff89de"},{"nombre":"Pink","hex":"#ffbcf9"},{"nombre":"Lila","hex":"#bdb0ff"},{"nombre":"Charcoal","hex":"#5f5f5f"},{"nombre":"Marrón claro","hex":"#cfa300"},{"nombre":"Verde Palo","hex":"#d9ffd8"},{"nombre":"Verde azulado","hex":"#c9ffe8"}],"imagen":"/img/p/1/1/9/2/7/11927-thickbox_default.jpg"},{"id":2181,"nombre":"Sudadera unisex JHK SWKNG275","precio":25,"tallas":["XS","S","M","L","XL","2XL","3XL"],"colores":[{"nombre":"Blanco","hex":"#ffffff"},{"nombre":"Negro","hex":"#000000"},{"nombre":"Gris","hex":"#989898"},{"nombre":"Rojo","hex":"#ff0000"},{"nombre":"Navy","hex":"#003870"},{"nombre":"Royal Blue","hex":"#0048e7"}],"imagen":"/img/p/1/1/9/7/6/11976-thickbox_default.jpg"},{"id":2182,"nombre":"Sudadera unisex JHK SWUAHOOD con cremallera","precio":25,"tallas":["XS","S","M","L","XL","2XL"],"colores":[{"nombre":"Blanco","hex":"#ffffff"},{"nombre":"Negro","hex":"#000000"},{"nombre":"Gris","hex":"#989898"},{"nombre":"Gris Claro","hex":"#d4d4d4"},{"nombre":"Verde oscuro","hex":"#006404"},{"nombre":"Militar Green","hex":"#586800"},{"nombre":"Rojo","hex":"#ff0000"},{"nombre":"Naranja Claro","hex":"#ffc164"},{"nombre":"Navy","hex":"#003870"},{"nombre":"Royal Blue","hex":"#0048e7"},{"nombre":"Khaki","hex":"#7c5200"}],"imagen":"/img/p/1/1/9/8/8/11988-thickbox_default.jpg"},{"id":2183,"nombre":"Sudadera unisex JHK SWRAFUZIP sin capucha, con cremallera","precio":25,"tallas":["XS","S","M","L","XL","2XL"],"colores":[{"nombre":"Blanco","hex":"#ffffff"},{"nombre":"Negro","hex":"#000000"},{"nombre":"Gris","hex":"#989898"},{"nombre":"Gris Claro","hex":"#d4d4d4"},{"nombre":"Verde oscuro","hex":"#006404"},{"nombre":"Rojo","hex":"#ff0000"},{"nombre":"Navy","hex":"#003870"},{"nombre":"Royal Blue","hex":"#0048e7"},{"nombre":"Khaki","hex":"#7c5200"},{"nombre":"Charcoal","hex":"#5f5f5f"},{"nombre":"Chocolate","hex":"#582f00"}],"imagen":"/img/p/1/2/0/1/9/12019-thickbox_default.jpg"},{"id":2184,"nombre":"Sudadera mujer JHK SWRL275","precio":25,"tallas":["XS","S","M","L","XL","2XL"],"colores":[{"nombre":"Blanco","hex":"#ffffff"},{"nombre":"Negro","hex":"#000000"},{"nombre":"Gris Claro","hex":"#d4d4d4"},{"nombre":"Rojo","hex":"#ff0000"},{"nombre":"Navy","hex":"#003870"},{"nombre":"Royal Blue","hex":"#0048e7"},{"nombre":"Pink","hex":"#ffbcf9"}],"imagen":"/img/p/1/2/1/3/3/12133-thickbox_default.jpg"},{"id":2185,"nombre":"Sudadera Mujer Fruit Of the Loom","precio":25,"tallas":["XS","S","M","L","XL","2XL"],"colores":[{"nombre":"Blanco","hex":"#ffffff"},{"nombre":"Negro","hex":"#000000"},{"nombre":"Gris","hex":"#989898"},{"nombre":"Gris Claro","hex":"#d4d4d4"},{"nombre":"Daisy","hex":"#fff325"},{"nombre":"Verde oscuro","hex":"#006404"},{"nombre":"Iris Green","hex":"#28a400"},{"nombre":"Rojo oscuro","hex":"#a82600"},{"nombre":"Rojo","hex":"#ff0000"},{"nombre":"Deep Navy","hex":"#002460"},{"nombre":"Navy","hex":"#003870"},{"nombre":"Royal Blue","hex":"#0048e7"},{"nombre":"Aqua","hex":"#0078cb"},{"nombre":"Tropical Blue","hex":"#2debff"},{"nombre":"Sky","hex":"#c0f2ff"},{"nombre":"Morado","hex":"#490090"},{"nombre":"Burgundy","hex":"#740048"},{"nombre":"Azalea","hex":"#ff89de"},{"nombre":"Pink","hex":"#ffbcf9"}],"imagen":"/img/p/1/2/0/9/4/12094-thickbox_default.jpg"},{"id":2186,"nombre":"Sudadera Mujer JHK SWULKNG275","precio":25,"tallas":["XS","S","M","L","XL","2XL"],"colores":[{"nombre":"Blanco","hex":"#ffffff"},{"nombre":"Negro","hex":"#000000"},{"nombre":"Gris","hex":"#989898"},{"nombre":"Rojo","hex":"#ff0000"},{"nombre":"Royal Blue","hex":"#0048e7"},{"nombre":"Pink","hex":"#ffbcf9"}],"imagen":"/img/p/1/2/1/2/2/12122-thickbox_default.jpg"},{"id":2188,"nombre":"Sudadera niñ@ Russel con capucha","precio":25,"tallas":["3-4 años","5-6 años","7-8 años","9-11 años","12-13 años"],"colores":[{"nombre":"Negro","hex":"#000000"},{"nombre":"Gris Claro","hex":"#d4d4d4"},{"nombre":"Daisy","hex":"#fff325"},{"nombre":"Militar Green","hex":"#586800"},{"nombre":"Iris Green","hex":"#28a400"},{"nombre":"Rojo","hex":"#ff0000"},{"nombre":"Orange","hex":"#ff9554"},{"nombre":"Deep Navy","hex":"#002460"},{"nombre":"Royal Blue","hex":"#0048e7"},{"nombre":"Tropical Blue","hex":"#2debff"},{"nombre":"Sky","hex":"#c0f2ff"},{"nombre":"Morado","hex":"#490090"},{"nombre":"Burgundy","hex":"#740048"},{"nombre":"Azalea","hex":"#ff89de"}],"imagen":"/img/p/1/2/1/5/4/12154-thickbox_default.jpg"},{"id":2189,"nombre":"Sudadera niñ@ JHK SWRKHOOD","precio":25,"tallas":["1-2 años","3-4 años","5-6 años","7-8 años","9-11 años","12-13 años"],"colores":[{"nombre":"Blanco","hex":"#ffffff"},{"nombre":"Negro","hex":"#000000"},{"nombre":"Gris Claro","hex":"#d4d4d4"},{"nombre":"Rojo","hex":"#ff0000"},{"nombre":"Navy","hex":"#003870"},{"nombre":"Royal Blue","hex":"#0048e7"},{"nombre":"Pink","hex":"#ffbcf9"}],"imagen":"/img/p/1/2/1/5/6/12156-thickbox_default.jpg"},{"id":2190,"nombre":"Sudadera niñ@ JHK SWRKKNG","precio":25,"tallas":["1-2 años","3-4 años","5-6 años","7-8 años","9-11 años","12-13 años"],"colores":[{"nombre":"Blanco","hex":"#ffffff"},{"nombre":"Negro","hex":"#000000"},{"nombre":"Gris","hex":"#989898"},{"nombre":"Gris Claro","hex":"#d4d4d4"},{"nombre":"Daisy","hex":"#fff325"},{"nombre":"Iris Green","hex":"#28a400"},{"nombre":"Rojo","hex":"#ff0000"},{"nombre":"Orange","hex":"#ff9554"},{"nombre":"Navy","hex":"#003870"},{"nombre":"Royal Blue","hex":"#0048e7"},{"nombre":"Sky","hex":"#c0f2ff"},{"nombre":"Morado","hex":"#490090"},{"nombre":"Pink","hex":"#ffbcf9"}],"imagen":"/img/p/1/2/1/6/6/12166-thickbox_default.jpg"},{"id":2191,"nombre":"Sudadera niñ@ JHK SWRKFUZIP","precio":25,"tallas":["1-2 años","3-4 años","5-6 años","7-8 años","9-11 años","12-13 años"],"colores":[{"nombre":"Blanco","hex":"#ffffff"},{"nombre":"Negro","hex":"#000000"},{"nombre":"Gris Claro","hex":"#d4d4d4"},{"nombre":"Militar Green","hex":"#586800"},{"nombre":"Rojo","hex":"#ff0000"},{"nombre":"Navy","hex":"#003870"},{"nombre":"Royal Blue","hex":"#0048e7"},{"nombre":"Burgundy","hex":"#740048"}],"imagen":"/img/p/1/2/1/8/2/12182-thickbox_default.jpg"},{"id":2192,"nombre":"Sudadera niñ@ JHK SWRK290","precio":25,"tallas":["1-2 años","3-4 años","5-6 años","7-8 años","9-11 años","12-13 años"],"colores":[{"nombre":"Negro","hex":"#000000"},{"nombre":"Gris","hex":"#989898"},{"nombre":"Gris Claro","hex":"#d4d4d4"},{"nombre":"Verde oscuro","hex":"#006404"},{"nombre":"Iris Green","hex":"#28a400"},{"nombre":"Orange","hex":"#ff9554"},{"nombre":"Navy","hex":"#003870"},{"nombre":"Royal Blue","hex":"#0048e7"},{"nombre":"Morado","hex":"#490090"},{"nombre":"Pink","hex":"#ffbcf9"}],"imagen":"/img/p/1/2/1/9/0/12190-thickbox_default.jpg"},{"id":2210,"nombre":"Mandil/delantal Adulto WKVIENNA","precio":20,"tallas":["TALLA UNICA"],"colores":[{"nombre":"Blanco","hex":"#ffffff"},{"nombre":"Negro","hex":"#000000"},{"nombre":"Rojo","hex":"#ff0000"},{"nombre":"Navy","hex":"#003870"},{"nombre":"Burgundy","hex":"#740048"},{"nombre":"Natural","hex":"#fff7c8"},{"nombre":"Marrón claro","hex":"#cfa300"}],"imagen":"/img/p/1/2/6/6/7/12667-thickbox_default.jpg"},{"id":2213,"nombre":"Mandil/delantal Niñ@ JG21K","precio":20,"tallas":["TALLA UNICA"],"colores":[{"nombre":"Negro","hex":"#000000"},{"nombre":"Iris Green","hex":"#28a400"},{"nombre":"Royal Blue","hex":"#0048e7"},{"nombre":"SunFlower","hex":"#ffdd40"}],"imagen":"/img/p/1/2/6/9/0/12690-thickbox_default.jpg"},{"id":2007,"nombre":"Polo personalizado","precio":12,"tallas":[],"colores":[],"imagen":null},{"id":2008,"nombre":"Polar personalizado","precio":15,"tallas":[],"colores":[],"imagen":null},{"id":2009,"nombre":"Cazadora personalizada","precio":20,"tallas":[],"colores":[],"imagen":null},{"id":2010,"nombre":"Mandil/Delantal personalizado","precio":10,"tallas":[],"colores":[],"imagen":null},{"id":2011,"nombre":"Camiseta adulto para colorear personalizada","precio":10,"tallas":[],"colores":[],"imagen":null}]}</script>
+<script type="module" src="/js/editor/editor.mjs"></script>
+</body>
+</html>

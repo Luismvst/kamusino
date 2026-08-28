@@ -6,6 +6,7 @@ import {
 import {
   paginaHome, paginaCategoria, paginaProducto, paginaContacto,
   paginaAvisoLegal, paginaPrivacidad, paginaCondiciones, paginaDevoluciones,
+  paginaEditor,
   SITIO_INDEXABLE,
 } from './plantillas.mjs';
 
@@ -20,7 +21,7 @@ async function escribir(rutaRelativa, html) {
 // Todo lo que este script genera, para poder borrarlo limpio en cada build.
 // Sin esto, una página cuya URL cambia entre ejecuciones (por ejemplo al
 // arreglar un slug) deja huérfana la versión vieja en vez de sustituirla.
-const DIRECTORIOS_GENERADOS = ['producto', 'categoria', 'contacto', 'aviso-legal', 'privacidad', 'condiciones-de-contratacion', 'devoluciones'];
+const DIRECTORIOS_GENERADOS = ['producto', 'categoria', 'contacto', 'aviso-legal', 'privacidad', 'condiciones-de-contratacion', 'devoluciones', 'personalizar'];
 const FICHEROS_GENERADOS = ['index.html', 'sitemap.xml', 'robots.txt', 'catalogo.json'];
 
 async function limpiarSalidaAnterior() {
@@ -61,6 +62,10 @@ async function main() {
     await escribir(`${urlProducto(producto)}index.html`, paginaProducto({ producto }));
     rutas.push(urlProducto(producto));
   }
+
+  const ropa = productosDeGrupo(catalogo.productos, 'ropa-personalizada');
+  await escribir('/personalizar/index.html', paginaEditor({ productos: ropa }));
+  rutas.push('/personalizar/');
 
   await escribir('/contacto/index.html', paginaContacto());
   rutas.push('/contacto/');

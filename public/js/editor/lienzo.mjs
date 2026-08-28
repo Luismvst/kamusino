@@ -13,39 +13,9 @@
 import { prenda, LIENZO } from './prenda.mjs';
 import { capasDe, fuente } from './estado.mjs';
 import { esquinas, tiradorRotacion, NOMBRES_TIRADORES } from './geometria.mjs';
+import { esClaro, tono, tintaSobre } from './color.mjs';
 
 export const RADIO_TIRADOR = 7;
-
-// ---------------------------------------------------------------------------
-// Color
-// ---------------------------------------------------------------------------
-
-function aRgb(hex) {
-  const limpio = String(hex).replace('#', '');
-  const completo = limpio.length === 3 ? limpio.split('').map((c) => c + c).join('') : limpio;
-  const n = parseInt(completo, 16);
-  return Number.isFinite(n) && completo.length === 6
-    ? { r: (n >> 16) & 255, g: (n >> 8) & 255, b: n & 255 }
-    : { r: 255, g: 255, b: 255 };
-}
-
-/** Luminancia percibida, para decidir si la prenda es clara u oscura. */
-export function esClaro(hex) {
-  const { r, g, b } = aRgb(hex);
-  return (0.299 * r + 0.587 * g + 0.114 * b) / 255 > 0.62;
-}
-
-/** `cantidad` negativa oscurece, positiva aclara. Rango -1 a 1. */
-export function tono(hex, cantidad) {
-  const { r, g, b } = aRgb(hex);
-  const mezcla = (v) => Math.round(cantidad < 0 ? v * (1 + cantidad) : v + (255 - v) * cantidad);
-  return `rgb(${mezcla(r)}, ${mezcla(g)}, ${mezcla(b)})`;
-}
-
-/** Color de texto que se lee sobre la prenda elegida. */
-export function tintaSobre(hex) {
-  return esClaro(hex) ? '#1c1c1c' : '#ffffff';
-}
 
 // ---------------------------------------------------------------------------
 // Texto
@@ -302,4 +272,5 @@ export function radioTiradorEnLienzo(canvas) {
   return (grueso ? 16 : RADIO_TIRADOR) * factor;
 }
 
-export { NOMBRES_TIRADORES };
+// Se reexportan para que quien pinta no tenga que importar de dos sitios.
+export { NOMBRES_TIRADORES, esClaro, tono, tintaSobre };

@@ -8,6 +8,7 @@
 
 import { prenda, tipoDePrenda } from './prenda.mjs';
 import { encajar, limitar } from './geometria.mjs';
+import { tintaSobre } from './color.mjs';
 
 export const VERSION_DOCUMENTO = 1;
 
@@ -132,7 +133,9 @@ export function agregarTexto(doc, texto = 'Tu texto') {
     tipo: 'texto',
     texto,
     fuente: 'titular',
-    color: '#ffffff',
+    // Blanco sobre camiseta blanca no se ve, y el cliente cree que no ha
+    // pasado nada: la tinta nace del color de la prenda.
+    color: tintaSobre(doc.color?.hex),
     negrita: true,
     cursiva: false,
     opacidad: 1,
