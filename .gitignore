@@ -10,3 +10,6 @@ scrape-report.json.tmp
 # artefactos locales de despliegue y backup
 .wrangler/
 *.tar.gz
+
+# capturas de verificacion visual
+verif-*.png
