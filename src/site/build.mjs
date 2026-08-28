@@ -9,7 +9,7 @@ import {
 import {
   paginaHome, paginaCategoria, paginaProducto, paginaContacto,
   paginaAvisoLegal, paginaPrivacidad, paginaCookies, paginaCondiciones, paginaDevoluciones,
-  paginaEditor, pagina404,
+  paginaEditor, pagina404, paginaPagoCorrecto, paginaPagoCancelado,
   SITIO_INDEXABLE,
 } from './plantillas.mjs';
 
@@ -24,7 +24,7 @@ async function escribir(rutaRelativa, html) {
 // Todo lo que este script genera, para poder borrarlo limpio en cada build.
 // Sin esto, una página cuya URL cambia entre ejecuciones (por ejemplo al
 // arreglar un slug) deja huérfana la versión vieja en vez de sustituirla.
-const DIRECTORIOS_GENERADOS = ['producto', 'categoria', 'contacto', 'aviso-legal', 'privacidad', 'condiciones-de-contratacion', 'devoluciones', 'personalizar', 'cookies'];
+const DIRECTORIOS_GENERADOS = ['producto', 'categoria', 'contacto', 'aviso-legal', 'privacidad', 'condiciones-de-contratacion', 'devoluciones', 'personalizar', 'cookies', 'pedido'];
 const FICHEROS_GENERADOS = [
   'index.html', '404.html', 'sitemap.xml', 'robots.txt', 'catalogo.json',
   'favicon.svg', '_headers', '_redirects',
@@ -33,6 +33,34 @@ const FICHEROS_GENERADOS = [
 async function limpiarSalidaAnterior() {
   for (const dir of DIRECTORIOS_GENERADOS) await rm(`${SALIDA}/${dir}`, { recursive: true, force: true });
   for (const f of FICHEROS_GENERADOS) await rm(`${SALIDA}/${f}`, { force: true });
+}
+
+/**
+ * Precios para `functions/api/checkout.js`.
+ *
+ * Se genera del mismo catálogo que las páginas, así que no puede
+ * desincronizarse: si un precio cambia en `catalogo.json`, cambia en los dos
+ * sitios en el mismo despliegue.
+ */
+async function escribirCatalogoDePrecios(catalogo) {
+  const productos = Object.fromEntries(catalogo.productos
+    .filter((p) => p.precio > 0)
+    .map((p) => [p.id, { nombre: p.nombre, precio: p.precio, tallas: p.tallas ?? [] }]));
+
+  const cabecera = `// Generado por src/site/build.mjs. No editar a mano.
+//
+// Los precios del lado del servidor. El navegador nunca dice cuánto cuesta
+// algo: si lo hiciera, cualquiera podría comprar por un céntimo cambiando un
+// número antes de enviar el formulario.
+
+`;
+
+  await mkdir('functions/api', { recursive: true });
+  await writeFile(
+    'functions/api/_precios.js',
+    `${cabecera}export const PRECIOS = ${JSON.stringify(productos, null, 2)};
+`,
+  );
 }
 
 async function main() {
@@ -66,6 +94,11 @@ async function main() {
   await escribir('/contacto/index.html', paginaContacto());
   rutas.push({ ruta: '/contacto/', prioridad: 0.7 });
 
+  // Destinos de vuelta de la pasarela. No entran en el sitemap: solo tienen
+  // sentido llegando desde un pago, y no aportan nada a quien busca en Google.
+  await escribir('/pedido/gracias/index.html', paginaPagoCorrecto());
+  await escribir('/pedido/cancelado/index.html', paginaPagoCancelado());
+
   await escribir('/aviso-legal/index.html', paginaAvisoLegal());
   await escribir('/privacidad/index.html', paginaPrivacidad());
   await escribir('/cookies/index.html', paginaCookies());
@@ -85,6 +118,10 @@ async function main() {
   await writeFile(`${SALIDA}/_redirects`, redirecciones({
     catalogo, urlProducto, urlCategoria, grupoDeCategoria,
   }));
+
+  // El servidor de pagos necesita su propia copia de los precios: si el
+  // importe viniera en la petición, cualquiera podría comprar por un céntimo.
+  await escribirCatalogoDePrecios(catalogo);
 
   const viejas = catalogo.productos.length * 2 + (catalogo.categorias?.length ?? 0);
   console.log(`

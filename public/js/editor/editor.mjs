@@ -360,7 +360,38 @@ function validarFormulario(doc) {
   return null;
 }
 
-function pantallaDeGracias(referencia, email) {
+/**
+ * Lleva a la pasarela de pago. El importe no se manda: lo calcula el servidor
+ * desde su propio catálogo, para que nadie pueda comprar por un céntimo.
+ */
+async function irAPagar(referencia, doc, contacto, boton) {
+  boton.disabled = true;
+  boton.textContent = 'Abriendo la pasarela…';
+  try {
+    const respuesta = await fetch('/api/checkout', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({
+        referencia,
+        productoId: doc.productoId,
+        cantidad: doc.cantidad,
+        email: contacto.email,
+      }),
+    });
+    const json = await respuesta.json().catch(() => ({}));
+    if (!respuesta.ok || !json.url) throw new Error(json.error ?? 'No se ha podido abrir la pasarela.');
+    location.href = json.url;
+  } catch (error) {
+    boton.disabled = false;
+    boton.textContent = 'Pagar ahora con tarjeta';
+    const aviso = document.createElement('p');
+    aviso.className = 'estado-envio error';
+    aviso.textContent = error.message + ' Tranquilo: tu diseño ya nos ha llegado y te escribiremos.';
+    boton.after(aviso);
+  }
+}
+
+function pantallaDeGracias(referencia, email, doc, contacto) {
   const caja = document.createElement('div');
   caja.className = 'enviado';
 
@@ -376,12 +407,28 @@ function pantallaDeGracias(referencia, email) {
   const siguiente = document.createElement('p');
   siguiente.textContent = 'Te respondemos con el presupuesto y el plazo. Si no ves nuestro correo, mira en la carpeta de spam.';
 
+  caja.append(titulo, ref, siguiente);
+
+  // El pago solo se ofrece cuando está configurado y el producto tiene precio
+  // publicado. Los de presupuesto a medida se cierran por email.
+  const precio = productoDe(doc).precio ?? 0;
+  if (datos.pagoActivo && precio > 0) {
+    siguiente.textContent = 'Si lo prefieres, puedes pagarlo ya y nos ponemos con él enseguida. '
+      + 'Si no, te mandamos el presupuesto por email y decides luego.';
+    const pagar = document.createElement('button');
+    pagar.type = 'button';
+    pagar.className = 'boton-primario grande';
+    pagar.textContent = 'Pagar ahora con tarjeta';
+    pagar.addEventListener('click', () => irAPagar(referencia, doc, contacto, pagar));
+    caja.append(pagar);
+  }
+
   const volver = document.createElement('a');
-  volver.className = 'boton-primario';
+  volver.className = 'boton-secundario';
   volver.href = '/';
   volver.textContent = 'Volver al inicio';
+  caja.append(volver);
 
-  caja.append(titulo, ref, siguiente, volver);
   return caja;
 }
 
@@ -422,7 +469,7 @@ async function enviar(evento) {
 
     await olvidar();
     document.querySelector('.editor').replaceChildren(
-      pantallaDeGracias(String(json.referencia ?? ''), contacto.email),
+      pantallaDeGracias(String(json.referencia ?? ''), contacto.email, almacen.doc, contacto),
     );
     globalThis.scrollTo({ top: 0, behavior: 'smooth' });
   } catch (error) {

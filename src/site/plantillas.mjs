@@ -446,6 +446,61 @@ export function paginaEditor({ productos }) {
   });
 }
 
+// ---------- Vuelta de la pasarela de pago ----------
+
+/**
+ * Páginas a las que Stripe devuelve al cliente. Existen aunque el pago no
+ * esté activo todavía: `checkout.js` las declara como destino, y una pasarela
+ * que devuelve a un 404 es peor que no tener pasarela.
+ *
+ * La referencia llega en `?ref=`; no se lee aquí porque estas páginas son
+ * estáticas. El correo de confirmación ya la lleva, que es donde el cliente
+ * la va a buscar de verdad.
+ */
+export function paginaPagoCorrecto() {
+  const contenido = `
+<div class="envoltorio">
+  <section class="hero" style="padding-top:3.5rem;">
+    <h1>Pago recibido</h1>
+    <p>Gracias. Ya tenemos tu pedido y tu diseño, y empezamos a producirlo.</p>
+    <p>Te hemos mandado la confirmación por email, con tu referencia y el resumen de lo que has pedido.
+    Si no la ves en unos minutos, mira en la carpeta de spam.</p>
+    <div class="acciones">
+      <a class="boton-primario" href="/">Volver al inicio</a>
+      <a class="boton-secundario" href="/contacto/">Tengo una duda</a>
+    </div>
+  </section>
+</div>`;
+  return pagina({
+    titulo: 'Pago recibido — Kamusino',
+    descripcion: 'Hemos recibido tu pago y tu diseño. Te confirmamos el pedido por email con tu referencia y empezamos a producirlo.',
+    ruta: '/pedido/gracias/',
+    contenido,
+  });
+}
+
+export function paginaPagoCancelado() {
+  const contenido = `
+<div class="envoltorio">
+  <section class="hero" style="padding-top:3.5rem;">
+    <h1>No se ha completado el pago</h1>
+    <p>No te hemos cobrado nada. <strong>Tu diseño no se ha perdido:</strong> ya nos había llegado,
+    y lo tenemos guardado con tu referencia.</p>
+    <p>Puedes volver a intentarlo cuando quieras, o escribirnos y lo cerramos por otra vía.</p>
+    <div class="acciones">
+      <a class="boton-primario" href="/personalizar/">Volver al editor</a>
+      <a class="boton-secundario" href="/contacto/">Escríbenos</a>
+    </div>
+  </section>
+</div>`;
+  return pagina({
+    titulo: 'Pago no completado — Kamusino',
+    descripcion: 'El pago no se ha completado y no se te ha cobrado nada. Tu diseño sigue guardado con su referencia y puedes retomarlo cuando quieras.',
+    ruta: '/pedido/cancelado/',
+    contenido,
+  });
+}
+
 // ---------- 404 ----------
 
 /**
