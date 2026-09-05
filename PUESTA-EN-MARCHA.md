@@ -54,9 +54,32 @@ va a haber uno de `@kamusino.es`, este es el momento de decidirlo.
 
 ### A2 · Dominio y redirección · 1 hora más la propagación
 
-La web está preparada para `kamusino.es`. Ese dominio **hoy no tiene ni DNS**,
-así que hay que registrarlo o recuperarlo — y, sobre todo, **redirigir el `.com`
+`kamusino.es` **ya está comprado** (5 de septiembre de 2026). Hoy todavía no
+tiene servidores de nombres, así que no resuelve. Faltan tres cosas: llevar su
+DNS a Cloudflare, engancharlo al proyecto de Pages y **redirigir el `.com`
 hacia él**.
+
+#### Los tres pasos, en orden
+
+**1. Meter `kamusino.es` en Cloudflare.** En <https://dash.cloudflare.com> →
+*Add a domain* → `kamusino.es` → plan **Free**. Al terminar te enseña dos
+servidores de nombres, del estilo `ana.ns.cloudflare.com`.
+
+**2. Apuntar el dominio a esos servidores.** En el panel del registrador donde
+lo compraste, busca *DNS*, *Nameservers* o *Servidores de nombres* y sustituye
+los que haya por los dos de Cloudflare. En `.es` suele tardar entre 15 minutos
+y 2 horas. Se comprueba así:
+
+```bash
+nslookup -type=NS kamusino.es 8.8.8.8
+```
+
+Cuando responda con los de Cloudflare, está hecho.
+
+**3. Engancharlo a la web.** Cloudflare → *Workers & Pages* → proyecto
+`kamusino` → *Custom domains* → *Set up a domain*. Añade primero
+`kamusino.es` y después `www.kamusino.es`. Cloudflare crea los registros y
+emite el certificado en unos minutos. No hay que tocar ninguna IP a mano.
 
 #### Por qué la redirección lo cambia todo
 
@@ -116,6 +139,28 @@ Tiene que responder `301` y una cabecera `location:` apuntando a
 responde `302`, la regla está mal: un 302 es temporal y **no traslada
 posiciones**.
 
+#### ⚠️ Antes de mover el `.com`: el correo va dentro
+
+Cambiar los servidores de nombres del `.com` mueve **todo** su DNS, no solo la
+web. Hoy ese dominio sostiene también el correo del negocio. Si se cambian los
+servidores sin copiar antes estos registros, el correo deja de entrar:
+
+| Tipo | Nombre | Valor | Para qué |
+|---|---|---|---|
+| MX | `kamusino.com` | `mx.kamusino.com` (prioridad 10) | Recibir correo |
+| A | `mx` | `217.116.0.227` | El servidor de correo |
+| A | `webmail` | `217.116.0.155` | El webmail |
+| TXT | `kamusino.com` | `v=spf1 redirect=spf.dominioabsoluto.net` | Que no vaya a spam |
+| A | `kamusino.com` | `82.194.68.32` | La tienda vieja |
+| A | `www` | `82.194.68.32` | La tienda vieja |
+
+*Inventario tomado el 5 de septiembre de 2026.*
+
+Cloudflare escanea el dominio e importa lo que encuentra, pero **hay que
+revisar la lista registro a registro antes de dar al botón**. Los dos últimos
+(la tienda vieja) son los que se sustituyen por la redirección; los cuatro
+primeros hay que conservarlos tal cual mientras el correo siga ahí.
+
 #### Si prefieres quedarte en el `.com`
 
 Cambia una línea en `src/site/negocio.mjs`:
@@ -132,7 +177,14 @@ reversible en cinco minutos mientras no se haya enviado el sitemap a Google.
 
 Sin esto el editor no puede mandar pedidos.
 
-1. Crea una cuenta en <https://resend.com> (3.000 correos al mes, gratis).
+> **Estado a 5 de septiembre de 2026:** la cuenta de Resend está creada y su
+> clave ya está guardada en Cloudflare, junto con el buzón de pedidos. Falta
+> **verificar el dominio**: hasta entonces el remitente es `onboarding@resend.dev`,
+> que solo puede escribir al correo dueño de la cuenta. Es decir, el aviso al
+> taller llega, pero la confirmación a un cliente cualquiera **no**. Verificar
+> el dominio es lo que abre el envío a todo el mundo.
+
+1. Entra en <https://resend.com> con la cuenta ya creada.
 2. *Domains* → añade `kamusino.es`. Te dará tres registros DNS.
 3. Créalos en Cloudflare tal cual:
 
@@ -141,6 +193,9 @@ Sin esto el editor no puede mandar pedidos.
    | TXT | `send` | el SPF que te dé Resend |
    | TXT | `resend._domainkey` | la clave DKIM que te dé Resend |
    | MX | `send` | `feedback-smtp.eu-west-1.amazonses.com` (prioridad 10) |
+
+   Los tres van con la **nube gris** (*DNS only*), no naranja: si Cloudflare
+   hace de proxy, Resend no los ve y la verificación no pasa nunca.
 
 4. Añade además un DMARC, que hoy no existe y sin él muchos correos van a spam:
 
