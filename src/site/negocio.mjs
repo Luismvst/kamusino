@@ -19,7 +19,7 @@ export const DOMINIOS_ALTERNATIVOS = ['kamusino.com', 'www.kamusino.com', 'www.k
  * en un dominio de previsualización. Ponerlo en `true` **el mismo día** que
  * el dominio real apunte aquí, no antes.
  */
-export const SITIO_INDEXABLE = false;
+export const SITIO_INDEXABLE = true;
 
 /**
  * Datos fiscales. La LSSI-CE (art. 10) obliga a mostrarlos de forma
