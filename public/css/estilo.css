@@ -474,7 +474,8 @@ mark.pendiente {
   color: var(--acento-oscuro);
   font-weight: 600;
 }
-.nav-disenar:hover, .nav-disenar.activo { background: var(--acento); color: #fff; }
+/* Con .nav-principal delante para ganar a `.nav-principal a.activo`, que lo dejaba naranja sobre naranja. */
+.nav-principal .nav-disenar:hover, .nav-principal .nav-disenar.activo { background: var(--acento); color: #fff; }
 
 .hero-nota {
   margin-top: 1rem;
