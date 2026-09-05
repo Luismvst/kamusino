@@ -50,6 +50,10 @@
   .editor { grid-template-columns: 1fr; gap: 1.5rem; }
 }
 
+/* Sin prenda elegida solo se ve el paso 1. */
+.editor.sin-prenda .editor-lienzo,
+.editor.sin-prenda .editor-panel .bloque:not(:first-child) { display: none; }
+
 /* ---------- Lienzo ---------- */
 
 .editor-lienzo {

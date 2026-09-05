@@ -144,6 +144,12 @@ describe('revisar', () => {
     assert.match(revisar(p), /condiciones/i);
   });
 
+  test('rechaza un pedido sin prenda elegida', () => {
+    const p = pedido();
+    p.resumen.producto = { id: null, nombre: '' };
+    assert.match(revisar(p), /prenda/);
+  });
+
   test('rechaza un pedido sin diseños', () => {
     const p = pedido();
     p.resumen.caras = [];
@@ -262,6 +268,10 @@ describe('onRequestPost', () => {
     assert.equal(cliente.mensaje.reply_to, 'pedidos@ejemplo.es');
     assert.equal(cliente.mensaje.attachments.length, 1);
     assert.match(cliente.mensaje.attachments[0].filename, /mockup/);
+    // El mockup va incrustado en el HTML, no solo como adjunto.
+    const cid = cliente.mensaje.attachments[0].content_id;
+    assert.ok(cid, 'el mockup necesita content_id para incrustarse');
+    assert.match(cliente.mensaje.html, new RegExp('src="cid:' + cid + '"'));
   });
 
   test('los adjuntos van en base64', async () => {

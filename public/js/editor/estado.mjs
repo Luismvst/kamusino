@@ -39,14 +39,15 @@ function nuevoId() {
 // Documento
 // ---------------------------------------------------------------------------
 
-export function documentoInicial(producto) {
+/** Sin producto (`null`) el editor arranca en el paso 1, a la espera de que se elija uno. */
+export function documentoInicial(producto = null) {
   return {
     version: VERSION_DOCUMENTO,
-    productoId: producto.id,
-    productoNombre: producto.nombre,
-    tipoPrenda: tipoDePrenda(producto.nombre),
-    color: producto.colores?.[0] ?? { nombre: 'Blanco', hex: '#ffffff' },
-    talla: producto.tallas?.[0] ?? '',
+    productoId: producto?.id ?? null,
+    productoNombre: producto?.nombre ?? '',
+    tipoPrenda: tipoDePrenda(producto?.nombre),
+    color: producto?.colores?.[0] ?? { nombre: 'Blanco', hex: '#ffffff' },
+    talla: producto?.tallas?.[0] ?? '',
     cantidad: 1,
     cara: 'delantera',
     capas: { delantera: [], trasera: [] },

@@ -94,6 +94,7 @@ export function revisar(datos, ficheros = []) {
   if (!emailValido(contacto.email)) return 'El email no es válido.';
   if (contacto.acepta !== true) return 'Hay que aceptar las condiciones de contratación y la política de privacidad.';
 
+  if (!resumen?.producto?.id) return 'Falta elegir la prenda.';
   if (!resumen?.caras?.length) return 'El pedido no lleva ningún diseño.';
 
   const capas = resumen.caras.reduce((n, cara) => n + (cara.capas?.length ?? 0), 0);
@@ -211,7 +212,7 @@ export function correoTaller({ referencia, datos, fecha }) {
   </div>`;
 }
 
-export function correoCliente({ referencia, datos, empresa }) {
+export function correoCliente({ referencia, datos, empresa, mockups = [] }) {
   const { contacto, resumen } = datos;
   const nombrePila = escapar(String(contacto.nombre).trim().split(/\s+/)[0]);
   return `<div style="max-width:600px;margin:0 auto;padding:24px;font:15px system-ui,sans-serif;color:#241d15">
@@ -227,6 +228,8 @@ export function correoCliente({ referencia, datos, empresa }) {
       ${fila('Cantidad', escapar(resumen.cantidad))}
       ${fila('Diseños', resumen.caras.map((c) => `${c.capas.length} en la cara ${escapar(c.cara)}`).join('<br>'))}
     </table>
+
+    ${mockups.map((m) => `<p style="margin:22px 0 0"><img src="cid:${escapar(m.content_id)}" alt="Tu diseño" style="max-width:100%;border:1px solid #e8e0d2;border-radius:8px"></p>`).join('')}
 
     <p style="margin:22px 0 0">
       Te adjuntamos cómo ha quedado. <strong>Todavía no hemos empezado a producir nada:</strong>
@@ -311,7 +314,10 @@ export async function onRequestPost({ request, env }) {
 
   // Solo los mockups van también al cliente: los ficheros de imprenta pesan
   // mucho y a él no le sirven de nada.
-  const mockups = adjuntos.filter((a) => a.filename.includes('mockup'));
+  // Con `content_id` el cliente ve el mockup dentro del correo, no solo como adjunto.
+  const mockups = adjuntos
+    .filter((a) => a.filename.includes('mockup'))
+    .map((a) => ({ ...a, content_id: a.filename.replace(/.[a-z0-9]+$/i, '') }));
 
   const de = `${unaLinea(empresa, 60)} <${unaLinea(remitente, 120)}>`;
 
@@ -338,7 +344,7 @@ export async function onRequestPost({ request, env }) {
       to: [datos.contacto.email],
       reply_to: destino,
       subject: `Tu pedido ${referencia} en ${unaLinea(empresa, 60)}`,
-      html: correoCliente({ referencia, datos, empresa }),
+      html: correoCliente({ referencia, datos, empresa, mockups }),
       attachments: mockups,
     });
   } catch (fallo) {

@@ -30,6 +30,8 @@ describe('documentoInicial', () => {
 
   test('deduce la prenda del nombre del producto', () => {
     assert.equal(documentoInicial(producto).tipoPrenda, 'camiseta');
+    assert.equal(documentoInicial(null).productoId, null);
+    assert.equal(documentoInicial().tipoPrenda, 'camiseta');
     assert.equal(documentoInicial({ ...producto, nombre: 'Sudadera con capucha' }).tipoPrenda, 'sudadera-capucha');
   });
 

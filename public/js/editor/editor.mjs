@@ -32,11 +32,11 @@ const LIMITES = datos.limites;
 
 function productoPedido() {
   const pedido = Number(new URLSearchParams(location.search).get('producto'));
-  return PRODUCTOS.find((p) => p.id === pedido) ?? PRODUCTOS[0];
+  return PRODUCTOS.find((p) => p.id === pedido) ?? null;
 }
 
 function productoDe(doc) {
-  return PRODUCTOS.find((p) => p.id === doc.productoId) ?? PRODUCTOS[0];
+  return PRODUCTOS.find((p) => p.id === doc.productoId) ?? null;
 }
 
 const almacen = crearAlmacen(documentoInicial(productoPedido()));
@@ -69,22 +69,25 @@ function redimensionar() {
 
 function pintarProductos(doc) {
   const sel = $('sel-producto');
-  if (sel.options.length !== PRODUCTOS.length) {
-    sel.replaceChildren(...PRODUCTOS.map((p) => {
+  if (sel.options.length !== PRODUCTOS.length + 1) {
+    const vacia = document.createElement('option');
+    vacia.value = '';
+    vacia.textContent = 'Elige una prenda…';
+    sel.replaceChildren(vacia, ...PRODUCTOS.map((p) => {
       const opcion = document.createElement('option');
       opcion.value = String(p.id);
       opcion.textContent = p.nombre;
       return opcion;
     }));
   }
-  sel.value = String(doc.productoId);
+  sel.value = doc.productoId == null ? '' : String(doc.productoId);
 }
 
 function pintarColores(doc) {
   const cont = $('muestras-color');
   cont.replaceChildren();
 
-  for (const color of productoDe(doc).colores ?? []) {
+  for (const color of productoDe(doc)?.colores ?? []) {
     const elegido = color.hex === doc.color?.hex;
     const boton = document.createElement('button');
     boton.type = 'button';
@@ -104,7 +107,7 @@ function pintarColores(doc) {
 }
 
 function pintarTallas(doc) {
-  const tallas = productoDe(doc).tallas ?? [];
+  const tallas = productoDe(doc)?.tallas ?? [];
   const cont = $('tallas');
   cont.replaceChildren();
   cont.hidden = tallas.length === 0;
@@ -265,7 +268,7 @@ function pintarAvisos(doc) {
 function pintarTotal(doc) {
   const salida = $('total');
   if (!salida) return;
-  const precio = productoDe(doc).precio ?? 0;
+  const precio = productoDe(doc)?.precio ?? 0;
   const subtotal = precio * doc.cantidad;
   const envio = subtotal >= datos.comercial.envioGratisDesde ? 0 : datos.comercial.gastosEnvio;
   const euros = (n) => n.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' });
@@ -290,7 +293,7 @@ function pintarCaras(doc) {
 
 function pintarPasos(doc) {
   const hayDisenos = capasDe(doc, 'delantera').length + capasDe(doc, 'trasera').length > 0;
-  const hechos = [true, hayDisenos, false];
+  const hechos = [doc.productoId != null, hayDisenos, false];
   const siguiente = hechos.findIndex((h) => !h);
   document.querySelectorAll('.paso').forEach((paso, i) => {
     paso.classList.toggle('hecho', hechos[i]);
@@ -299,6 +302,13 @@ function pintarPasos(doc) {
 }
 
 function pintarTodo(doc) {
+  // Hasta que no hay prenda no se enseña ni el lienzo ni el resto de pasos.
+  const editor = $('editor');
+  const sinPrenda = doc.productoId == null;
+  if (editor.classList.contains('sin-prenda') !== sinPrenda) {
+    editor.classList.toggle('sin-prenda', sinPrenda);
+    if (!sinPrenda) redimensionar();
+  }
   pintarProductos(doc);
   pintarColores(doc);
   pintarTallas(doc);
@@ -353,6 +363,7 @@ async function anadirFicheros(ficheros) {
 // ---------------------------------------------------------------------------
 
 function validarFormulario(doc) {
+  if (doc.productoId == null) return 'Elige primero la prenda.';
   if (carasConDiseno(doc).length === 0) return 'Añade al menos un diseño antes de enviarlo.';
   if (!$('f-nombre').value.trim()) return 'Dinos tu nombre para poder responderte.';
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test($('f-email').value.trim())) return 'Revisa el email: no parece una dirección válida.';
@@ -411,7 +422,7 @@ function pantallaDeGracias(referencia, email, doc, contacto) {
 
   // El pago solo se ofrece cuando está configurado y el producto tiene precio
   // publicado. Los de presupuesto a medida se cierran por email.
-  const precio = productoDe(doc).precio ?? 0;
+  const precio = productoDe(doc)?.precio ?? 0;
   if (datos.pagoActivo && precio > 0) {
     siguiente.textContent = 'Si lo prefieres, puedes pagarlo ya y nos ponemos con él enseguida. '
       + 'Si no, te mandamos el presupuesto por email y decides luego.';
@@ -618,7 +629,15 @@ function conectar() {
 conectar();
 conectarManipulacion(lienzo, almacen);
 almacen.suscribir(pintarTodo);
-almacen.suscribir((doc) => guardar(doc, almacen.todosLosRecursos()));
+// Solo se recuerda una sesión con diseños. Así una visita de paso no deja la
+// prenda preelegida, y si se borran todos los diseños tampoco vuelven al recargar.
+let habiaDisenos = false;
+almacen.suscribir((doc) => {
+  const hay = carasConDiseno(doc).length > 0;
+  if (hay) guardar(doc, almacen.todosLosRecursos());
+  else if (habiaDisenos) olvidar();
+  habiaDisenos = hay;
+});
 redimensionar();
 
 // Se restaura al final, cuando ya está todo conectado y escuchando.

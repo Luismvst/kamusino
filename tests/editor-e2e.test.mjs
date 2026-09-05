@@ -12,6 +12,8 @@ import { crearMuestras, borrarMuestras } from './muestras.mjs';
 
 let c;
 let muestras;
+/** Id del primer producto del selector: las pruebas entran con la prenda ya elegida. */
+let productoPrueba;
 
 /** Lo último que ha recibido /api/pedido, ya parseado como FormData. */
 let recibido = null;
@@ -66,7 +68,7 @@ async function arrastrar(desde, hasta, pasos = 12) {
 }
 
 async function recargarLimpio() {
-  await c.ir('/personalizar/');
+  await c.ir('/personalizar/?producto=' + productoPrueba);
   await c.pagina.waitForFunction(() => Boolean(globalThis.__editor), { timeout: 8000 });
 }
 
@@ -96,6 +98,8 @@ before(async () => {
       },
     },
   });
+  await c.ir('/personalizar/');
+  productoPrueba = await c.pagina.$eval('#sel-producto option:not([value=""])', (o) => o.value);
   await recargarLimpio();
 });
 
@@ -129,6 +133,28 @@ describe('arranque', () => {
   test('el lienzo tiene tamaño real', async () => {
     const caja = await cajaLienzo();
     assert.ok(caja.ancho > 200 && caja.alto > 200, JSON.stringify(caja));
+  });
+});
+
+describe('elección de la prenda', () => {
+  test('sin producto en la URL arranca en el paso 1, sin lienzo ni zona de subida', async () => {
+    await limpiar();
+    await c.ir('/personalizar/');
+    await c.pagina.waitForFunction(() => Boolean(globalThis.__editor), { timeout: 8000 });
+    assert.equal(await c.pagina.$eval('#sel-producto', (s) => s.value), '');
+    assert.equal(await c.pagina.$eval('#editor', (e) => e.classList.contains('sin-prenda')), true);
+    assert.equal(await c.pagina.$eval('#soltar', (e) => e.offsetParent), null);
+    assert.match(await c.pagina.$eval('.paso.activo', (e) => e.textContent), /Elige la prenda/);
+  });
+
+  test('al elegir la prenda aparecen el lienzo y el resto de pasos', async () => {
+    await c.pagina.select('#sel-producto', productoPrueba);
+    assert.equal(await c.pagina.$eval('#editor', (e) => e.classList.contains('sin-prenda')), false);
+    assert.notEqual(await c.pagina.$eval('#soltar', (e) => e.offsetParent), null);
+    const caja = await cajaLienzo();
+    assert.ok(caja.ancho > 200 && caja.alto > 200, JSON.stringify(caja));
+    assert.match(await c.pagina.$eval('.paso.activo', (e) => e.textContent), /Sube tu diseño/);
+    await recargarLimpio();
   });
 });
 
