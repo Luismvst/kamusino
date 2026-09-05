@@ -110,6 +110,8 @@ export function crearMuestras({ bytesEnorme = 11 * 1024 * 1024 } = {}) {
   const en = (nombre) => join(dir, nombre);
 
   writeFileSync(en('logo.png'), png(800, 400));
+  // Nombre largo de verdad, como el que sale de un banco de imágenes.
+  writeFileSync(en('logotipo-corporativo-definitivo-version-final-2026-alta-resolucion.png'), png(800, 400));
   writeFileSync(en('cuadrado.png'), png(300, 300));
   writeFileSync(en('diminuto.png'), png(40, 40));
   writeFileSync(en('marca.svg'), SVG);
@@ -130,6 +132,7 @@ export function crearMuestras({ bytesEnorme = 11 * 1024 * 1024 } = {}) {
   return {
     dir,
     png: en('logo.png'),
+    nombreLargo: en('logotipo-corporativo-definitivo-version-final-2026-alta-resolucion.png'),
     pngCuadrado: en('cuadrado.png'),
     pngDiminuto: en('diminuto.png'),
     svg: en('marca.svg'),

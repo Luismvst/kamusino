@@ -65,13 +65,21 @@ img { max-width: 100%; display: block; }
 .logo img { height: 40px; width: auto; }
 .nav-principal {
   display: flex;
+  align-items: center;
   gap: 1.5rem;
   margin-left: auto;
   font-size: 0.92rem;
   font-weight: 500;
 }
-.nav-principal a { color: var(--tinta-suave); transition: color 120ms ease-out; }
+/* Sin nowrap, «Ropa personalizada» se parte en dos líneas y la cabecera crece. */
+.nav-principal a { color: var(--tinta-suave); white-space: nowrap; transition: color 120ms ease-out; }
+@media (max-width: 1180px) { .nav-principal { gap: 1rem; font-size: 0.86rem; } }
+@media (max-width: 1030px) {
+  /* Ya no caben las categorías; quedan Inicio, Contacto y la llamada a diseñar. */
+  .nav-principal a.cat { display: none; }
+}
 .nav-principal a:hover, .nav-principal a.activo { color: var(--acento); }
+.nav-principal .nav-disenar { color: var(--acento-oscuro); }
 
 .boton-whatsapp {
   display: inline-flex;
@@ -329,6 +337,9 @@ section { padding: 2.5rem 0; }
 .pie a { font-size: 0.88rem; color: var(--tinta); }
 .pie a:hover { color: var(--acento); }
 .pie .logo img { height: 32px; margin-bottom: 0.8rem; }
+/* El número era gris claro y no se leía; además ahora lleva al chat. */
+.pie .tel-whatsapp { font-size: inherit; color: var(--acento-oscuro); font-weight: 600; }
+.pie .tel-whatsapp:hover { text-decoration: underline; }
 .pie .franja-final {
   border-top: 1px solid var(--linea);
   padding-top: 1.2rem;
@@ -474,8 +485,14 @@ mark.pendiente {
   color: var(--acento-oscuro);
   font-weight: 600;
 }
-/* Con .nav-principal delante para ganar a `.nav-principal a.activo`, que lo dejaba naranja sobre naranja. */
-.nav-principal .nav-disenar:hover, .nav-principal .nav-disenar.activo { background: var(--acento); color: #fff; }
+.nav-principal .nav-disenar:hover { background: var(--acento); color: #fff; }
+/* En la propia página de diseñar es un indicador de dónde estás, no una llamada
+   a la acción: macizo se confundía con el botón de WhatsApp que tiene al lado. */
+.nav-principal .nav-disenar.activo {
+  background: var(--acento-suave);
+  color: var(--acento-oscuro);
+  cursor: default;
+}
 
 .hero-nota {
   margin-top: 1rem;

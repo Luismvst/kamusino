@@ -1,4 +1,4 @@
-import { GRUPOS, CONTACTO, urlProducto, urlCategoria, esPresupuesto, formatoPrecio, enlaceWhatsApp, mensajePedido } from './datos.mjs';
+import { GRUPOS, CONTACTO, urlProducto, urlCategoria, esPresupuesto, formatoPrecio, enlaceWhatsApp, telefonoLegible, mensajePedido } from './datos.mjs';
 import { cuerpoEditor, datosEditor } from './editor-plantilla.mjs';
 import { admiteEditor } from '../../public/js/editor/prenda.mjs';
 import {
@@ -21,15 +21,17 @@ function escapar(s = '') {
 }
 
 function cabeceraHtml(activo = '') {
-  const nav = (slug, etiqueta, href) =>
-    `<a href="${href}" class="${activo === slug ? 'activo' : ''}">${etiqueta}</a>`;
+  // `clase` marca las categorías: son las primeras que se esconden cuando la
+  // cabecera se queda sin sitio.
+  const nav = (slug, etiqueta, href, clase = '') =>
+    `<a href="${href}" class="${[clase, activo === slug ? 'activo' : ''].filter(Boolean).join(' ')}">${etiqueta}</a>`;
   return `
 <header class="cabecera">
   <div class="envoltorio">
     <a href="/" class="logo"><img src="/img/marca/logo.png" alt="Kamusino" width="182" height="50"></a>
     <nav class="nav-principal">
       ${nav('inicio', 'Inicio', '/')}
-      ${GRUPOS.map((g) => nav(g.slug, g.nombre, urlCategoria(g))).join('')}
+      ${GRUPOS.map((g) => nav(g.slug, g.nombre, urlCategoria(g), 'cat')).join('')}
       ${nav('contacto', 'Contacto', '/contacto/')}
       <a href="/personalizar/" class="nav-disenar${activo === 'personalizar' ? ' activo' : ''}">Diseñar</a>
     </nav>
@@ -159,7 +161,7 @@ function pieHtml() {
     </div>
     <div class="franja-final">
       <span>© ${anio} Kamusino</span>
-      <span>Pedidos por WhatsApp: ${CONTACTO.whatsapp.replace('34', '+34 ')}</span>
+      <span>Pedidos por WhatsApp: <a class="tel-whatsapp" href="${enlaceWhatsApp('Hola, quiero hacer un pedido.')}" target="_blank" rel="noopener">${telefonoLegible(CONTACTO.whatsapp)}</a></span>
     </div>
   </div>
 </footer>`;

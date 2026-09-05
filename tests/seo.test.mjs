@@ -302,6 +302,15 @@ describe('privacidad y terceros', () => {
   });
 });
 
+describe('pie', () => {
+  test('el número de WhatsApp se lee por grupos y lleva al chat', () => {
+    for (const p of paginas) {
+      assert.ok(p.html.includes("+34 747 41 35 26"), p.ruta);
+      assert.ok(p.html.includes('class="tel-whatsapp" href="https://wa.me/34747413526'), p.ruta);
+    }
+  });
+});
+
 describe('enlaces internos', () => {
   test('ninguno apunta a una página que no existe', () => {
     const existentes = new Set(paginas.map((p) => p.ruta));

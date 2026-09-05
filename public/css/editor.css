@@ -295,9 +295,16 @@
 }
 
 /* Lista de capas */
-.capas { list-style: none; margin: 0.875rem 0 0; padding: 0; display: grid; gap: 0.375rem; }
+.capas {
+  list-style: none; margin: 0.875rem 0 0; padding: 0;
+  display: grid;
+  /* minmax(0, 1fr): sin el 0, el track crece con el nombre del fichero y la fila se sale del panel. */
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.375rem;
+}
 .capa {
   display: flex;
+  min-width: 0;
   align-items: center;
   gap: 0.4rem;
   border: 1px solid var(--linea);
@@ -320,6 +327,8 @@
   text-align: left;
   cursor: pointer;
   color: inherit;
+  /* Un <button> no encoge por debajo de su contenido sin esto. */
+  overflow: hidden;
 }
 .capa-tipo {
   flex: none;

@@ -517,6 +517,58 @@ describe('prenda y color', () => {
   });
 });
 
+describe('lista de diseños', () => {
+  test('un nombre largo se recorta dentro del panel y el entero va en el tooltip', async () => {
+    await limpiar();
+    await subir(muestras.nombreLargo);
+    const panel = await c.pagina.$eval('.editor-panel', (e) => e.getBoundingClientRect().right);
+    const fila = await c.pagina.$eval('.capa', (e) => e.getBoundingClientRect().right);
+    assert.ok(fila <= panel + 1, `la fila llega a ${fila} y el panel acaba en ${panel}`);
+    const titulo = await c.pagina.$eval('.capa-nombre', (b) => b.title);
+    assert.match(titulo, /logotipo-corporativo/);
+  });
+
+  test('un texto largo tampoco desborda el panel', async () => {
+    await limpiar();
+    await c.pagina.click('#btn-texto');
+    await c.pagina.waitForFunction(() => globalThis.__editor.almacen.doc.capas.delantera.length >= 1, { timeout: 8000 });
+    await c.pagina.evaluate(() => {
+      const i = document.getElementById('texto-contenido');
+      i.value = 'DESPEDIDA DE SOLTERA DE ANA EN SEVILLA 2026 ULTIMA NOCHE';
+      i.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+    const panel = await c.pagina.$eval('.editor-panel', (e) => e.getBoundingClientRect().right);
+    const fila = await c.pagina.$eval('.capa', (e) => e.getBoundingClientRect().right);
+    assert.ok(fila <= panel + 1, `la fila llega a ${fila} y el panel acaba en ${panel}`);
+  });
+});
+
+describe('cabecera', () => {
+  test('no se parte en dos líneas ni descuadra el logo a ningún ancho', async () => {
+    for (const ancho of [1400, 1100, 1000, 900, 768, 480]) {
+      await c.pagina.setViewport({ width: ancho, height: 900 });
+      await recargarLimpio();
+      const m = await c.pagina.evaluate(() => {
+        const env = document.querySelector('.cabecera .envoltorio').getBoundingClientRect();
+        const img = document.querySelector('.logo img').getBoundingClientRect();
+        return { alto: Math.round(env.height), arriba: Math.round(img.top - env.top), abajo: Math.round(env.bottom - img.bottom) };
+      });
+      assert.equal(m.alto, 67, `a ${ancho}px la cabecera mide ${m.alto}px: el menú ha saltado de línea`);
+      assert.ok(Math.abs(m.arriba - m.abajo) <= 1, `a ${ancho}px el logo está descentrado: ${m.arriba}/${m.abajo}`);
+    }
+    await c.pagina.setViewport({ width: 1400, height: 1000 });
+    await recargarLimpio();
+  });
+
+  test('dentro del editor el botón Diseñar no se confunde con el de WhatsApp', async () => {
+    const [disenar, whatsapp] = await c.pagina.evaluate(() => [
+      getComputedStyle(document.querySelector('.nav-disenar')).backgroundColor,
+      getComputedStyle(document.querySelector('.boton-whatsapp')).backgroundColor,
+    ]);
+    assert.notEqual(disenar, whatsapp);
+  });
+});
+
 describe('avisos antes de enviar', () => {
   test('avisa cuando la resolución no da para imprimir', async () => {
     await limpiar();

@@ -85,6 +85,14 @@ export function formatoPrecio(p) {
 }
 
 /** Enlace de WhatsApp con el pedido ya redactado; el cliente solo confirma y envía. */
+/** `34747413526` -> `+34 747 41 35 26`, que es como se lee un teléfono español. */
+export function telefonoLegible(numero) {
+  const n = String(numero).replace(/D/g, '');
+  const sinPrefijo = n.startsWith('34') ? n.slice(2) : n;
+  if (sinPrefijo.length !== 9) return '+' + n;
+  return `+34 ${sinPrefijo.slice(0, 3)} ${sinPrefijo.slice(3, 5)} ${sinPrefijo.slice(5, 7)} ${sinPrefijo.slice(7)}`;
+}
+
 export function enlaceWhatsApp(mensaje) {
   return `https://wa.me/${CONTACTO.whatsapp}?text=${encodeURIComponent(mensaje)}`;
 }

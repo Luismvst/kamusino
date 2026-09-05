@@ -160,6 +160,8 @@ function pintarCapas(doc) {
     const texto = document.createElement('span');
     texto.className = 'capa-texto';
     texto.textContent = etiquetaCapa(capa);
+    // La fila recorta el nombre; el tooltip enseña el que no cabe.
+    nombre.title = etiquetaCapa(capa);
     nombre.append(tipo, texto);
     if (capa.bytes) {
       const peso = document.createElement('span');
